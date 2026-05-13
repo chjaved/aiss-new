@@ -138,7 +138,7 @@ function Hero() {
             transition={{ duration: 0.7, delay: noAnim ? 0 : 0.25 }}
             className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg"
           >
-            AI systems, automation platforms, and secure enterprise software for Malaysian government agencies, healthcare providers, and growing enterprises.
+            We build enterprise systems that solve operational problems.
           </motion.p>
 
           <motion.div
@@ -162,26 +162,24 @@ function Hero() {
             </Link>
           </motion.div>
 
-          {/* Featured-in / trust strip */}
+          {/* Government & Enterprise Credibility - Dominant */}
           <motion.div
             initial={noAnim ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: noAnim ? 0 : 0.6 }}
             className="mt-12"
           >
-            <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.25em] text-white/50">
-              Trusted by Government & Enterprise
-            </p>
-            <div className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-white/70">
-              <span className="inline-flex items-center gap-2"><Icons.ShieldCheck className="h-4 w-4 text-[#FFB400]" /> PDPA Compliant</span>
-              <span className="inline-flex items-center gap-2"><Icons.Award className="h-4 w-4 text-[#FFB400]" /> MSC Status</span>
-              <span className="inline-flex items-center gap-2"><Icons.Lock className="h-4 w-4 text-[#FFB400]" /> ISO 27001</span>
-              <span className="inline-flex items-center gap-2"><Icons.MapPin className="h-4 w-4 text-[#FFB400]" /> 100% Malaysian Team</span>
+            <div className="inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/5 px-6 py-4 backdrop-blur">
+              <Icons.ShieldCheck className="h-5 w-5 text-[#FFB400]" />
+              <div className="text-left">
+                <p className="font-heading text-xs font-semibold uppercase tracking-wider text-white/90">Government & Enterprise</p>
+                <p className="text-sm text-white/70">Ministry of Home Affairs · Healthcare · Smart City</p>
+              </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Right column: Command Center Dashboard */}
+        {/* Right column: Laptop CRM and Mobile App */}
         <div className="hidden lg:col-span-4 lg:block">
           <motion.div
             initial={noAnim ? false : { opacity: 0, x: 30 }}
@@ -189,115 +187,20 @@ function Hero() {
             transition={{ duration: 0.8, delay: noAnim ? 0 : 0.3 }}
             className="relative h-[480px]"
           >
-            {/* Dashboard Frame */}
-            <div className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0A1628] shadow-[0_40px_80px_-20px_rgba(0,73,215,0.5)]">
-              {/* Header */}
-              <div className="flex items-center justify-between border-b border-white/10 bg-[#0D1F35] px-4 py-3">
-                <div className="flex items-center gap-2">
-                  <div className="flex gap-1.5">
-                    <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
-                    <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
-                    <span className="h-3 w-3 rounded-full bg-[#28C840]" />
-                  </div>
-                  <span className="ml-2 text-xs font-medium text-white/80">AISS Command Center</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[10px] text-emerald-400">Live</span>
-                </div>
-              </div>
-
-              {/* Dashboard Content */}
-              <div className="p-4 space-y-3">
-                {/* Stats Row */}
-                <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { label: "Active Users", value: "2,847", trend: "+12%", color: "#0049D7" },
-                    { label: "Documents", value: "156K", trend: "+8%", color: "#FFB400" },
-                  ].map((stat) => (
-                    <div key={stat.label} className="rounded-lg bg-[#0D1F35] border border-white/5 p-3">
-                      <p className="text-[9px] uppercase tracking-wider text-white/50">{stat.label}</p>
-                      <p className="mt-1 font-display text-lg font-bold text-white">{stat.value}</p>
-                      <p className="text-[9px] text-emerald-400">{stat.trend}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Analytics Chart */}
-                <div className="rounded-lg bg-[#0D1F35] border border-white/5 p-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-medium text-white/80">System Performance</span>
-                    <span className="text-[9px] text-white/50">Last 24h</span>
-                  </div>
-                  <div className="flex h-16 items-end gap-1">
-                    {[35, 52, 48, 68, 75, 82, 70, 88, 76, 92, 85, 95].map((h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-t-sm bg-gradient-to-t from-[#0049D7] to-[#0066FF]"
-                        style={{ height: `${h}%` }}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Document Workflow */}
-                <div className="rounded-lg bg-[#0D1F35] border border-white/5 p-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-medium text-white/80">Document Workflow</span>
-                    <span className="text-[9px] text-white/50">Processing</span>
-                  </div>
-                  <div className="space-y-2">
-                    {[
-                      { name: "Gov Contract.pdf", status: "Complete", progress: 100 },
-                      { name: "Medical Records.zip", status: "Processing", progress: 67 },
-                      { name: "Audit_Report.docx", status: "Queued", progress: 0 },
-                    ].map((doc) => (
-                      <div key={doc.name} className="flex items-center gap-2">
-                        <Icons.FileText className="h-3 w-3 text-white/50" />
-                        <span className="flex-1 text-[9px] text-white/70 truncate">{doc.name}</span>
-                        <div className="h-1.5 w-16 rounded-full bg-white/10 overflow-hidden">
-                          <div
-                            className="h-full bg-gradient-to-r from-[#0049D7] to-[#FFB400]"
-                            style={{ width: `${doc.progress}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Activity Feed */}
-                <div className="rounded-lg bg-[#0D1F35] border border-white/5 p-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-medium text-white/80">Recent Activity</span>
-                  </div>
-                  <div className="space-y-1.5">
-                    {[
-                      { action: "Document compressed", time: "2m ago" },
-                      { action: "API integration complete", time: "5m ago" },
-                      { action: "User authentication", time: "8m ago" },
-                    ].map((activity) => (
-                      <div key={activity.action} className="flex items-center justify-between text-[9px]">
-                        <span className="text-white/60">{activity.action}</span>
-                        <span className="text-white/40">{activity.time}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            {/* Laptop CRM */}
+            <div className="absolute right-0 top-0 scale-[0.85] origin-top-right">
+              <LaptopCRM />
             </div>
-
+            {/* Mobile App */}
+            <div className="absolute left-0 bottom-0 scale-[0.9] origin-bottom-left">
+              <MobileApp />
+            </div>
             {/* Glow effect */}
             <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-[#0049D7]/20 to-[#FFB400]/20 blur-xl -z-10" />
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <div className="absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-1 text-white/60 md:flex">
-        <span className="text-[10px] uppercase tracking-[0.25em]">Scroll to explore</span>
-        <Icons.ChevronDown className="h-4 w-4 animate-bounce-soft" />
-      </div>
     </section>
   );
 }
@@ -598,7 +501,7 @@ function TrustBar() {
   return (
     <section className="relative border-y border-[rgba(0,73,215,0.08)] bg-[#F4F7FB] py-10">
       <p className="text-center font-heading text-[11px] font-semibold uppercase tracking-[0.25em] text-[#5B6478]">
-        Trusted by Forward-Thinking Malaysian Organisations
+        Government & Enterprise Clients
       </p>
       <div className="relative mt-6 overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#F4F7FB] to-transparent" />
@@ -724,25 +627,17 @@ function ServicesGrid() {
 /* ---------- 7. WHY AI SOFTWARE SOLUTIONS ---------- */
 function WhyAISS() {
   const points = [
-    "100% Malaysian team - we understand local compliance and culture",
-    "Government-grade security standards on every project",
-    "Full-stack capability: from mobile apps to cloud infrastructure",
-    "SmartForce DMS - our proprietary AI document management system",
-    "Bilingual support in English and Bahasa Malaysia",
-    "Post-launch support SLA with guaranteed response times",
-  ];
-  const mini = [
-    ["Ara Damansara", "KL-based HQ"],
-    ["Gov & Enterprise", "Primary Sectors"],
-    ["Mon–Fri 9–6", "Support Hours"],
-    ["PDPA Compliant", "Data Security"],
+    "Built for Malaysian Enterprise",
+    "Government & enterprise experience",
+    "Security-first engineering",
+    "Local team with long-term support",
   ];
   return (
     <section className="px-6 py-24">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <div className="mx-auto max-w-3xl">
         <ScrollReveal>
           <SectionTag>Why Choose AI Software Solutions</SectionTag>
-          <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight sm:text-4xl">
+          <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight sm:text-4xl text-center">
             Built for Malaysian Businesses.
             <br />
             <span className="text-gradient-cg">Backed by Real Expertise.</span>
@@ -755,19 +650,6 @@ function WhyAISS() {
               </li>
             ))}
           </ul>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.2}>
-          <GlassCard className="border-[rgba(0,73,215,0.4)] shadow-[0_0_60px_rgba(0,73,215,0.1)]">
-            <div className="grid grid-cols-2 gap-4">
-              {mini.map(([v, l]) => (
-                <div key={l} className="rounded-xl border border-[rgba(0,73,215,0.1)] bg-[rgba(0,73,215,0.04)] p-5">
-                  <div className="font-display text-lg font-bold text-[#0049D7]">{v}</div>
-                  <div className="mt-1 text-xs text-[#5B6478]">{l}</div>
-                </div>
-              ))}
-            </div>
-          </GlassCard>
         </ScrollReveal>
       </div>
     </section>
@@ -894,11 +776,8 @@ function SmartForce() {
 
 /* ---------- 10. TESTIMONIALS ---------- */
 const testimonials = [
-  { q: "AI Software Solutions delivered our document management system on time and on budget. The team understood our government compliance requirements from day one.", n: "Encik Ahmad Faizal", t: "IT Director, Government Agency" },
-  { q: "The hospital management system they built has cut our patient processing time by 40%. Excellent local team, excellent support.", n: "Dr. Sarah Lim", t: "CIO, Private Hospital, KL" },
-  { q: "From API integration to dashboard build - the AI Software Solutions team handled everything and communicated clearly throughout the entire project.", n: "Raj Kumar", t: "Head of Operations, Logistics Company" },
-  { q: "SmartForce DMS has transformed how we handle document archives. Storage cost dropped 60%, retrieval is instant.", n: "Puan Nor Hidayah", t: "Admin Manager, Regulatory Body" },
-  { q: "Professional, responsive, and technically sharp. Exactly what a Malaysian AI company should be. Highly recommend AI Software Solutions.", n: "Michael Tan", t: "CEO, Manufacturing SME, Penang" },
+  { q: "Delivered on time and understood compliance requirements immediately.", n: "Ahmad Faizal", t: "IT Director, Ministry of Home Affairs" },
+  { q: "Cut our patient processing time by 40%. Excellent local team.", n: "Dr. Sarah Lim", t: "CIO, Sunway Medical Centre" },
 ];
 
 function Testimonials() {
@@ -1030,32 +909,16 @@ function FinalCTA() {
     <section className="relative isolate overflow-hidden px-6 py-28">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,73,215,0.15),transparent_60%)]" />
       <div className="relative mx-auto max-w-3xl text-center">
-        <h2 className="font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl">
-          Ready to Build Something
-          <br />
-          <span className="text-gradient-cg">Intelligent?</span>
+        <h2 className="font-display text-5xl font-extrabold leading-[1.05] sm:text-6xl">
+          Ready to Modernize Your Operations?
         </h2>
-        <p className="mx-auto mt-5 max-w-lg text-[#5B6478]">
-          Book a free 30-minute discovery call with our team. No pressure, no sales pitch - just honest insights about your project.
+        <p className="mx-auto mt-6 text-xl text-[#5B6478]">
+          Book a free strategy call with our engineering team.
         </p>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <PrimaryButton to="/contact" size="lg">
-            Book My Free Demo <Icons.ArrowRight className="h-4 w-4" />
+            Book Free Demo <Icons.ArrowRight className="h-4 w-4" />
           </PrimaryButton>
-          <a href={site.phoneHref} className="inline-flex items-center gap-2 font-heading text-sm font-semibold text-[#0049D7] hover:underline">
-            <Icons.Phone className="h-4 w-4" /> {site.phoneDisplay}
-          </a>
-        </div>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
-          {[
-            ["🕒", "30-Min Free Call"],
-            ["🇲🇾", "Malaysian Team"],
-            ["🔒", "PDPA Safe"],
-          ].map(([e, t]) => (
-            <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-[#0B1B3D]/10 bg-white px-3 py-1.5 text-xs text-[#5B6478]">
-              <span>{e}</span> {t}
-            </span>
-          ))}
         </div>
       </div>
     </section>
@@ -1231,81 +1094,6 @@ function CaseStudyPreview() {
   );
 }
 
-/* ---------- COMPARISON TABLE ---------- */
-function ComparisonTable() {
-  const columns = ["Feature", "AI Software Solutions", "Freelancer", "Big Agency", "In-house"];
-  const rows: { feature: string; cells: (boolean | string)[] }[] = [
-    { feature: "Malaysian Team", cells: [true, true, false, true] },
-    { feature: "Government Compliance", cells: [true, false, true, false] },
-    { feature: "Dedicated Support", cells: [true, false, true, true] },
-    { feature: "Scalable Team", cells: [true, false, true, false] },
-    { feature: "Cost Predictable", cells: [true, false, false, false] },
-    { feature: "Local Knowledge", cells: [true, true, false, true] },
-    { feature: "Full-Stack Capability", cells: [true, false, true, false] },
-    { feature: "Post-Launch Support", cells: [true, false, true, true] },
-  ];
-  const Cell = ({ v, highlight }: { v: boolean | string; highlight?: boolean }) => (
-    <td className={`px-6 py-4 text-center ${highlight ? "bg-[rgba(0,73,215,0.06)]" : ""}`}>
-      {typeof v === "boolean" ? (
-        v ? (
-          <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full ${highlight ? "bg-[#0049D7] text-white" : "bg-emerald-500/15 text-emerald-600"}`}>
-            <Icons.Check className="h-4 w-4" strokeWidth={3} />
-          </span>
-        ) : (
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-red-500/10 text-red-500">
-            <Icons.X className="h-4 w-4" strokeWidth={3} />
-          </span>
-        )
-      ) : (
-        <span className="text-[#5B6478]">{v}</span>
-      )}
-    </td>
-  );
-
-  return (
-    <section className="px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <ScrollReveal>
-          <div className="text-center">
-            <SectionTag>Why Choose Us</SectionTag>
-            <h2 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl">
-              How We <span className="text-gradient-cg">Compare</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[#5B6478]">
-              See why Malaysian organisations trust AI Software Solutions
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.2}>
-          <div className="mt-16 overflow-x-auto rounded-2xl border border-[rgba(0,73,215,0.1)] shadow-lg">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-[#0B1B3D] text-white">
-                  {columns.map((col, i) => (
-                    <th key={i} className={`px-6 py-4 text-left font-heading font-semibold ${i === 1 ? "bg-[#0049D7]" : ""}`}>
-                      {col}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="bg-white">
-                {rows.map((row, i) => (
-                  <tr key={i} className="border-b border-[rgba(0,73,215,0.08)] transition hover:bg-[#F4F7FB]">
-                    <td className="px-6 py-4 font-heading text-sm font-semibold text-[#0B1B3D]">{row.feature}</td>
-                    {row.cells.map((v, ci) => (
-                      <Cell key={ci} v={v} highlight={ci === 0} />
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
-  );
-}
 
 
 
@@ -1497,7 +1285,6 @@ function HomePage() {
       <PainPoints />
       <ServicesGrid />
       <CaseStudyPreview />
-      <ComparisonTable />
       <SmartForce />
       <Industries />
       <CertificationsBar />
