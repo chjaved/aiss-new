@@ -550,34 +550,6 @@ function TrustBar() {
   );
 }
 
-/* ---------- 3. STATS ---------- */
-function Stats() {
-  const stats: { value: number; suffix: string; label: string; decimals?: number; Icon: Icons.LucideIcon }[] = [
-    { value: 50, suffix: "+", label: "Projects Delivered", Icon: Icons.Rocket },
-    { value: 100, suffix: "%", label: "Malaysian-Based Team", Icon: Icons.MapPin },
-    { value: 10, suffix: "+", label: "Industries Served", Icon: Icons.Building2 },
-    { value: 4.9, suffix: "★", label: "Average Client Rating", decimals: 1, Icon: Icons.Star },
-  ];
-  return (
-    <section className="relative px-6 py-20">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 lg:grid-cols-4">
-        {stats.map((s, i) => (
-          <ScrollReveal key={s.label} delay={i * 0.08}>
-            <GlassCard accent="gold" className="group relative overflow-hidden text-center transition hover:-translate-y-1">
-              <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition group-hover:scale-110 group-hover:bg-[#0049D7] group-hover:text-white">
-                <s.Icon className="h-5 w-5" />
-              </span>
-              <div className="mt-4 font-display text-4xl font-extrabold text-[#0049D7] sm:text-5xl">
-                <AnimatedCounter to={s.value} suffix={s.suffix} decimals={s.decimals ?? 0} />
-              </div>
-              <div className="mt-2 text-sm text-[#5B6478]">{s.label}</div>
-            </GlassCard>
-          </ScrollReveal>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 /* ---------- 4. PAIN POINTS ---------- */
 function PainPoints() {
@@ -680,43 +652,6 @@ function ServicesGrid() {
   );
 }
 
-/* ---------- 6. HOW IT WORKS ---------- */
-function HowItWorks() {
-  const steps = [
-    { n: "01", Icon: Icons.Search, title: "Discovery & Audit", desc: "We study your current systems, workflows, and pain points to map exactly what needs to be built." },
-    { n: "02", Icon: Icons.PenTool, title: "Strategy & Architecture", desc: "Our architects design the solution stack, integration points, security model, and delivery roadmap." },
-    { n: "03", Icon: Icons.Layers, title: "Build & Integrate", desc: "Agile sprints. Regular demos. Your team stays in the loop from first line of code to final testing." },
-    { n: "04", Icon: Icons.Rocket, title: "Launch & Scale", desc: "Go live with full training, documentation, and ongoing support. We don't disappear after delivery." },
-  ];
-  return (
-    <section className="bg-[#F4F7FB] px-6 py-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-2xl text-center">
-          <SectionTag>Our Process</SectionTag>
-          <h2 className="mt-5 font-display text-3xl font-extrabold sm:text-4xl">
-            From Discovery to Deployment in <span className="text-[#0049D7]">4 Steps</span>
-          </h2>
-        </div>
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s, i) => (
-            <ScrollReveal key={s.n} delay={i * 0.12}>
-              <div className="relative">
-                <span className="font-display text-6xl font-extrabold text-[rgba(0,73,215,0.10)]">{s.n}</span>
-                <div className="-mt-8">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-[rgba(0,73,215,0.1)] text-[#0049D7]">
-                    <s.Icon className="h-5 w-5" />
-                  </span>
-                  <h3 className="mt-4 font-heading text-lg font-semibold text-[#0B1B3D]">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#5B6478]">{s.desc}</p>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ---------- 7. WHY AI SOFTWARE SOLUTIONS ---------- */
 function WhyAISS() {
@@ -1020,74 +955,6 @@ function TechStack() {
   );
 }
 
-/* ---------- 12. LEAD MAGNET ---------- */
-const checklistSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-});
-type ChecklistData = z.infer<typeof checklistSchema>;
-
-function LeadMagnet() {
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ChecklistData>({
-    resolver: zodResolver(checklistSchema),
-  });
-  const onSubmit = async (_d: ChecklistData) => {
-    // TODO: Wire up to email service (Resend / EmailJS)
-    await new Promise((r) => setTimeout(r, 600));
-    toast.success("Checklist sent to your email!");
-    reset();
-  };
-  return (
-    <section className="px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <GlassCard className="overflow-hidden border-[rgba(0,73,215,0.3)] p-0">
-          <div className="h-[2px] w-full bg-gradient-to-r from-[#0049D7] via-[#FFB400] to-[#0049D7]" />
-          <div className="grid grid-cols-1 gap-10 p-10 lg:grid-cols-2">
-            <div>
-              <SectionTag>Free Resource</SectionTag>
-              <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight sm:text-4xl">
-                Get Your Free <span className="text-[#FFB400]">AI Readiness</span> Checklist
-              </h2>
-              <p className="mt-4 text-[#5B6478]">
-                Find out how ready your organisation is for AI adoption. This free checklist covers 25 key areas - used by Malaysian SMEs and enterprises to plan their digital transformation roadmap.
-              </p>
-              <ul className="mt-5 space-y-2.5">
-                {[
-                  "25-point AI readiness assessment",
-                  "Specific to Malaysian business context",
-                  "Instant download, no spam ever",
-                ].map((b) => (
-                  <li key={b} className="flex items-center gap-2 text-sm text-[#0B1B3D]">
-                    <Icons.CheckCircle2 className="h-4 w-4 text-[#0049D7]" /> {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center gap-3">
-              <label htmlFor="lm-email" className="font-heading text-xs uppercase tracking-wider text-[#5B6478]">
-                Email Address
-              </label>
-              <input
-                id="lm-email"
-                type="email"
-                placeholder="your@email.com"
-                {...register("email")}
-                className="w-full rounded-full border border-[rgba(0,73,215,0.2)] bg-[rgba(255,255,255,0.5)] px-5 py-3.5 text-sm text-[#0B1B3D] placeholder:text-[#5B6478] focus:border-[#0049D7] focus:outline-none"
-              />
-              {errors.email && <p className="text-xs text-red-400">{errors.email.message}</p>}
-              <PrimaryButton type="submit" size="md" className="w-full">
-                {isSubmitting ? "Sending..." : "Download Free Checklist"}
-                <Icons.ArrowRight className="h-4 w-4" />
-              </PrimaryButton>
-              <p className="text-center text-xs text-[#5B6478]">
-                <Icons.Lock className="mr-1 inline h-3 w-3" /> PDPA compliant. Unsubscribe anytime.
-              </p>
-            </form>
-          </div>
-        </GlassCard>
-      </div>
-    </section>
-  );
-}
 
 /* ---------- 13. FINAL CTA ---------- */
 function FinalCTA() {
@@ -1372,125 +1239,7 @@ function ComparisonTable() {
   );
 }
 
-/* ---------- TEAM SECTION ---------- */
-function TeamSection() {
-  const team = [
-    { name: "Ahmad Faizal", role: "CEO & Founder", bio: "15+ years in enterprise software and AI solutions" },
-    { name: "Sarah Lim", role: "CTO", bio: "Former Google engineer, expert in scalable systems" },
-    { name: "Raj Kumar", role: "Head of Engineering", bio: "Built systems for 100+ government projects" },
-    { name: "Dr. Michael Tan", role: "AI Lead", bio: "PhD in Machine Learning, 50+ published papers" },
-  ];
 
-  return (
-    <section className="px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <ScrollReveal>
-          <div className="text-center">
-            <SectionTag>Our Team</SectionTag>
-            <h2 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl">
-              Meet the <span className="text-gradient-cg">Experts</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[#5B6478]">
-              The people who make AI Software Solutions work for your business
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {team.map((member, i) => (
-            <ScrollReveal key={i} delay={i * 0.1}>
-              <div className="group relative overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.1)] bg-white p-6 text-center shadow-sm transition hover:-translate-y-2 hover:border-[#FFB400]/40 hover:shadow-xl">
-                <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#0049D7] to-[#FFB400] transition-transform duration-500 group-hover:scale-x-100" />
-                <div className="relative mx-auto h-28 w-28">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#0049D7] to-[#FFB400] opacity-20 blur-xl transition group-hover:opacity-40" />
-                  <div className="relative grid h-28 w-28 place-items-center rounded-full bg-gradient-to-br from-[#0049D7] to-[#FFB400] font-display text-3xl font-bold text-white">
-                    {member.name.split(" ").map(n => n[0]).join("")}
-                  </div>
-                </div>
-                <h3 className="mt-4 font-heading text-lg font-semibold text-[#0B1B3D]">{member.name}</h3>
-                <p className="mt-1 text-sm font-semibold text-[#0049D7]">{member.role}</p>
-                <p className="mt-2 text-xs text-[#5B6478]">{member.bio}</p>
-                <a href="#" aria-label={`${member.name} on LinkedIn`} className="mt-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#0049D7]/10 text-[#0049D7] transition hover:bg-[#0049D7] hover:text-white">
-                  <Icons.Linkedin className="h-4 w-4" />
-                </a>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- BLOG PREVIEW ---------- */
-function BlogPreview() {
-  const posts = [
-    { cat: "AI Strategy", title: "How Malaysian SMEs Can Start with AI Automation in 2025", date: "Mar 2025", slug: "#" },
-    { cat: "Product", title: "SmartForce DMS: Solving Government Document Management", date: "Feb 2025", slug: "#" },
-    { cat: "Healthcare", title: "What to Look for in a Healthcare Software Partner in Malaysia", date: "Jan 2025", slug: "#" },
-  ];
-
-  return (
-    <section className="bg-[#F4F7FB] px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <ScrollReveal>
-          <div className="text-center">
-            <SectionTag>Blog & Insights</SectionTag>
-            <h2 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl">
-              Latest <span className="text-gradient-cg">Insights</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[#5B6478]">
-              Expert perspectives on AI, software development, and digital transformation
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {posts.map((post, i) => {
-            const images = [
-              "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80&auto=format&fit=crop",
-              "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80&auto=format&fit=crop",
-            ];
-            return (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <Link to="/blog" className="group block h-full">
-                  <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.1)] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={images[i % 3]}
-                        alt={post.title}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B3D]/80 via-[#0B1B3D]/20 to-transparent" />
-                      <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
-                        <span className="inline-block rounded-full bg-[#FFB400] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#0B1B3D]">{post.cat}</span>
-                        <span className="grid h-8 w-8 place-items-center rounded-full bg-white/95 text-[#0B1B3D] transition group-hover:bg-[#FFB400]">
-                          <Icons.ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex flex-1 flex-col p-6">
-                      <h3 className="font-heading text-lg font-semibold text-[#0B1B3D] group-hover:text-[#0049D7]">{post.title}</h3>
-                      <p className="mt-auto pt-4 text-xs text-[#5B6478]">{post.date}</p>
-                    </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            );
-          })}
-        </div>
-
-        <div className="mt-12 text-center">
-          <PrimaryButton to="/blog" size="lg">
-            View All Articles <ArrowRight className="h-4 w-4" />
-          </PrimaryButton>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ---------- VIDEO EMBED ---------- */
 function VideoEmbed() {
@@ -1677,21 +1426,16 @@ function HomePage() {
     <>
       <Hero />
       <TrustBar />
-      <Stats />
       <PainPoints />
       <ServicesGrid />
-      <HowItWorks />
       <CaseStudyPreview />
       <ComparisonTable />
       <SmartForce />
-      <TeamSection />
       <Industries />
       <CertificationsBar />
       <Testimonials />
       <TechStack />
-      <BlogPreview />
       <InteractiveFAQ />
-      <LeadMagnet />
       <FinalCTA />
       <FloatingElements />
     </>
