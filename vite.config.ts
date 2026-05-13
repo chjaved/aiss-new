@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => ({
     tsConfigPaths(),
     tailwindcss(),
     tanstackStart({ server: { entry: "server" } }),
-    ...(command === "build" ? [cloudflare()] : []),
+    ...(command === "build" && !process.env.VERCEL ? [cloudflare()] : []),
   ],
   resolve: {
     dedupe: [
