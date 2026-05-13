@@ -138,9 +138,7 @@ function Hero() {
             transition={{ duration: 0.7, delay: noAnim ? 0 : 0.25 }}
             className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg"
           >
-            We engineer custom AI software, automation systems, and secure platforms
-            that help Malaysian businesses move faster, scale smarter, and outperform
-            the competition — from startup MVPs to government-grade systems.
+            AI systems, automation platforms, and secure enterprise software for Malaysian government agencies, healthcare providers, and growing enterprises.
           </motion.p>
 
           <motion.div
@@ -183,7 +181,7 @@ function Hero() {
           </motion.div>
         </div>
 
-        {/* Right column: floating stat cards */}
+        {/* Right column: Command Center Dashboard */}
         <div className="hidden lg:col-span-4 lg:block">
           <motion.div
             initial={noAnim ? false : { opacity: 0, x: 30 }}
@@ -191,36 +189,106 @@ function Hero() {
             transition={{ duration: 0.8, delay: noAnim ? 0 : 0.3 }}
             className="relative h-[480px]"
           >
-            {/* Stat card 1 */}
-            <div className="absolute right-4 top-0 w-64 rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-xl animate-float" style={{ animationDelay: "0s" }}>
-              <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#FFB400]/20 text-[#FFB400]"><Icons.Rocket className="h-5 w-5" /></span>
-                <div>
-                  <p className="font-display text-2xl font-extrabold text-white">50+</p>
-                  <p className="text-xs text-white/60">Projects Delivered</p>
+            {/* Dashboard Frame */}
+            <div className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0A1628] shadow-[0_40px_80px_-20px_rgba(0,73,215,0.5)]">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-white/10 bg-[#0D1F35] px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-1.5">
+                    <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
+                    <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
+                    <span className="h-3 w-3 rounded-full bg-[#28C840]" />
+                  </div>
+                  <span className="ml-2 text-xs font-medium text-white/80">AISS Command Center</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[10px] text-emerald-400">Live</span>
+                </div>
+              </div>
+
+              {/* Dashboard Content */}
+              <div className="p-4 space-y-3">
+                {/* Stats Row */}
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { label: "Active Users", value: "2,847", trend: "+12%", color: "#0049D7" },
+                    { label: "Documents", value: "156K", trend: "+8%", color: "#FFB400" },
+                  ].map((stat) => (
+                    <div key={stat.label} className="rounded-lg bg-[#0D1F35] border border-white/5 p-3">
+                      <p className="text-[9px] uppercase tracking-wider text-white/50">{stat.label}</p>
+                      <p className="mt-1 font-display text-lg font-bold text-white">{stat.value}</p>
+                      <p className="text-[9px] text-emerald-400">{stat.trend}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Analytics Chart */}
+                <div className="rounded-lg bg-[#0D1F35] border border-white/5 p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-medium text-white/80">System Performance</span>
+                    <span className="text-[9px] text-white/50">Last 24h</span>
+                  </div>
+                  <div className="flex h-16 items-end gap-1">
+                    {[35, 52, 48, 68, 75, 82, 70, 88, 76, 92, 85, 95].map((h, i) => (
+                      <div
+                        key={i}
+                        className="flex-1 rounded-t-sm bg-gradient-to-t from-[#0049D7] to-[#0066FF]"
+                        style={{ height: `${h}%` }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Document Workflow */}
+                <div className="rounded-lg bg-[#0D1F35] border border-white/5 p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-medium text-white/80">Document Workflow</span>
+                    <span className="text-[9px] text-white/50">Processing</span>
+                  </div>
+                  <div className="space-y-2">
+                    {[
+                      { name: "Gov Contract.pdf", status: "Complete", progress: 100 },
+                      { name: "Medical Records.zip", status: "Processing", progress: 67 },
+                      { name: "Audit_Report.docx", status: "Queued", progress: 0 },
+                    ].map((doc) => (
+                      <div key={doc.name} className="flex items-center gap-2">
+                        <Icons.FileText className="h-3 w-3 text-white/50" />
+                        <span className="flex-1 text-[9px] text-white/70 truncate">{doc.name}</span>
+                        <div className="h-1.5 w-16 rounded-full bg-white/10 overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-[#0049D7] to-[#FFB400]"
+                            style={{ width: `${doc.progress}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Activity Feed */}
+                <div className="rounded-lg bg-[#0D1F35] border border-white/5 p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-medium text-white/80">Recent Activity</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    {[
+                      { action: "Document compressed", time: "2m ago" },
+                      { action: "API integration complete", time: "5m ago" },
+                      { action: "User authentication", time: "8m ago" },
+                    ].map((activity) => (
+                      <div key={activity.action} className="flex items-center justify-between text-[9px]">
+                        <span className="text-white/60">{activity.action}</span>
+                        <span className="text-white/40">{activity.time}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-            {/* Stat card 2 */}
-            <div className="absolute right-24 top-40 w-64 rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-xl animate-float" style={{ animationDelay: "1.2s" }}>
-              <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#0049D7]/30 text-white"><Icons.Sparkles className="h-5 w-5" /></span>
-                <div>
-                  <p className="font-display text-2xl font-extrabold text-white">AI-First</p>
-                  <p className="text-xs text-white/60">Engineering Team</p>
-                </div>
-              </div>
-            </div>
-            {/* Stat card 3 */}
-            <div className="absolute right-0 bottom-4 w-64 rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-xl animate-float" style={{ animationDelay: "2.4s" }}>
-              <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-400/20 text-emerald-300"><Icons.TrendingUp className="h-5 w-5" /></span>
-                <div>
-                  <p className="font-display text-2xl font-extrabold text-white">4.9 ★</p>
-                  <p className="text-xs text-white/60">Avg Client Rating</p>
-                </div>
-              </div>
-            </div>
+
+            {/* Glow effect */}
+            <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-[#0049D7]/20 to-[#FFB400]/20 blur-xl -z-10" />
           </motion.div>
         </div>
       </div>
