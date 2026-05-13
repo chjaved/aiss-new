@@ -178,35 +178,6 @@ function Hero() {
             </div>
           </motion.div>
         </div>
-
-        {/* Right column: System Images */}
-        <div className="hidden lg:col-span-4 lg:block">
-          <motion.div
-            initial={noAnim ? false : { opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: noAnim ? 0 : 0.3 }}
-            className="relative h-[480px]"
-          >
-            {/* Dashboard Image */}
-            <div className="absolute right-0 top-0 w-[400px] rounded-xl border border-white/10 bg-[#0A1628] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,73,215,0.4)]">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop"
-                alt="Dashboard System"
-                className="w-full h-[280px] object-cover"
-              />
-            </div>
-            {/* Mobile System Image */}
-            <div className="absolute right-12 bottom-0 w-[220px] rounded-xl border border-white/10 bg-[#0A1628] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,73,215,0.4)]">
-              <img
-                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80&auto=format&fit=crop"
-                alt="Mobile System"
-                className="w-full h-[200px] object-cover"
-              />
-            </div>
-            {/* Glow effect */}
-            <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-[#0049D7]/20 to-[#FFB400]/20 blur-xl -z-10" />
-          </motion.div>
-        </div>
       </div>
 
     </section>
