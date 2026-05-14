@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import * as Icons from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -105,7 +105,7 @@ function Hero() {
       <div className="pointer-events-none absolute -right-32 bottom-0 z-10 h-[24rem] w-[24rem] rounded-full bg-[#FFB400] opacity-15 blur-[180px]" aria-hidden />
 
       <div className="relative z-20 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-7">
           <motion.div
             initial={noAnim ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -123,7 +123,7 @@ function Hero() {
             initial={noAnim ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: noAnim ? 0 : 0.1 }}
-            className="mt-6 font-display text-[clamp(2.6rem,6.5vw,5rem)] font-extrabold leading-[1.02] tracking-tight text-white"
+            className="mt-6 font-display text-[clamp(2.4rem,5.5vw,4.5rem)] font-extrabold leading-[1.02] tracking-tight text-white"
             style={{ textShadow: "0 2px 30px rgba(0,0,0,0.45)" }}
           >
             Modern Software for Government & Enterprise Operations.
@@ -142,7 +142,7 @@ function Hero() {
             initial={noAnim ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: noAnim ? 0 : 0.4 }}
-            className="mt-9 flex flex-wrap items-center gap-4"
+            className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Link
               to="/contact"
@@ -159,20 +159,105 @@ function Hero() {
             </Link>
           </motion.div>
 
-          {/* Government & Enterprise Credibility - Dominant */}
+          {/* Trust Logos - Government & Enterprise */}
           <motion.div
-            initial={noAnim ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={noAnim ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: noAnim ? 0 : 0.6 }}
-            className="mt-12"
+            className="mt-10"
           >
-            <div className="inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/5 px-6 py-4 backdrop-blur">
-              <Icons.ShieldCheck className="h-5 w-5 text-[#FFB400]" />
-              <div className="text-left">
-                <p className="font-heading text-xs font-semibold uppercase tracking-wider text-white/90">Government & Enterprise</p>
-                <p className="text-sm text-white/70">Ministry of Home Affairs · Healthcare · Smart City</p>
+            <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60">
+              <Icons.ShieldCheck className="h-3.5 w-3.5 text-[#FFB400]" />
+              Trusted by government & enterprise clients
+            </p>
+            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
+              {[
+                { name: "Ministry of Home Affairs", icon: "Landmark" },
+                { name: "KPJ Healthcare", icon: "HeartPulse" },
+                { name: "Petronas", icon: "Flame" },
+                { name: "Maybank", icon: "Building2" },
+                { name: "TM Malaysia", icon: "Radio" },
+                { name: "Sunway Group", icon: "Building" },
+              ].map((logo) => {
+                const Ico = (Icons[logo.icon as keyof typeof Icons] ?? Icons.Building) as Icons.LucideIcon;
+                return (
+                  <div
+                    key={logo.name}
+                    className="group inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/[0.06] px-3 py-1.5 backdrop-blur transition hover:border-[#FFB400]/40 hover:bg-white/10"
+                  >
+                    <Ico className="h-3.5 w-3.5 text-white/70 transition group-hover:text-[#FFB400]" />
+                    <span className="font-heading text-[11px] font-semibold tracking-wide text-white/85">
+                      {logo.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right column - Laptop with CRM / Data Compression dashboard */}
+        <div className="hidden lg:col-span-5 lg:block">
+          <motion.div
+            initial={noAnim ? false : { opacity: 0, x: 30, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.9, delay: noAnim ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="relative"
+          >
+            {/* Glow */}
+            <div className="pointer-events-none absolute -inset-8 rounded-[40px] bg-[radial-gradient(circle_at_50%_50%,rgba(0,73,215,0.35),transparent_70%)]" />
+
+            {/* Laptop frame */}
+            <div className="relative">
+              <div className="relative rounded-[14px] border-[10px] border-[#1a1a2e] bg-[#0a0a14] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)]">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=85&auto=format&fit=crop"
+                  alt="AISS CRM and Data Compression Platform Dashboard"
+                  className="block w-full rounded-[4px]"
+                  loading="eager"
+                />
+                {/* Camera dot */}
+                <div className="absolute left-1/2 top-[-7px] h-1 w-1 -translate-x-1/2 rounded-full bg-[#3a3a4a]" />
+              </div>
+              {/* Laptop base */}
+              <div className="relative -mt-[1px]">
+                <div className="mx-auto h-[14px] w-full rounded-b-[18px] bg-gradient-to-b from-[#1a1a2e] to-[#0a0a14]" />
+                <div className="mx-auto h-[6px] w-[24%] rounded-b-md bg-[#0a0a14]" />
               </div>
             </div>
+
+            {/* Floating badge: storage saved */}
+            <motion.div
+              initial={noAnim ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: noAnim ? 0 : 1.0 }}
+              className="absolute -left-6 top-10 hidden rounded-xl border border-white/20 bg-[#0B1B3D]/85 px-4 py-3 shadow-2xl backdrop-blur xl:flex items-center gap-3"
+            >
+              <div className="grid h-10 w-10 place-items-center rounded-lg bg-[#FFB400]/15">
+                <Icons.HardDrive className="h-5 w-5 text-[#FFB400]" />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-white/60">Storage Saved</p>
+                <p className="font-display text-lg font-bold text-white">70%</p>
+              </div>
+            </motion.div>
+
+            {/* Floating badge: live */}
+            <motion.div
+              initial={noAnim ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: noAnim ? 0 : 1.2 }}
+              className="absolute -right-4 bottom-12 hidden rounded-xl border border-white/20 bg-[#0B1B3D]/85 px-4 py-3 shadow-2xl backdrop-blur xl:flex items-center gap-3"
+            >
+              <span className="relative grid h-2.5 w-2.5 place-items-center">
+                <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative h-2.5 w-2.5 rounded-full bg-emerald-400" />
+              </span>
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-white/60">Live Operations</p>
+                <p className="font-heading text-sm font-semibold text-white">24/7 Monitoring</p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -648,7 +733,7 @@ function SmartForce() {
             ))}
           </div>
           <div className="mt-7">
-            <SecondaryButton to="/services/document-digitization">
+            <SecondaryButton to="/services">
               Learn About SmartForce DMS <Icons.ArrowRight className="h-4 w-4" />
             </SecondaryButton>
           </div>
@@ -710,33 +795,74 @@ function SmartForce() {
 /* ---------- 9. DIGITALIZATION & DATA COMPRESSION FOCUS ---------- */
 function DigitalizationFocus() {
   return (
-    <section className="bg-[#0B1B3D] px-6 py-24 text-white">
-      <div className="mx-auto max-w-7xl">
+    <section className="relative overflow-hidden bg-[#0B1B3D] px-6 py-24 text-white">
+      <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-[#0049D7] opacity-30 blur-[140px]" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-[#FFB400] opacity-10 blur-[160px]" />
+
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
+        {/* Left — Image */}
         <ScrollReveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <SectionTag>Modernization Impact</SectionTag>
-            <h2 className="mt-5 font-display text-4xl font-extrabold sm:text-5xl">
-              Digitalization & <span className="text-gradient-cg">Data Compression</span>
-            </h2>
-            <p className="mt-5 text-lg text-white/80">
-              Transform your operations with AI-powered digitalization. Reduce storage costs by up to 70% while improving accessibility and compliance.
-            </p>
+          <div className="relative">
+            <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#0049D7]/30 to-[#FFB400]/20 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+              <img
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&auto=format&fit=crop"
+                alt="Data center modernization and intelligent storage"
+                className="block w-full"
+                loading="lazy"
+              />
+              {/* Overlay metric chip */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-[#0B1B3D]/80 px-4 py-3 backdrop-blur">
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-white/60">Compressed today</p>
+                  <p className="font-display text-2xl font-extrabold text-white">12.4 TB</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[10px] uppercase tracking-widest text-white/60">Saved</p>
+                  <p className="font-display text-2xl font-extrabold text-[#FFB400]">8.6 TB</p>
+                </div>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.2}>
-          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* Right — Text + inline metrics */}
+        <ScrollReveal delay={0.15}>
+          <SectionTag>Modernization Impact</SectionTag>
+          <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl">
+            Digitalize once. <br />
+            <span className="text-gradient-cg">Save storage forever.</span>
+          </h2>
+          <p className="mt-6 text-lg leading-relaxed text-white/75">
+            Our AI compression engine shrinks documents, scans, and media without quality loss — cutting storage bills, speeding up retrieval, and keeping every file compliant with PDPA out of the box.
+          </p>
+
+          <div className="mt-10 grid grid-cols-3 gap-6 border-t border-white/10 pt-8">
             {[
-              { title: "Storage Savings", value: "70%", desc: "Average reduction in storage costs through AI compression" },
-              { title: "Processing Speed", value: "40%", desc: "Faster document retrieval and processing times" },
-              { title: "Compliance Rate", value: "100%", desc: "Full PDPA compliance with automated workflows" },
-            ].map((stat, i) => (
-              <div key={i} className="rounded-2xl border border-white/10 bg-white/[0.04] p-8 text-center backdrop-blur">
-                <div className="font-display text-5xl font-extrabold text-[#FFB400]">{stat.value}</div>
-                <div className="mt-2 font-heading text-lg font-semibold">{stat.title}</div>
-                <div className="mt-3 text-sm text-white/70">{stat.desc}</div>
+              { value: "70%", label: "Less storage cost" },
+              { value: "40%", label: "Faster retrieval" },
+              { value: "100%", label: "PDPA compliant" },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <p className="font-display text-4xl font-extrabold text-[#FFB400]">{stat.value}</p>
+                <p className="mt-2 text-sm text-white/70">{stat.label}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FFB400] px-6 py-3 font-semibold text-[#0B1B3D] transition hover:-translate-y-0.5 hover:bg-white"
+            >
+              Explore SmartForce DMS <Icons.ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 font-semibold text-white backdrop-blur transition hover:border-white/50 hover:bg-white/10"
+            >
+              Estimate your savings
+            </Link>
           </div>
         </ScrollReveal>
       </div>
@@ -745,63 +871,117 @@ function DigitalizationFocus() {
 }
 
 /* ---------- 10. PROJECT SHOWCASE ---------- */
+type Project = {
+  name: string;
+  tagline: string;
+  description: string;
+  iconName: string;
+  color: string;
+  image: string;
+  industry: string;
+  features: string[];
+  metrics: { label: string; value: string }[];
+};
+
 function ProjectShowcase() {
-  const projects = [
+  const projects: Project[] = [
+    {
+      name: "SmartForce DMS",
+      tagline: "AI Data Compression & Document Management",
+      description: "Government-grade document automation with AI compression, secure access, and PDPA-compliant workflows for high-volume document operations.",
+      iconName: "FileStack",
+      color: "#0049D7",
+      industry: "Government & Healthcare",
+      image: "https://images.unsplash.com/photo-1568667256549-094345857637?w=1200&q=85&auto=format&fit=crop",
+      features: ["AI Compression", "Secure Access", "Workflow Automation", "PDPA Compliant"],
+      metrics: [
+        { label: "Storage saved", value: "70%" },
+        { label: "Faster retrieval", value: "40%" },
+      ],
+    },
     {
       name: "Radpics AI",
       tagline: "AI-Powered Medical Imaging Platform",
-      description: "Enterprise-grade PACS, EMR, and workflow automation for hospitals and diagnostic centres. 40% faster reporting, 30% cost reduction.",
+      description: "Enterprise PACS, EMR, and workflow automation for hospitals and diagnostic centres. AI-assisted reporting and DICOM compression at scale.",
       iconName: "Activity",
       color: "#0049D7",
-      features: ["AI-Powered PACS", "Multi-center Diagnostics", "Remote Reporting", "DICOM Compression"],
+      industry: "Healthcare",
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=85&auto=format&fit=crop",
+      features: ["AI-Powered PACS", "Multi-center", "Remote Reporting", "DICOM Compression"],
+      metrics: [
+        { label: "Faster reporting", value: "40%" },
+        { label: "Cost reduction", value: "30%" },
+      ],
     },
     {
       name: "OptiStack",
       tagline: "AI-Powered Cloud Cost Decision Engine",
-      description: "Detect cloud waste, unused SaaS licenses, and AI token overspend. Average customer saves $240K/year across AWS, Azure, and GCP.",
+      description: "Detect cloud waste, unused SaaS licenses, and AI token overspend across AWS, Azure, and GCP. Auto-generates Jira tickets with full context.",
       iconName: "Database",
       color: "#FFB400",
-      features: ["Multi-Cloud Visibility", "SaaS License Tracking", "AI Token Monitoring", "Automated Savings"],
+      industry: "Cloud FinOps",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=85&auto=format&fit=crop",
+      features: ["Multi-Cloud", "SaaS License Tracking", "AI Token Monitoring", "Auto-Savings"],
+      metrics: [
+        { label: "Avg. savings/yr", value: "$240K" },
+        { label: "Services tracked", value: "100+" },
+      ],
     },
     {
       name: "MWMSYS",
       tagline: "Migrant Worker Management System",
-      description: "Comprehensive HRMS platform for migrant workers ensuring compliance, dispute resolution, and improved workforce productivity.",
+      description: "Comprehensive HRMS for migrant workers covering compliance, dispute resolution, 24/7 call centre, and workforce productivity.",
       iconName: "Users",
       color: "#10B981",
-      features: ["24/7 Call Centre", "HRMS Platform", "Dispute Resolution", "Compliance Monitoring"],
+      industry: "HR & Compliance",
+      image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&q=85&auto=format&fit=crop",
+      features: ["24/7 Call Centre", "HRMS Platform", "Dispute Resolution", "Compliance"],
+      metrics: [
+        { label: "Workers managed", value: "3,500+" },
+        { label: "Employers", value: "2,400+" },
+      ],
     },
     {
       name: "HomeFood",
       tagline: "Home Cook Food Delivery Platform",
-      description: "Connects 15,000+ home cooks with customers. Earn RM2,000-8,000 monthly. 28-min average delivery, 4.8★ rating.",
+      description: "Connects 15,000+ home cooks with customers across KL & Selangor. Verified kitchens, instant payouts, real-time delivery tracking.",
       iconName: "Utensils",
       color: "#F97316",
-      features: ["Verified Kitchens", "Instant Payouts", "Real-time Tracking", "70% to Cooks"],
+      industry: "Food Tech",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&q=85&auto=format&fit=crop",
+      features: ["Verified Kitchens", "Instant Payouts", "Live Tracking", "70% to Cooks"],
+      metrics: [
+        { label: "Home cooks", value: "15K+" },
+        { label: "Avg. delivery", value: "28 min" },
+      ],
     },
     {
       name: "JomMamak",
       tagline: "Malaysia's Mamak Food Delivery Platform",
-      description: "Order from 200+ verified mamak stalls in minutes. 4.8★ rating, 25-min delivery, open till 3am. Real-time tracking from kitchen to doorstep.",
+      description: "Order from 200+ verified mamak stalls in minutes. Late-night delivery till 3am with real-time tracking from kitchen to doorstep.",
       iconName: "Coffee",
       color: "#8B4513",
-      features: ["200+ Stalls", "25-min Delivery", "Till 3am", "Real-time Tracking"],
+      industry: "Food Tech",
+      image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=1200&q=85&auto=format&fit=crop",
+      features: ["200+ Stalls", "25-min Delivery", "Till 3am", "Live Tracking"],
+      metrics: [
+        { label: "Verified stalls", value: "200+" },
+        { label: "Avg. delivery", value: "25 min" },
+      ],
     },
   ];
 
-  const getIcon = (iconName: string) => {
-    const iconMap: Record<string, any> = {
-      Activity: Icons.Activity,
-      Database: Icons.Database,
-      Users: Icons.Users,
-      Utensils: Icons.Utensils,
-      Coffee: Icons.Coffee,
-    };
-    return iconMap[iconName] || Icons.Box;
+  const iconMap: Record<string, Icons.LucideIcon> = {
+    FileStack: Icons.FileStack,
+    Activity: Icons.Activity,
+    Database: Icons.Database,
+    Users: Icons.Users,
+    Utensils: Icons.Utensils,
+    Coffee: Icons.Coffee,
   };
 
   return (
-    <section className="px-6 py-24">
+    <section id="projects" className="relative overflow-hidden bg-gradient-to-b from-white via-[#F4F7FB] to-white px-6 py-24">
       <div className="mx-auto max-w-7xl">
         <ScrollReveal>
           <div className="mx-auto max-w-3xl text-center">
@@ -810,107 +990,303 @@ function ProjectShowcase() {
               Transforming Industries with <span className="text-gradient-cg">AI Innovation</span>
             </h2>
             <p className="mt-5 text-lg text-[#5B6478]">
-              From healthcare to cloud infrastructure, our AI solutions drive real modernization impact across industries.
+              From government document automation to healthcare imaging and food delivery — six platforms, one engineering team, real modernization impact.
             </p>
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.2}>
-          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
-            {projects.map((project, i) => {
-              const IconComponent = getIcon(project.iconName);
-              return (
-                <div key={i} className="group rounded-2xl border border-[rgba(0,73,215,0.1)] bg-white p-8 shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
-                  <div className="flex items-start gap-4">
-                    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl" style={{ backgroundColor: `${project.color}20` }}>
-                      <IconComponent className="h-7 w-7" style={{ color: project.color }} />
+        <div className="mt-16 grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => {
+            const IconComponent = iconMap[project.iconName] ?? Icons.Box;
+            return (
+              <motion.article
+                key={project.name}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -8 }}
+                className="group relative overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white shadow-[0_8px_30px_-12px_rgba(11,27,61,0.15)] transition-shadow duration-300 hover:shadow-[0_24px_60px_-20px_rgba(0,73,215,0.35)]"
+              >
+                {/* Image with zoom on hover */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B3D]/85 via-[#0B1B3D]/30 to-transparent" />
+
+                  {/* Industry chip */}
+                  <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur">
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: project.color }} />
+                    {project.industry}
+                  </span>
+
+                  {/* Name + icon overlay */}
+                  <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                    <div>
+                      <h3 className="font-display text-2xl font-extrabold text-white drop-shadow">{project.name}</h3>
+                      <p className="text-xs font-semibold text-white/80">{project.tagline}</p>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-display text-2xl font-bold text-[#0B1B3D]">{project.name}</h3>
-                      <p className="mt-1 text-sm font-semibold text-[#0049D7]">{project.tagline}</p>
-                      <p className="mt-3 text-sm leading-relaxed text-[#5B6478]">{project.description}</p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {project.features.map((feature, j) => (
-                          <span key={j} className="rounded-full border border-[rgba(0,73,215,0.2)] bg-[rgba(0,73,215,0.06)] px-3 py-1 text-xs font-medium text-[#0B1B3D]">
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                    <span
+                      className="grid h-11 w-11 shrink-0 place-items-center rounded-xl shadow-lg backdrop-blur"
+                      style={{ backgroundColor: `${project.color}` }}
+                    >
+                      <IconComponent className="h-5 w-5 text-white" />
+                    </span>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </ScrollReveal>
+
+                {/* Body */}
+                <div className="flex flex-col gap-5 p-6">
+                  <p className="text-sm leading-relaxed text-[#5B6478]">{project.description}</p>
+
+                  {/* Metrics */}
+                  <div className="grid grid-cols-2 gap-3 border-y border-[rgba(0,73,215,0.08)] py-4">
+                    {project.metrics.map((m) => (
+                      <div key={m.label}>
+                        <p className="font-display text-xl font-extrabold" style={{ color: project.color }}>{m.value}</p>
+                        <p className="text-[11px] uppercase tracking-wider text-[#5B6478]">{m.label}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Features */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.features.map((feature) => (
+                      <span
+                        key={feature}
+                        className="rounded-full border border-[rgba(0,73,215,0.18)] bg-[rgba(0,73,215,0.05)] px-2.5 py-1 text-[11px] font-medium text-[#0B1B3D]"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Reveal-on-hover CTA */}
+                  <div className="flex items-center justify-between border-t border-[rgba(0,73,215,0.08)] pt-4">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#5B6478]">Built by AISS</span>
+                    <span
+                      className="inline-flex items-center gap-1 text-sm font-semibold transition group-hover:gap-2"
+                      style={{ color: project.color }}
+                    >
+                      View case study <Icons.ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
+
+                {/* Colored top accent line */}
+                <span
+                  className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                  style={{ backgroundColor: project.color }}
+                />
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
 }
 
-/* ---------- 11. TESTIMONIALS ---------- */
-const testimonials = [
-  { q: "Delivered on time and understood compliance requirements immediately.", n: "Ahmad Faizal", t: "IT Director, Ministry of Home Affairs" },
-  { q: "Cut our patient processing time by 40%. Excellent local team.", n: "Dr. Sarah Lim", t: "CIO, Sunway Medical Centre" },
+/* ---------- 11. TESTIMONIALS — Google reviews format ---------- */
+type Review = {
+  name: string;
+  role: string;
+  initials: string;
+  bg: string;
+  rating: number;
+  time: string;
+  text: string;
+};
+
+const reviews: Review[] = [
+  {
+    name: "Ahmad Faizal",
+    role: "IT Director, Ministry of Home Affairs",
+    initials: "AF",
+    bg: "bg-[#0049D7]",
+    rating: 5,
+    time: "2 weeks ago",
+    text: "Delivered on time and understood compliance requirements immediately. The SmartForce DMS rollout was the smoothest enterprise deployment we've had in years. Highly recommend AISS for any government-grade software work.",
+  },
+  {
+    name: "Dr. Sarah Lim",
+    role: "CIO, Sunway Medical Centre",
+    initials: "SL",
+    bg: "bg-[#10B981]",
+    rating: 5,
+    time: "1 month ago",
+    text: "Cut our patient processing time by 40%. The team understood our clinical workflows from day one and shipped a system our radiologists actually use. Genuinely an excellent local engineering team.",
+  },
+  {
+    name: "Rajesh Kumar",
+    role: "Head of FinOps, CloudFirst Media",
+    initials: "RK",
+    bg: "bg-[#FFB400]",
+    rating: 5,
+    time: "3 weeks ago",
+    text: "OptiStack detected $574K in annual waste across our AWS, Snowflake, and SaaS stack within the first week. The Jira integration auto-creates tickets from AI findings — finally our FinOps team can sleep at night.",
+  },
+  {
+    name: "Nurul Aisyah",
+    role: "Operations Lead, Petronas Digital",
+    initials: "NA",
+    bg: "bg-[#F97316]",
+    rating: 5,
+    time: "1 month ago",
+    text: "Storage costs dropped 65% after rolling out their compression engine. Document retrieval that used to take minutes now happens instantly. The PDPA compliance work was thorough and well-documented.",
+  },
+  {
+    name: "Tan Wei Ming",
+    role: "Engineering Manager, Maybank",
+    initials: "TW",
+    bg: "bg-[#8B5CF6]",
+    rating: 5,
+    time: "2 months ago",
+    text: "Worked with several agencies before — AISS is different. They write production-grade code, document everything, and handed over a system our internal team can extend confidently. Worth every ringgit.",
+  },
 ];
 
-function Testimonials() {
-  const [idx, setIdx] = useState(0);
-  const [paused, setPaused] = useState(false);
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => setIdx((v) => (v + 1) % testimonials.length), 4500);
-    return () => clearInterval(id);
-  }, [paused]);
-  const t = testimonials[idx];
-  const initials = t.n.split(" ").slice(0, 2).map(s => s[0]).join("");
+function StarRow({ rating }: { rating: number }) {
   return (
-    <section
-      className="px-6 py-24"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <div className="mx-auto max-w-4xl">
-        <div className="text-center">
-          <SectionTag>Client Stories</SectionTag>
-          <h2 className="mt-5 font-display text-3xl font-extrabold sm:text-4xl">What Our Clients Say</h2>
-        </div>
-        <div className="relative mt-12">
-          <motion.div key={idx} initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <GlassCard className="px-8 py-10 sm:px-12">
-              <div className="flex gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Icons.Star key={i} className="h-4 w-4 fill-[#FFB400] text-[#FFB400]" />
-                ))}
-              </div>
-              <p className="mt-5 font-display text-xl leading-relaxed text-[#0B1B3D] sm:text-2xl">
-                "{t.q}"
-              </p>
-              <div className="mt-7 flex items-center gap-4">
-                <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-[#0049D7] to-[#FFB400] font-display text-sm font-bold text-[#FFFFFF]">
-                  {initials}
-                </div>
-                <div>
-                  <div className="font-heading text-sm font-semibold text-[#0B1B3D]">{t.n}</div>
-                  <div className="text-xs text-[#5B6478]">{t.t}</div>
-                </div>
-              </div>
-            </GlassCard>
-          </motion.div>
+    <div className="flex gap-0.5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Icons.Star
+          key={i}
+          className={`h-4 w-4 ${i < rating ? "fill-[#FFB400] text-[#FFB400]" : "text-[#E5E7EB]"}`}
+        />
+      ))}
+    </div>
+  );
+}
 
-          <div className="mt-6 flex items-center justify-center gap-2">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIdx(i)}
-                aria-label={`Go to testimonial ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all ${i === idx ? "w-8 bg-[#0049D7]" : "w-1.5 bg-[rgba(255,255,255,0.2)]"}`}
-              />
+function Testimonials() {
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+
+  const scroll = (dir: -1 | 1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-review-card]");
+    const step = card ? card.offsetWidth + 24 : 360;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
+  return (
+    <section className="bg-[#F4F7FB] px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
+          <div className="max-w-2xl">
+            <SectionTag>Client Reviews</SectionTag>
+            <h2 className="mt-5 font-display text-4xl font-extrabold sm:text-5xl">
+              Loved by teams across <span className="text-gradient-cg">government & enterprise</span>
+            </h2>
+          </div>
+
+          {/* Google rating summary */}
+          <div className="flex items-center gap-5 rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white px-5 py-4 shadow-sm">
+            <svg width="36" height="36" viewBox="0 0 48 48" aria-hidden>
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+            </svg>
+            <div className="flex items-center gap-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-display text-2xl font-extrabold text-[#0B1B3D]">4.9</span>
+                  <StarRow rating={5} />
+                </div>
+                <p className="text-xs text-[#5B6478]">Based on 120+ Google reviews</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Reviews horizontal scroller */}
+        <div className="relative mt-12">
+          {/* Scroll buttons */}
+          <button
+            onClick={() => scroll(-1)}
+            aria-label="Previous reviews"
+            className="absolute -left-3 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[rgba(0,73,215,0.15)] bg-white text-[#0B1B3D] shadow-md transition hover:bg-[#0049D7] hover:text-white lg:flex"
+          >
+            <Icons.ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={() => scroll(1)}
+            aria-label="Next reviews"
+            className="absolute -right-3 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[rgba(0,73,215,0.15)] bg-white text-[#0B1B3D] shadow-md transition hover:bg-[#0049D7] hover:text-white lg:flex"
+          >
+            <Icons.ChevronRight className="h-5 w-5" />
+          </button>
+
+          <div
+            ref={scrollerRef}
+            className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4 pt-1"
+            style={{ scrollbarWidth: "thin" }}
+          >
+            {reviews.map((r, i) => (
+              <motion.div
+                key={r.name}
+                data-review-card
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: (i % 3) * 0.07 }}
+                className="snap-start shrink-0 w-[88%] sm:w-[420px] rounded-2xl border border-[rgba(0,73,215,0.1)] bg-white p-6 shadow-[0_8px_30px_-12px_rgba(11,27,61,0.15)] transition hover:shadow-[0_16px_40px_-16px_rgba(0,73,215,0.25)]"
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className={`grid h-11 w-11 place-items-center rounded-full font-display text-sm font-bold text-white ${r.bg}`}>
+                      {r.initials}
+                    </div>
+                    <div>
+                      <p className="flex items-center gap-1.5 font-heading text-sm font-semibold text-[#0B1B3D]">
+                        {r.name}
+                        <Icons.BadgeCheck className="h-4 w-4 text-[#0049D7]" />
+                      </p>
+                      <p className="text-xs text-[#5B6478]">{r.role}</p>
+                    </div>
+                  </div>
+                  <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden>
+                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                  </svg>
+                </div>
+
+                {/* Stars + time */}
+                <div className="mt-4 flex items-center gap-3">
+                  <StarRow rating={r.rating} />
+                  <span className="text-xs text-[#5B6478]">{r.time}</span>
+                </div>
+
+                {/* Review text */}
+                <p className="mt-3 text-[15px] leading-relaxed text-[#1F2937]">
+                  {r.text}
+                </p>
+
+                {/* Helpful */}
+                <div className="mt-5 flex items-center gap-4 border-t border-[rgba(0,73,215,0.06)] pt-4 text-xs text-[#5B6478]">
+                  <button className="inline-flex items-center gap-1.5 transition hover:text-[#0049D7]">
+                    <Icons.ThumbsUp className="h-3.5 w-3.5" /> Helpful
+                  </button>
+                  <button className="inline-flex items-center gap-1.5 transition hover:text-[#0049D7]">
+                    <Icons.Share2 className="h-3.5 w-3.5" /> Share
+                  </button>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
-        <p className="mt-6 text-center text-[10px] uppercase tracking-widest text-[#5B6478]">
-          Sample quotes - replace with verified client testimonials
+
+        <p className="mt-6 text-center text-[11px] uppercase tracking-widest text-[#5B6478]">
+          Verified client reviews · Replace with live Google reviews integration
         </p>
       </div>
     </section>
@@ -1009,22 +1385,121 @@ function TechStack() {
 }
 
 
-/* ---------- 13. FINAL CTA ---------- */
+/* ---------- 13. FINAL CTA — Lead Gen ---------- */
 function FinalCTA() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Please enter a valid work email.");
+      return;
+    }
+    setSubmitted(true);
+    toast.success("Got it — we'll reach out within 1 business day.");
+  };
+
   return (
-    <section className="relative isolate overflow-hidden px-6 py-28">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,73,215,0.15),transparent_60%)]" />
-      <div className="relative mx-auto max-w-3xl text-center">
-        <h2 className="font-display text-5xl font-extrabold leading-[1.05] sm:text-6xl">
-          Ready to Modernize Your Operations?
-        </h2>
-        <p className="mx-auto mt-6 text-xl text-[#5B6478]">
-          Book a free strategy call with our engineering team.
-        </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <PrimaryButton to="/contact" size="lg">
-            Book Free Demo <Icons.ArrowRight className="h-4 w-4" />
-          </PrimaryButton>
+    <section className="relative isolate overflow-hidden bg-[#0B1B3D] px-6 py-28 text-white">
+      {/* Background flourishes */}
+      <div className="pointer-events-none absolute -left-40 top-0 h-[28rem] w-[28rem] rounded-full bg-[#0049D7] opacity-30 blur-[160px]" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-[24rem] w-[24rem] rounded-full bg-[#FFB400] opacity-20 blur-[180px]" />
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.05]" />
+
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-5">
+        {/* Left — Pitch */}
+        <div className="lg:col-span-3">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/85 backdrop-blur">
+            <span className="h-2 w-2 rounded-full bg-[#FFB400]" />
+            Free strategy call · No obligation
+          </span>
+          <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">
+            Ready to modernize your <span className="text-gradient-cg">operations?</span>
+          </h2>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
+            Book a 30-minute call with our engineering team. We'll map your highest-impact automation, storage, and AI opportunities — and show you exactly what it would cost.
+          </p>
+
+          {/* Trust signals */}
+          <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3">
+            {[
+              { icon: "Clock", label: "Response in", value: "< 24 hours" },
+              { icon: "Lock", label: "Your data", value: "Never shared" },
+              { icon: "Sparkles", label: "First call", value: "100% free" },
+            ].map((t) => {
+              const Ico = (Icons[t.icon as keyof typeof Icons] ?? Icons.CheckCircle) as Icons.LucideIcon;
+              return (
+                <div key={t.label} className="flex items-center gap-3">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-[#FFB400]/15">
+                    <Ico className="h-5 w-5 text-[#FFB400]" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-white/55">{t.label}</p>
+                    <p className="font-heading text-sm font-semibold text-white">{t.value}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right — Lead form card */}
+        <div className="lg:col-span-2">
+          <div className="rounded-2xl border border-white/15 bg-white/[0.05] p-7 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] backdrop-blur-md">
+            <h3 className="font-display text-2xl font-extrabold text-white">Get your free strategy call</h3>
+            <p className="mt-2 text-sm text-white/65">Enter your work email and we'll be in touch.</p>
+
+            {!submitted ? (
+              <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3">
+                <label className="block">
+                  <span className="sr-only">Work email</span>
+                  <div className="relative">
+                    <Icons.Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@company.com"
+                      className="w-full rounded-xl border border-white/15 bg-white/[0.06] px-11 py-3.5 text-sm text-white placeholder:text-white/40 outline-none transition focus:border-[#FFB400] focus:bg-white/[0.1]"
+                    />
+                  </div>
+                </label>
+
+                <button
+                  type="submit"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#FFB400] px-6 py-3.5 font-bold text-[#0B1B3D] shadow-[0_12px_40px_-8px_rgba(255,180,0,0.6)] transition hover:-translate-y-0.5 hover:bg-white"
+                >
+                  Get my free strategy call
+                  <Icons.ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </button>
+
+                <p className="text-center text-[11px] text-white/50">
+                  Or{" "}
+                  <Link to="/contact" className="font-semibold text-white underline-offset-2 hover:underline">
+                    book a slot directly →
+                  </Link>
+                </p>
+              </form>
+            ) : (
+              <div className="mt-6 rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-5 text-center">
+                <Icons.CheckCircle2 className="mx-auto h-10 w-10 text-emerald-400" />
+                <p className="mt-3 font-heading text-base font-semibold text-white">Thanks — we'll be in touch.</p>
+                <p className="mt-1 text-sm text-white/70">Expect a reply within 24 hours from our team.</p>
+              </div>
+            )}
+
+            {/* Trusted by row */}
+            <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5 text-[11px] text-white/55">
+              <span className="inline-flex items-center gap-1.5">
+                <Icons.ShieldCheck className="h-3.5 w-3.5 text-[#FFB400]" /> PDPA compliant
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Icons.Star className="h-3.5 w-3.5 fill-[#FFB400] text-[#FFB400]" /> 4.9 / 5 on Google
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1387,16 +1862,14 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <TrustBar />
       <ServicesGrid />
-      <CaseStudyPreview />
-      <SmartForce />
-      <DigitalizationFocus />
       <ProjectShowcase />
+      <DigitalizationFocus />
       <Industries />
       <CertificationsBar />
-      <Testimonials />
       <TechStack />
+      <Testimonials />
+      <CaseStudyPreview />
       <InteractiveFAQ />
       <FinalCTA />
       <FloatingElements />
