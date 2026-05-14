@@ -166,35 +166,46 @@ function Hero() {
             transition={{ duration: 0.8, delay: noAnim ? 0 : 0.6 }}
             className="mt-10"
           >
-            <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60">
-              <Icons.ShieldCheck className="h-3.5 w-3.5 text-[#FFB400]" />
-              Trusted by government & enterprise clients
-            </p>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-4">
               {[
-                { name: "MSC Status", desc: "Multimedia Super Corridor", icon: "BadgeCheck" },
-                { name: "PDPA Compliant", desc: "Personal Data Protection Act", icon: "ShieldCheck" },
-                { name: "ISO 27001", desc: "Information Security", icon: "Lock" },
-                { name: "MDEC", desc: "Malaysia Digital Economy", icon: "Award" },
-              ].map((logo) => {
-                const Ico = (Icons[logo.icon as keyof typeof Icons] ?? Icons.Award) as Icons.LucideIcon;
-                return (
-                  <div
-                    key={logo.name}
-                    className="group inline-flex items-center gap-2.5 rounded-lg border border-white/15 bg-white/[0.06] px-3.5 py-2 backdrop-blur transition hover:border-[#FFB400]/50 hover:bg-white/10"
-                  >
-                    <Ico className="h-4 w-4 shrink-0 text-[#FFB400]" />
-                    <div className="text-left leading-tight">
-                      <p className="font-heading text-[11px] font-bold tracking-wide text-white">
-                        {logo.name}
-                      </p>
-                      <p className="text-[9px] uppercase tracking-wider text-white/55">
-                        {logo.desc}
-                      </p>
-                    </div>
+                {
+                  name: "MDEC",
+                  desc: "Malaysia Digital Economy",
+                  src: "https://logo.clearbit.com/mdec.my",
+                },
+                {
+                  name: "MSC Malaysia",
+                  desc: "Multimedia Super Corridor",
+                  src: "https://logo.clearbit.com/mscmalaysia.my",
+                },
+                {
+                  name: "ISO 27001",
+                  desc: "Information Security",
+                  src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/ISO_Logo_%28Red_square%29.svg/240px-ISO_Logo_%28Red_square%29.svg.png",
+                },
+              ].map((logo) => (
+                <div
+                  key={logo.name}
+                  className="inline-flex items-center gap-3 rounded-lg border border-white/15 bg-white/95 px-3.5 py-2 shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
+                >
+                  <div className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-md bg-white">
+                    <img
+                      src={logo.src}
+                      alt={`${logo.name} logo`}
+                      loading="lazy"
+                      className="h-full w-full object-contain p-0.5"
+                    />
                   </div>
-                );
-              })}
+                  <div className="text-left leading-tight">
+                    <p className="font-heading text-[12px] font-bold tracking-wide text-[#0B1B3D]">
+                      {logo.name}
+                    </p>
+                    <p className="text-[9px] uppercase tracking-wider text-[#5B6478]">
+                      {logo.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -1384,7 +1395,7 @@ function TechStack() {
 }
 
 
-/* ---------- 13. FINAL CTA — Single-line email collector ---------- */
+/* ---------- 13. FINAL CTA — Thin single-line email collector ---------- */
 function FinalCTA() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -1400,43 +1411,38 @@ function FinalCTA() {
   };
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#0B1B3D] px-6 py-20 text-white">
-      <div className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-[#0049D7] opacity-30 blur-[140px]" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-[#FFB400] opacity-20 blur-[160px]" />
-
-      <div className="relative mx-auto max-w-4xl text-center">
-        <h2 className="font-display text-3xl font-extrabold leading-tight sm:text-4xl">
+    <section className="border-t border-[rgba(0,73,215,0.1)] bg-[#F4F7FB] px-6 py-10">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-5 lg:flex-row">
+        <h2 className="font-display text-xl font-extrabold text-[#0B1B3D] sm:text-2xl">
           Ready to modernize your <span className="text-gradient-cg">operations?</span>
         </h2>
 
         {!submitted ? (
-          <form onSubmit={onSubmit} className="mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:flex-row">
+          <form onSubmit={onSubmit} className="flex w-full max-w-md flex-col gap-2 sm:flex-row">
             <div className="relative flex-1">
-              <Icons.Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+              <Icons.Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5B6478]" />
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full rounded-xl border border-white/15 bg-white/[0.06] px-11 py-3.5 text-sm text-white placeholder:text-white/40 outline-none transition focus:border-[#FFB400] focus:bg-white/[0.1]"
+                className="w-full rounded-lg border border-[rgba(0,73,215,0.18)] bg-white px-11 py-2.5 text-sm text-[#0B1B3D] placeholder:text-[#5B6478]/60 outline-none transition focus:border-[#0049D7] focus:ring-2 focus:ring-[#0049D7]/15"
               />
             </div>
             <button
               type="submit"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#FFB400] px-6 py-3.5 font-bold text-[#0B1B3D] shadow-[0_12px_40px_-8px_rgba(255,180,0,0.6)] transition hover:-translate-y-0.5 hover:bg-white"
+              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[#0049D7] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#003BB0]"
             >
               Book Free Demo
               <Icons.ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
             </button>
           </form>
         ) : (
-          <div className="mx-auto mt-8 max-w-xl rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-6 py-4 text-center">
-            <p className="inline-flex items-center gap-2 font-heading text-sm font-semibold text-white">
-              <Icons.CheckCircle2 className="h-5 w-5 text-emerald-400" />
-              Thanks — we'll reach out within 24 hours.
-            </p>
-          </div>
+          <p className="inline-flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-2.5 text-sm font-semibold text-emerald-800">
+            <Icons.CheckCircle2 className="h-5 w-5 text-emerald-600" />
+            Thanks — we'll reach out within 24 hours.
+          </p>
         )}
       </div>
     </section>
@@ -1803,7 +1809,6 @@ function HomePage() {
       <ProjectShowcase />
       <DigitalizationFocus />
       <Industries />
-      <CertificationsBar />
       <TechStack />
       <InteractiveFAQ />
       <FinalCTA />
