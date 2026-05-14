@@ -1102,10 +1102,10 @@ function VideoEmbed() {
 /* ---------- CERTIFICATIONS BAR ---------- */
 function CertificationsBar() {
   const certs = [
-    { name: "MSC Status", desc: "Multimedia Super Corridor" },
-    { name: "PDPA Compliant", desc: "Personal Data Protection Act" },
-    { name: "ISO 27001", desc: "Information Security Management" },
-    { name: "MDEC", desc: "Malaysia Digital Economy Corporation" },
+    { name: "MSC Status", desc: "Multimedia Super Corridor", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/MDEC_logo.svg/200px-MDEC_logo.svg.png" },
+    { name: "PDPA Compliant", desc: "Personal Data Protection Act", icon: "https://www.pdp.gov.my/images/pdpa-logo.png" },
+    { name: "ISO 27001", desc: "Information Security Management", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/ISO_Logo_%28Red_square%29.svg/200px-ISO_Logo_%28Red_square%29.svg.png" },
+    { name: "MDEC", desc: "Malaysia Digital Economy Corporation", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/MDEC_logo.svg/200px-MDEC_logo.svg.png" },
   ];
 
   return (
@@ -1113,8 +1113,8 @@ function CertificationsBar() {
       <div className="mx-auto max-w-6xl">
         <ScrollReveal>
           <div className="text-center">
-            <h3 className="font-display text-xl font-bold">Certifications & Compliance</h3>
-            <p className="mt-2 text-sm text-white/70">Trusted by government and enterprise clients</p>
+            <h3 className="font-display text-2xl font-bold">Certifications & Compliance</h3>
+            <p className="mt-3 text-lg text-white/90">Trusted by government and enterprise clients</p>
           </div>
         </ScrollReveal>
 
@@ -1122,8 +1122,8 @@ function CertificationsBar() {
           <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
             {certs.map((cert, i) => (
               <div key={i} className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center backdrop-blur transition hover:-translate-y-1 hover:border-[#FFB400]/50 hover:bg-white/[0.08]">
-                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-[#FFB400]/20 to-[#0049D7]/20 transition group-hover:scale-110">
-                  <Icons.Award className="h-8 w-8 text-[#FFB400]" />
+                <div className="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-gradient-to-br from-[#FFB400]/20 to-[#0049D7]/20 transition group-hover:scale-110">
+                  <img src={cert.icon} alt={cert.name} className="h-10 w-10 object-contain" />
                 </div>
                 <p className="mt-3 font-heading text-sm font-semibold">{cert.name}</p>
                 <p className="mt-1 text-xs text-white/60">{cert.desc}</p>
