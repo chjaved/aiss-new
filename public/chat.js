@@ -2,7 +2,7 @@
   if (window.__AISS_CHAT_INIT__) return;
   window.__AISS_CHAT_INIT__ = true;
 
-  var KEY = window.__AISS_KEY__ || '';
+  var KEY = "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";
   var EMAIL = 'info@aiss.com.my';
   var PHONE = '+60 3-3007 3021';
 
