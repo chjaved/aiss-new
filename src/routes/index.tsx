@@ -126,10 +126,7 @@ function Hero() {
             className="mt-6 font-display text-[clamp(2.6rem,6.5vw,5rem)] font-extrabold leading-[1.02] tracking-tight text-white"
             style={{ textShadow: "0 2px 30px rgba(0,0,0,0.45)" }}
           >
-            <span className="text-white">Enterprise Software</span>
-            <br />
-            <span className="text-white">That </span>
-            <span className="bg-gradient-to-r from-[#FFB400] via-[#FFD66B] to-[#FFB400] bg-clip-text text-transparent">Actually Gets Used.</span>
+            Modern Software for Government & Enterprise Operations.
           </motion.h1>
 
           <motion.p
