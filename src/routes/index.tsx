@@ -159,29 +159,6 @@ function Hero() {
             </Link>
           </motion.div>
 
-          {/* Trust Logos - Government & Enterprise */}
-          <motion.div
-            initial={noAnim ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: noAnim ? 0 : 0.6 }}
-            className="mt-10"
-          >
-            <div className="flex flex-wrap items-center gap-6">
-              {[
-                { name: "MDEC", src: "/logos/mdec.svg" },
-                { name: "MSC Malaysia", src: "/logos/msc-malaysia.svg" },
-                { name: "ISO 27001", src: "/logos/iso-27001.svg" },
-              ].map((logo) => (
-                <img
-                  key={logo.name}
-                  src={logo.src}
-                  alt={`${logo.name} logo`}
-                  loading="lazy"
-                  className="h-16 w-auto object-contain transition hover:-translate-y-0.5 sm:h-20"
-                />
-              ))}
-            </div>
-          </motion.div>
         </div>
 
         {/* Right column - Laptop with CRM / Data Compression dashboard */}
