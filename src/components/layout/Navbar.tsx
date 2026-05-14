@@ -27,105 +27,69 @@ function Logo({ stack = true }: { stack?: boolean }) {
   );
 }
 
-function ServicesMega({ onClose }: { onClose: () => void }) {
+function ServicesMega() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -8 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.2 }}
-      className="absolute left-1/2 top-full z-50 mt-3 w-[min(760px,92vw)] -translate-x-1/2 rounded-2xl border border-[rgba(0,73,215,0.15)] bg-white/95 p-6 backdrop-blur-xl shadow-[0_24px_60px_-12px_rgba(11,27,61,0.25)]"
-    >
+    <div className="rounded-2xl border border-[rgba(0,73,215,0.15)] bg-white p-6 shadow-[0_24px_60px_-12px_rgba(11,27,61,0.25)]">
       <div className="mb-4 flex items-center justify-between">
-        <span className="font-heading text-[11px] uppercase tracking-[0.18em] text-[#5B6478]">
-          Our Services
-        </span>
-        <Link
-          to="/services"
-          onClick={onClose}
-          className="inline-flex items-center gap-1 font-heading text-xs text-[#0049D7] hover:underline"
-        >
+        <span className="font-heading text-[11px] uppercase tracking-[0.18em] text-[#5B6478]">Our Services</span>
+        <Link to="/services" className="inline-flex items-center gap-1 font-heading text-xs text-[#0049D7] hover:underline">
           View all <ArrowRight className="h-3 w-3" />
         </Link>
       </div>
-      <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-1">
         {services.map((s) => {
           const Ico = (Icons[s.iconName as keyof typeof Icons] ?? Icons.Box) as Icons.LucideIcon;
           return (
-            <Link
-              key={s.slug}
-              to="/services/$slug"
-              params={{ slug: s.slug }}
-              onClick={onClose}
-              className="group flex items-start gap-3 rounded-xl p-3 transition hover:bg-[rgba(0,73,215,0.06)]"
-            >
-              <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition group-hover:bg-[rgba(0,73,215,0.15)]">
+            <Link key={s.slug} to="/services/$slug" params={{ slug: s.slug }}
+              className="group/item flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-[rgba(0,73,215,0.06)]">
+              <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition-colors group-hover/item:bg-[rgba(0,73,215,0.15)]">
                 <Ico className="h-4 w-4" />
               </span>
               <span className="flex flex-col">
                 <span className="font-heading text-sm font-semibold text-[#0B1B3D]">{s.title}</span>
-                <span className="text-xs text-[#5B6478] line-clamp-1">{s.short}</span>
+                <span className="line-clamp-1 text-xs text-[#5B6478]">{s.short}</span>
               </span>
             </Link>
           );
         })}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
-function IndustriesMega({ onClose }: { onClose: () => void }) {
+function IndustriesMega() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -8 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.2 }}
-      className="absolute left-1/2 top-full z-50 mt-3 w-[min(760px,92vw)] -translate-x-1/2 rounded-2xl border border-[rgba(0,73,215,0.15)] bg-white/95 p-6 backdrop-blur-xl shadow-[0_24px_60px_-12px_rgba(11,27,61,0.25)]"
-    >
+    <div className="rounded-2xl border border-[rgba(0,73,215,0.15)] bg-white p-6 shadow-[0_24px_60px_-12px_rgba(11,27,61,0.25)]">
       <div className="mb-4 flex items-center justify-between">
-        <span className="font-heading text-[11px] uppercase tracking-[0.18em] text-[#5B6478]">
-          Industries We Serve
-        </span>
-        <Link
-          to="/industries"
-          onClick={onClose}
-          className="inline-flex items-center gap-1 font-heading text-xs text-[#0049D7] hover:underline"
-        >
+        <span className="font-heading text-[11px] uppercase tracking-[0.18em] text-[#5B6478]">Industries We Serve</span>
+        <Link to="/industries" className="inline-flex items-center gap-1 font-heading text-xs text-[#0049D7] hover:underline">
           View all <ArrowRight className="h-3 w-3" />
         </Link>
       </div>
-      <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-1">
         {industries.map((ind) => {
           const Ico = (Icons[ind.icon as keyof typeof Icons] ?? Icons.Box) as Icons.LucideIcon;
           return (
-            <Link
-              key={ind.slug}
-              to="/industries/$slug"
-              params={{ slug: ind.slug }}
-              onClick={onClose}
-              className="group flex items-start gap-3 rounded-xl p-3 transition hover:bg-[rgba(0,73,215,0.06)]"
-            >
-              <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition group-hover:bg-[rgba(0,73,215,0.15)]">
+            <Link key={ind.slug} to="/industries/$slug" params={{ slug: ind.slug }}
+              className="group/item flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-[rgba(0,73,215,0.06)]">
+              <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition-colors group-hover/item:bg-[rgba(0,73,215,0.15)]">
                 <Ico className="h-4 w-4" />
               </span>
               <span className="flex flex-col">
                 <span className="font-heading text-sm font-semibold text-[#0B1B3D]">{ind.name}</span>
-                <span className="text-xs text-[#5B6478] line-clamp-1">{ind.short}</span>
+                <span className="line-clamp-1 text-xs text-[#5B6478]">{ind.short}</span>
               </span>
             </Link>
           );
         })}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobile, setMobile] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [industriesOpen, setIndustriesOpen] = useState(false);
   const path = useRouterState({ select: (s) => s.location.pathname });
   const isHome = path === "/";
 
@@ -170,33 +134,29 @@ export function Navbar() {
               About
             </Link>
           </li>
-          <li
-            className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
+          <li className="group relative">
             <Link
               to="/services"
               className="inline-flex items-center gap-1 rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]"
               activeProps={{ className: "text-[#0049D7]" }}
             >
-              Services <ChevronDown className="h-3.5 w-3.5" />
+              Services <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
             </Link>
-            <AnimatePresence>{servicesOpen && <ServicesMega onClose={() => setServicesOpen(false)} />}</AnimatePresence>
+            <div className="pointer-events-none invisible absolute left-1/2 top-full z-50 w-[min(760px,92vw)] -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
+              <ServicesMega />
+            </div>
           </li>
-          <li
-            className="relative"
-            onMouseEnter={() => setIndustriesOpen(true)}
-            onMouseLeave={() => setIndustriesOpen(false)}
-          >
+          <li className="group relative">
             <Link
               to="/industries"
               className="inline-flex items-center gap-1 rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]"
               activeProps={{ className: "text-[#0049D7]" }}
             >
-              Industries <ChevronDown className="h-3.5 w-3.5" />
+              Industries <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
             </Link>
-            <AnimatePresence>{industriesOpen && <IndustriesMega onClose={() => setIndustriesOpen(false)} />}</AnimatePresence>
+            <div className="pointer-events-none invisible absolute left-1/2 top-full z-50 w-[min(760px,92vw)] -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
+              <IndustriesMega />
+            </div>
           </li>
           <li>
             <Link
