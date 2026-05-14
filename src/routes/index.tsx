@@ -1342,7 +1342,7 @@ function TechStack() {
       <div className={`flex w-max gap-4 ${dir === "-reverse" ? "animate-marquee-reverse" : "animate-marquee"}`}>
         {[...items, ...items].map((t, i) => (
           <div key={i} className="flex items-center gap-2 rounded-lg border border-[rgba(0,73,215,0.1)] bg-white px-5 py-3 shadow-sm">
-            <img src={`https://cdn.simpleicons.org/${t.icon}`} alt={t.name} className="h-6 w-6" />
+            <img src={`/tech/${t.icon}.svg`} alt={t.name} loading="lazy" className="h-6 w-6" />
             <span className="text-sm font-semibold text-[#0B1B3D]">{t.name}</span>
           </div>
         ))}
