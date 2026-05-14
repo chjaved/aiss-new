@@ -804,6 +804,37 @@ function TechStack() {
     { name: "MySQL", icon: "mysql" },
     { name: "SQLite", icon: "sqlite" },
     { name: "Firebase", icon: "firebase" },
+    { name: "AWS", icon: "amazonaws" },
+    { name: "Azure", icon: "microsoftazure" },
+    { name: "Google Cloud", icon: "googlecloud" },
+    { name: "PyTorch", icon: "pytorch" },
+    { name: "Scikit-learn", icon: "scikitlearn" },
+    { name: "Next.js", icon: "nextdotjs" },
+    { name: "Vue.js", icon: "vuedotjs" },
+    { name: "Angular", icon: "angular" },
+    { name: "FastAPI", icon: "fastapi" },
+    { name: "Django", icon: "django" },
+    { name: "Flask", icon: "flask" },
+    { name: "Spring Boot", icon: "spring" },
+    { name: "Rust", icon: "rust" },
+    { name: "Go", icon: "go" },
+    { name: "Terraform", icon: "terraform" },
+    { name: "Ansible", icon: "ansible" },
+    { name: "Jenkins", icon: "jenkins" },
+    { name: "Prometheus", icon: "prometheus" },
+    { name: "Grafana", icon: "grafana" },
+    { name: "Apache Kafka", icon: "apachekafka" },
+    { name: "RabbitMQ", icon: "rabbitmq" },
+    { name: "Apache Spark", icon: "apachespark" },
+    { name: "Hugging Face", icon: "huggingface" },
+    { name: "OpenAI", icon: "openai" },
+    { name: "LangChain", icon: "langchain" },
+    { name: "Prisma", icon: "prisma" },
+    { name: "Supabase", icon: "supabase" },
+    { name: "Vercel", icon: "vercel" },
+    { name: "Cloudflare", icon: "cloudflare" },
+    { name: "SSL/TLS", icon: "openssl" },
+    { name: "OAuth", icon: "oauth" },
   ];
   const renderRow = (items: typeof techs, dir: "" | "-reverse") => (
     <div className="overflow-hidden">
@@ -827,8 +858,9 @@ function TechStack() {
           </h2>
         </div>
         <div className="mt-10 space-y-4">
-          {renderRow(techs.slice(0, 12), "")}
-          {renderRow(techs.slice(12, 24), "-reverse")}
+          {renderRow(techs.slice(0, 16), "")}
+          {renderRow(techs.slice(16, 32), "-reverse")}
+          {renderRow(techs.slice(32, 48), "")}
         </div>
       </div>
     </section>
