@@ -170,25 +170,28 @@ function Hero() {
               <Icons.ShieldCheck className="h-3.5 w-3.5 text-[#FFB400]" />
               Trusted by government & enterprise clients
             </p>
-            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <div className="mt-4 flex flex-wrap items-center gap-3">
               {[
-                { name: "Ministry of Home Affairs", icon: "Landmark" },
-                { name: "KPJ Healthcare", icon: "HeartPulse" },
-                { name: "Petronas", icon: "Flame" },
-                { name: "Maybank", icon: "Building2" },
-                { name: "TM Malaysia", icon: "Radio" },
-                { name: "Sunway Group", icon: "Building" },
+                { name: "MSC Status", desc: "Multimedia Super Corridor", icon: "BadgeCheck" },
+                { name: "PDPA Compliant", desc: "Personal Data Protection Act", icon: "ShieldCheck" },
+                { name: "ISO 27001", desc: "Information Security", icon: "Lock" },
+                { name: "MDEC", desc: "Malaysia Digital Economy", icon: "Award" },
               ].map((logo) => {
-                const Ico = (Icons[logo.icon as keyof typeof Icons] ?? Icons.Building) as Icons.LucideIcon;
+                const Ico = (Icons[logo.icon as keyof typeof Icons] ?? Icons.Award) as Icons.LucideIcon;
                 return (
                   <div
                     key={logo.name}
-                    className="group inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/[0.06] px-3 py-1.5 backdrop-blur transition hover:border-[#FFB400]/40 hover:bg-white/10"
+                    className="group inline-flex items-center gap-2.5 rounded-lg border border-white/15 bg-white/[0.06] px-3.5 py-2 backdrop-blur transition hover:border-[#FFB400]/50 hover:bg-white/10"
                   >
-                    <Ico className="h-3.5 w-3.5 text-white/70 transition group-hover:text-[#FFB400]" />
-                    <span className="font-heading text-[11px] font-semibold tracking-wide text-white/85">
-                      {logo.name}
-                    </span>
+                    <Ico className="h-4 w-4 shrink-0 text-[#FFB400]" />
+                    <div className="text-left leading-tight">
+                      <p className="font-heading text-[11px] font-bold tracking-wide text-white">
+                        {logo.name}
+                      </p>
+                      <p className="text-[9px] uppercase tracking-wider text-white/55">
+                        {logo.desc}
+                      </p>
+                    </div>
                   </div>
                 );
               })}
@@ -999,14 +1002,9 @@ function ProjectShowcase() {
           {projects.map((project, i) => {
             const IconComponent = iconMap[project.iconName] ?? Icons.Box;
             return (
-              <motion.article
-                key={project.name}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -8 }}
-                className="group relative overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white shadow-[0_8px_30px_-12px_rgba(11,27,61,0.15)] transition-shadow duration-300 hover:shadow-[0_24px_60px_-20px_rgba(0,73,215,0.35)]"
+              <ScrollReveal key={project.name} delay={(i % 3) * 0.08}>
+              <article
+                className="group relative h-full overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white shadow-[0_8px_30px_-12px_rgba(11,27,61,0.15)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_24px_60px_-20px_rgba(0,73,215,0.35)]"
               >
                 {/* Image with zoom on hover */}
                 <div className="relative h-48 overflow-hidden">
@@ -1082,7 +1080,8 @@ function ProjectShowcase() {
                   className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
                   style={{ backgroundColor: project.color }}
                 />
-              </motion.article>
+              </article>
+              </ScrollReveal>
             );
           })}
         </div>
@@ -1385,7 +1384,7 @@ function TechStack() {
 }
 
 
-/* ---------- 13. FINAL CTA — Lead Gen ---------- */
+/* ---------- 13. FINAL CTA — Single-line email collector ---------- */
 function FinalCTA() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -1393,7 +1392,7 @@ function FinalCTA() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) {
-      toast.error("Please enter a valid work email.");
+      toast.error("Please enter a valid email.");
       return;
     }
     setSubmitted(true);
@@ -1401,106 +1400,44 @@ function FinalCTA() {
   };
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#0B1B3D] px-6 py-28 text-white">
-      {/* Background flourishes */}
-      <div className="pointer-events-none absolute -left-40 top-0 h-[28rem] w-[28rem] rounded-full bg-[#0049D7] opacity-30 blur-[160px]" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-[24rem] w-[24rem] rounded-full bg-[#FFB400] opacity-20 blur-[180px]" />
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.05]" />
+    <section className="relative isolate overflow-hidden bg-[#0B1B3D] px-6 py-20 text-white">
+      <div className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-[#0049D7] opacity-30 blur-[140px]" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-[#FFB400] opacity-20 blur-[160px]" />
 
-      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-5">
-        {/* Left — Pitch */}
-        <div className="lg:col-span-3">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/85 backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-[#FFB400]" />
-            Free strategy call · No obligation
-          </span>
-          <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">
-            Ready to modernize your <span className="text-gradient-cg">operations?</span>
-          </h2>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-            Book a 30-minute call with our engineering team. We'll map your highest-impact automation, storage, and AI opportunities — and show you exactly what it would cost.
-          </p>
+      <div className="relative mx-auto max-w-4xl text-center">
+        <h2 className="font-display text-3xl font-extrabold leading-tight sm:text-4xl">
+          Ready to modernize your <span className="text-gradient-cg">operations?</span>
+        </h2>
 
-          {/* Trust signals */}
-          <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3">
-            {[
-              { icon: "Clock", label: "Response in", value: "< 24 hours" },
-              { icon: "Lock", label: "Your data", value: "Never shared" },
-              { icon: "Sparkles", label: "First call", value: "100% free" },
-            ].map((t) => {
-              const Ico = (Icons[t.icon as keyof typeof Icons] ?? Icons.CheckCircle) as Icons.LucideIcon;
-              return (
-                <div key={t.label} className="flex items-center gap-3">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-[#FFB400]/15">
-                    <Ico className="h-5 w-5 text-[#FFB400]" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest text-white/55">{t.label}</p>
-                    <p className="font-heading text-sm font-semibold text-white">{t.value}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Right — Lead form card */}
-        <div className="lg:col-span-2">
-          <div className="rounded-2xl border border-white/15 bg-white/[0.05] p-7 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] backdrop-blur-md">
-            <h3 className="font-display text-2xl font-extrabold text-white">Get your free strategy call</h3>
-            <p className="mt-2 text-sm text-white/65">Enter your work email and we'll be in touch.</p>
-
-            {!submitted ? (
-              <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3">
-                <label className="block">
-                  <span className="sr-only">Work email</span>
-                  <div className="relative">
-                    <Icons.Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="you@company.com"
-                      className="w-full rounded-xl border border-white/15 bg-white/[0.06] px-11 py-3.5 text-sm text-white placeholder:text-white/40 outline-none transition focus:border-[#FFB400] focus:bg-white/[0.1]"
-                    />
-                  </div>
-                </label>
-
-                <button
-                  type="submit"
-                  className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#FFB400] px-6 py-3.5 font-bold text-[#0B1B3D] shadow-[0_12px_40px_-8px_rgba(255,180,0,0.6)] transition hover:-translate-y-0.5 hover:bg-white"
-                >
-                  Get my free strategy call
-                  <Icons.ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </button>
-
-                <p className="text-center text-[11px] text-white/50">
-                  Or{" "}
-                  <Link to="/contact" className="font-semibold text-white underline-offset-2 hover:underline">
-                    book a slot directly →
-                  </Link>
-                </p>
-              </form>
-            ) : (
-              <div className="mt-6 rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-5 text-center">
-                <Icons.CheckCircle2 className="mx-auto h-10 w-10 text-emerald-400" />
-                <p className="mt-3 font-heading text-base font-semibold text-white">Thanks — we'll be in touch.</p>
-                <p className="mt-1 text-sm text-white/70">Expect a reply within 24 hours from our team.</p>
-              </div>
-            )}
-
-            {/* Trusted by row */}
-            <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5 text-[11px] text-white/55">
-              <span className="inline-flex items-center gap-1.5">
-                <Icons.ShieldCheck className="h-3.5 w-3.5 text-[#FFB400]" /> PDPA compliant
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Icons.Star className="h-3.5 w-3.5 fill-[#FFB400] text-[#FFB400]" /> 4.9 / 5 on Google
-              </span>
+        {!submitted ? (
+          <form onSubmit={onSubmit} className="mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:flex-row">
+            <div className="relative flex-1">
+              <Icons.Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@company.com"
+                className="w-full rounded-xl border border-white/15 bg-white/[0.06] px-11 py-3.5 text-sm text-white placeholder:text-white/40 outline-none transition focus:border-[#FFB400] focus:bg-white/[0.1]"
+              />
             </div>
+            <button
+              type="submit"
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#FFB400] px-6 py-3.5 font-bold text-[#0B1B3D] shadow-[0_12px_40px_-8px_rgba(255,180,0,0.6)] transition hover:-translate-y-0.5 hover:bg-white"
+            >
+              Book Free Demo
+              <Icons.ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            </button>
+          </form>
+        ) : (
+          <div className="mx-auto mt-8 max-w-xl rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-6 py-4 text-center">
+            <p className="inline-flex items-center gap-2 font-heading text-sm font-semibold text-white">
+              <Icons.CheckCircle2 className="h-5 w-5 text-emerald-400" />
+              Thanks — we'll reach out within 24 hours.
+            </p>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
@@ -1868,8 +1805,6 @@ function HomePage() {
       <Industries />
       <CertificationsBar />
       <TechStack />
-      <Testimonials />
-      <CaseStudyPreview />
       <InteractiveFAQ />
       <FinalCTA />
       <FloatingElements />
