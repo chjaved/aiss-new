@@ -81,7 +81,7 @@ function IndustriesMega({ onClose }: { onClose: () => void }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.2 }}
-      className="absolute left-1/2 top-full z-50 mt-3 w-[min(680px,92vw)] -translate-x-1/2 rounded-2xl border border-[rgba(0,73,215,0.15)] bg-white/95 p-6 backdrop-blur-xl shadow-[0_24px_60px_-12px_rgba(11,27,61,0.25)]"
+      className="absolute left-1/2 top-full z-50 mt-3 w-[min(760px,92vw)] -translate-x-1/2 rounded-2xl border border-[rgba(0,73,215,0.15)] bg-white/95 p-6 backdrop-blur-xl shadow-[0_24px_60px_-12px_rgba(11,27,61,0.25)]"
     >
       <div className="mb-4 flex items-center justify-between">
         <span className="font-heading text-[11px] uppercase tracking-[0.18em] text-[#5B6478]">
@@ -95,7 +95,7 @@ function IndustriesMega({ onClose }: { onClose: () => void }) {
           View all <ArrowRight className="h-3 w-3" />
         </Link>
       </div>
-      <div className="grid grid-cols-2 gap-1 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
         {industries.map((ind) => {
           const Ico = (Icons[ind.icon as keyof typeof Icons] ?? Icons.Box) as Icons.LucideIcon;
           return (
@@ -104,12 +104,15 @@ function IndustriesMega({ onClose }: { onClose: () => void }) {
               to="/industries/$slug"
               params={{ slug: ind.slug }}
               onClick={onClose}
-              className="group flex items-center gap-2.5 rounded-xl p-2.5 transition hover:bg-[rgba(0,73,215,0.06)]"
+              className="group flex items-start gap-3 rounded-xl p-3 transition hover:bg-[rgba(0,73,215,0.06)]"
             >
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition group-hover:bg-[rgba(0,73,215,0.15)]">
+              <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition group-hover:bg-[rgba(0,73,215,0.15)]">
                 <Ico className="h-4 w-4" />
               </span>
-              <span className="font-heading text-sm font-semibold text-[#0B1B3D]">{ind.name}</span>
+              <span className="flex flex-col">
+                <span className="font-heading text-sm font-semibold text-[#0B1B3D]">{ind.name}</span>
+                <span className="text-xs text-[#5B6478] line-clamp-1">{ind.short}</span>
+              </span>
             </Link>
           );
         })}
