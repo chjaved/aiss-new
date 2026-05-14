@@ -62,12 +62,15 @@ const WELCOME: Message = {
 };
 
 export function ChatWidget() {
+  const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([WELCOME]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -132,6 +135,8 @@ export function ChatWidget() {
       setLoading(false);
     }
   }
+
+  if (!mounted) return null;
 
   return (
     <>
