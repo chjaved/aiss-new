@@ -779,6 +779,14 @@ function ProjectShowcase() {
       color: "#F97316",
       features: ["Verified Kitchens", "Instant Payouts", "Real-time Tracking", "70% to Cooks"],
     },
+    {
+      name: "JomMamak",
+      tagline: "Malaysia's Mamak Food Delivery Platform",
+      description: "Order from 200+ verified mamak stalls in minutes. 4.8★ rating, 25-min delivery, open till 3am. Real-time tracking from kitchen to doorstep.",
+      iconName: "Coffee",
+      color: "#8B4513",
+      features: ["200+ Stalls", "25-min Delivery", "Till 3am", "Real-time Tracking"],
+    },
   ];
 
   const getIcon = (iconName: string) => {
@@ -787,6 +795,7 @@ function ProjectShowcase() {
       Database: Icons.Database,
       Users: Icons.Users,
       Utensils: Icons.Utensils,
+      Coffee: Icons.Coffee,
     };
     return iconMap[iconName] || Icons.Box;
   };
