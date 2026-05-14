@@ -171,17 +171,17 @@ function Hero() {
                 {
                   name: "MDEC",
                   desc: "Malaysia Digital Economy",
-                  src: "https://logo.clearbit.com/mdec.my",
+                  src: "/logos/mdec.svg",
                 },
                 {
                   name: "MSC Malaysia",
                   desc: "Multimedia Super Corridor",
-                  src: "https://logo.clearbit.com/mscmalaysia.my",
+                  src: "/logos/msc-malaysia.svg",
                 },
                 {
                   name: "ISO 27001",
                   desc: "Information Security",
-                  src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/ISO_Logo_%28Red_square%29.svg/240px-ISO_Logo_%28Red_square%29.svg.png",
+                  src: "/logos/iso-27001.svg",
                 },
               ].map((logo) => (
                 <div
@@ -809,16 +809,16 @@ function SmartForce() {
 /* ---------- 9. DIGITALIZATION & DATA COMPRESSION FOCUS ---------- */
 function DigitalizationFocus() {
   return (
-    <section className="relative overflow-hidden bg-[#0B1B3D] px-6 py-24 text-white">
-      <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-[#0049D7] opacity-30 blur-[140px]" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-[#FFB400] opacity-10 blur-[160px]" />
+    <section className="relative overflow-hidden bg-white px-6 py-24">
+      <div className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-[#0049D7] opacity-[0.06] blur-[140px]" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-[#FFB400] opacity-[0.08] blur-[160px]" />
 
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
         {/* Left — Image */}
         <ScrollReveal>
           <div className="relative">
-            <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#0049D7]/30 to-[#FFB400]/20 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+            <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#0049D7]/20 to-[#FFB400]/20 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.12)] shadow-[0_30px_60px_-20px_rgba(11,27,61,0.25)]">
               <img
                 src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=85&auto=format&fit=crop"
                 alt="Data center modernization and intelligent storage"
@@ -826,13 +826,13 @@ function DigitalizationFocus() {
                 loading="lazy"
               />
               {/* Overlay metric chip */}
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-[#0B1B3D]/80 px-4 py-3 backdrop-blur">
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-white/15 bg-[#0B1B3D]/85 px-4 py-3 backdrop-blur">
                 <div>
-                  <p className="text-[10px] uppercase tracking-widest text-white/60">Compressed today</p>
+                  <p className="text-[10px] uppercase tracking-widest text-white/65">Compressed today</p>
                   <p className="font-display text-2xl font-extrabold text-white">12.4 TB</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[10px] uppercase tracking-widest text-white/60">Saved</p>
+                  <p className="text-[10px] uppercase tracking-widest text-white/65">Saved</p>
                   <p className="font-display text-2xl font-extrabold text-[#FFB400]">8.6 TB</p>
                 </div>
               </div>
@@ -843,23 +843,25 @@ function DigitalizationFocus() {
         {/* Right — Text + inline metrics */}
         <ScrollReveal delay={0.15}>
           <SectionTag>Modernization Impact</SectionTag>
-          <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl">
+          <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] text-[#0B1B3D] sm:text-5xl">
             Digitalize once. <br />
-            <span className="text-gradient-cg">Save storage forever.</span>
+            <span className="bg-gradient-to-r from-[#0049D7] to-[#FFB400] bg-clip-text text-transparent">
+              Save storage forever.
+            </span>
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-white/75">
+          <p className="mt-6 text-lg leading-relaxed text-[#5B6478]">
             Our AI compression engine shrinks documents, scans, and media without quality loss — cutting storage bills, speeding up retrieval, and keeping every file compliant with PDPA out of the box.
           </p>
 
-          <div className="mt-10 grid grid-cols-3 gap-6 border-t border-white/10 pt-8">
+          <div className="mt-10 grid grid-cols-3 gap-6 border-t border-[rgba(0,73,215,0.1)] pt-8">
             {[
               { value: "70%", label: "Less storage cost" },
               { value: "40%", label: "Faster retrieval" },
               { value: "100%", label: "PDPA compliant" },
             ].map((stat) => (
               <div key={stat.label}>
-                <p className="font-display text-4xl font-extrabold text-[#FFB400]">{stat.value}</p>
-                <p className="mt-2 text-sm text-white/70">{stat.label}</p>
+                <p className="font-display text-4xl font-extrabold text-[#0049D7]">{stat.value}</p>
+                <p className="mt-2 text-sm font-medium text-[#0B1B3D]">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -867,13 +869,13 @@ function DigitalizationFocus() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 rounded-full bg-[#FFB400] px-6 py-3 font-semibold text-[#0B1B3D] transition hover:-translate-y-0.5 hover:bg-white"
+              className="inline-flex items-center gap-2 rounded-full bg-[#0049D7] px-6 py-3 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#003BB0]"
             >
               Explore SmartForce DMS <Icons.ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 font-semibold text-white backdrop-blur transition hover:border-white/50 hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[rgba(0,73,215,0.25)] bg-white px-6 py-3 font-semibold text-[#0B1B3D] transition hover:border-[#0049D7] hover:bg-[#F4F7FB]"
             >
               Estimate your savings
             </Link>
