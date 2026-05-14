@@ -15,8 +15,6 @@ import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/layout/Floaters";
 import { site } from "@/lib/site";
 
-declare const __OPENAI_KEY__: string;
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
@@ -126,12 +124,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
-        <script
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: `window.__AISS_KEY__="${__OPENAI_KEY__}";`,
-          }}
-        />
       </head>
       <body>
         {children}

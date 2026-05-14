@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "deploy": "node scripts/inject-key.mjs && npm run build && wrangler deploy --config dist/aisoftwaresolutions/wrangler.json",
+    "deploy": "npm run build && wrangler deploy --config dist/aisoftwaresolutions/wrangler.json",
     "build:vercel": "vercel build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",

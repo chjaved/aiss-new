@@ -2,11 +2,8 @@
   if (window.__AISS_CHAT_INIT__) return;
   window.__AISS_CHAT_INIT__ = true;
 
-  var KEY = "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";
   var EMAIL = 'info@aiss.com.my';
   var PHONE = '+60 3-3007 3021';
-
-  var SYSTEM_PROMPT = 'You are a friendly and professional customer support assistant for AI Software Solutions (AISS), a Malaysian AI and software development company.\n\nCOMPANY INFO:\n- Name: AI Software Solutions Sdn. Bhd.\n- Tagline: "Intelligent Software. Real Results."\n- Specialises in AI-powered software for Government, Enterprise & Healthcare\n- Location: C-6-25, Centum @ Oasis Corporate Park, No. 2, Jalan PJU 1A/2, Ara Damansara, 47301 Petaling Jaya, Selangor, Malaysia\n- Email: info@aiss.com.my | Phone: +60 3-3007 3021\n- Hours: Monday \u2013 Friday, 9:00 AM \u2013 6:00 PM\n- Website: aisoftwaresolutions.com.my\n\nSERVICES:\n1. AI & Automation Systems \u2013 workflow automation, RPA, predictive analytics. Pilot in 6\u201310 weeks.\n2. Custom Software Development \u2013 web apps, ERP/CRM, enterprise platforms. MVP in 8\u201312 weeks.\n3. Document & Process Digitization \u2013 SmartForce DMS (proprietary), AI OCR, 60% storage savings.\n4. Mobile App Development \u2013 iOS, Android, React Native, Flutter. MVP in 8\u201312 weeks.\n5. API Integration & Middleware \u2013 REST/GraphQL, legacy bridging, Kafka, API gateways.\n6. Smart Dashboards & Data Portals \u2013 real-time KPI dashboards, BI tools.\n7. IoT Integration & Smart Monitoring \u2013 sensor integration, edge computing, predictive maintenance.\n8. Cybersecurity Solutions \u2013 AI SIEM/SOAR, zero-trust, penetration testing.\n9. Government & Civil Administration Systems \u2013 citizen portals, MAMPU/PDPA/MyDigital ID compliant.\n10. Healthcare Software \u2013 HIS, telemedicine, HL7/FHIR, clinical decision support.\n\nKEY PRODUCT \u2013 SmartForce DMS: Proprietary AI document management, 60% storage reduction, OCR, role-based access, PDPA compliant, on-prem/cloud/hybrid.\n\nINDUSTRIES: Government, Healthcare, Manufacturing, Logistics, Finance, Education, Legal, Defence.\n\nYOUR BEHAVIOUR:\n- Answer questions warmly and concisely\n- Help visitors find the right service for their needs\n- Encourage booking a free demo at info@aiss.com.my or +60 3-3007 3021\n- Never state specific pricing\n- Keep responses under 130 words unless detail is needed';
 
   var isOpen = false;
   var messages = [{ role: 'assistant', content: 'Hi there! \ud83d\udc4b I\u2019m the AISS virtual assistant. I can help you learn about our services, find the right solution, or connect you with our team.\n\nWhat can I help you with today?' }];
@@ -53,7 +50,6 @@
   var inp = document.getElementById('aiss-inp');
   var sendBtn = document.getElementById('aiss-send');
 
-  /* ── Render ── */
   function esc(s) {
     return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
   }
@@ -74,7 +70,6 @@
     msgsEl.scrollTop = msgsEl.scrollHeight;
   }
 
-  /* ── Toggle ── */
   function toggle() {
     isOpen = !isOpen;
     if (isOpen) {
@@ -89,7 +84,6 @@
     }
   }
 
-  /* ── Send ── */
   async function send() {
     var text = inp.value.trim();
     if (!text || loading) return;
@@ -99,39 +93,30 @@
     loading = true;
     render();
 
-    if (!KEY) {
-      messages.push({ role: 'assistant', content: 'The chat assistant isn\'t configured yet.\n\n\ud83d\udce7 ' + EMAIL + '\n\ud83d\udcde ' + PHONE + '\n\nWe\'re available Mon\u2013Fri, 9am\u20136pm.' });
-      loading = false;
-      render();
-      return;
-    }
-
     try {
-      var res = await fetch('https://api.openai.com/v1/chat/completions', {
+      var res = await fetch('/api/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEY },
-        body: JSON.stringify({
-          model: 'gpt-4o-mini',
-          messages: [{ role: 'system', content: SYSTEM_PROMPT }].concat(
-            messages.map(function(m) { return { role: m.role, content: m.content }; })
-          ),
-          max_tokens: 400,
-          temperature: 0.7
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: messages.map(function(m) { return { role: m.role, content: m.content }; }) }),
       });
-      var data = await res.json();
-      var reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content)
-        ? data.choices[0].message.content.trim()
-        : 'Sorry, I couldn\'t get a response. Please contact us at ' + EMAIL + '.';
-      messages.push({ role: 'assistant', content: reply });
+      if (!res.ok) {
+        var errBody = '';
+        try { errBody = await res.text(); } catch (e) {}
+        console.error('Chat API error', res.status, errBody);
+        messages.push({ role: 'assistant', content: 'Sorry, I had trouble reaching our assistant. Please email ' + EMAIL + ' or call ' + PHONE + '.' });
+      } else {
+        var data = await res.json();
+        var reply = (data && data.reply) ? data.reply : 'Sorry, no response. Please contact ' + EMAIL + '.';
+        messages.push({ role: 'assistant', content: reply });
+      }
     } catch (e) {
-      messages.push({ role: 'assistant', content: 'Something went wrong. Reach us at ' + EMAIL + ' or call ' + PHONE + '.' });
+      console.error(e);
+      messages.push({ role: 'assistant', content: 'Connection error. Reach us at ' + EMAIL + ' or call ' + PHONE + '.' });
     }
     loading = false;
     render();
   }
 
-  /* ── Events ── */
   btn.addEventListener('click', toggle);
   panel.querySelector('.aiss-x').addEventListener('click', toggle);
   inp.addEventListener('input', function() { sendBtn.disabled = !inp.value.trim() || loading; });

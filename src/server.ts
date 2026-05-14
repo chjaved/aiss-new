@@ -7,6 +7,95 @@ type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
 };
 
+type Env = { OPENAI_API_KEY?: string };
+
+const SYSTEM_PROMPT = `You are a friendly and professional customer support assistant for AI Software Solutions (AISS), a Malaysian AI and software development company.
+
+COMPANY INFO:
+- Name: AI Software Solutions Sdn. Bhd.
+- Tagline: "Intelligent Software. Real Results."
+- Specialises in AI-powered software for Government, Enterprise & Healthcare
+- Location: C-6-25, Centum @ Oasis Corporate Park, No. 2, Jalan PJU 1A/2, Ara Damansara, 47301 Petaling Jaya, Selangor, Malaysia
+- Email: info@aiss.com.my | Phone: +60 3-3007 3021
+- Hours: Monday – Friday, 9:00 AM – 6:00 PM
+- Website: aisoftwaresolutions.com.my
+
+SERVICES:
+1. AI & Automation Systems – workflow automation, RPA, predictive analytics. Pilot in 6–10 weeks.
+2. Custom Software Development – web apps, ERP/CRM, enterprise platforms. MVP in 8–12 weeks.
+3. Document & Process Digitization – SmartForce DMS (proprietary), AI OCR, 60% storage savings.
+4. Mobile App Development – iOS, Android, React Native, Flutter. MVP in 8–12 weeks.
+5. API Integration & Middleware – REST/GraphQL, legacy bridging, Kafka, API gateways.
+6. Smart Dashboards & Data Portals – real-time KPI dashboards, BI tools.
+7. IoT Integration & Smart Monitoring – sensor integration, edge computing, predictive maintenance.
+8. Cybersecurity Solutions – AI SIEM/SOAR, zero-trust, penetration testing.
+9. Government & Civil Administration Systems – citizen portals, MAMPU/PDPA/MyDigital ID compliant.
+10. Healthcare Software – HIS, telemedicine, HL7/FHIR, clinical decision support.
+
+KEY PRODUCT – SmartForce DMS: Proprietary AI document management, 60% storage reduction, OCR, role-based access, PDPA compliant, on-prem/cloud/hybrid.
+
+INDUSTRIES: Government, Healthcare, Manufacturing, Logistics, Finance, Education, Legal, Defence.
+
+YOUR BEHAVIOUR:
+- Answer questions warmly and concisely
+- Help visitors find the right service for their needs
+- Encourage booking a free demo at info@aiss.com.my or +60 3-3007 3021
+- Never state specific pricing
+- Keep responses under 130 words unless detail is needed`;
+
+async function handleChatApi(request: Request, env: Env): Promise<Response> {
+  if (request.method !== "POST") {
+    return new Response("Method not allowed", { status: 405 });
+  }
+  const key = env.OPENAI_API_KEY;
+  if (!key) {
+    return new Response(JSON.stringify({ error: "OPENAI_API_KEY not configured" }), {
+      status: 500,
+      headers: { "content-type": "application/json" },
+    });
+  }
+  let body: { messages?: Array<{ role: string; content: string }> };
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: "Invalid JSON" }), {
+      status: 400,
+      headers: { "content-type": "application/json" },
+    });
+  }
+  const userMessages = Array.isArray(body.messages) ? body.messages.slice(-12) : [];
+
+  const upstream = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${key}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...userMessages],
+      max_tokens: 400,
+      temperature: 0.7,
+    }),
+  });
+
+  if (!upstream.ok) {
+    const errText = await upstream.text();
+    return new Response(JSON.stringify({ error: "OpenAI request failed", detail: errText }), {
+      status: 502,
+      headers: { "content-type": "application/json" },
+    });
+  }
+
+  const data = (await upstream.json()) as {
+    choices?: Array<{ message?: { content?: string } }>;
+  };
+  const reply = data.choices?.[0]?.message?.content?.trim() ?? "";
+  return new Response(JSON.stringify({ reply }), {
+    headers: { "content-type": "application/json" },
+  });
+}
+
 let serverEntryPromise: Promise<ServerEntry> | undefined;
 
 async function getServerEntry(): Promise<ServerEntry> {
@@ -69,6 +158,10 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const url = new URL(request.url);
+      if (url.pathname === "/api/chat") {
+        return await handleChatApi(request, (env ?? {}) as Env);
+      }
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
