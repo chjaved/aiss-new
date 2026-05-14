@@ -166,45 +166,19 @@ function Hero() {
             transition={{ duration: 0.8, delay: noAnim ? 0 : 0.6 }}
             className="mt-10"
           >
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-6">
               {[
-                {
-                  name: "MDEC",
-                  desc: "Malaysia Digital Economy",
-                  src: "/logos/mdec.svg",
-                },
-                {
-                  name: "MSC Malaysia",
-                  desc: "Multimedia Super Corridor",
-                  src: "/logos/msc-malaysia.svg",
-                },
-                {
-                  name: "ISO 27001",
-                  desc: "Information Security",
-                  src: "/logos/iso-27001.svg",
-                },
+                { name: "MDEC", src: "/logos/mdec.svg" },
+                { name: "MSC Malaysia", src: "/logos/msc-malaysia.svg" },
+                { name: "ISO 27001", src: "/logos/iso-27001.svg" },
               ].map((logo) => (
-                <div
+                <img
                   key={logo.name}
-                  className="inline-flex items-center gap-3 rounded-lg border border-white/15 bg-white/95 px-3.5 py-2 shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
-                >
-                  <div className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-md bg-white">
-                    <img
-                      src={logo.src}
-                      alt={`${logo.name} logo`}
-                      loading="lazy"
-                      className="h-full w-full object-contain p-0.5"
-                    />
-                  </div>
-                  <div className="text-left leading-tight">
-                    <p className="font-heading text-[12px] font-bold tracking-wide text-[#0B1B3D]">
-                      {logo.name}
-                    </p>
-                    <p className="text-[9px] uppercase tracking-wider text-[#5B6478]">
-                      {logo.desc}
-                    </p>
-                  </div>
-                </div>
+                  src={logo.src}
+                  alt={`${logo.name} logo`}
+                  loading="lazy"
+                  className="h-16 w-auto object-contain transition hover:-translate-y-0.5 sm:h-20"
+                />
               ))}
             </div>
           </motion.div>
@@ -1333,8 +1307,6 @@ function TechStack() {
     { name: "MySQL", icon: "mysql" },
     { name: "SQLite", icon: "sqlite" },
     { name: "Firebase", icon: "firebase" },
-    { name: "AWS", icon: "amazonaws" },
-    { name: "Azure", icon: "microsoftazure" },
     { name: "Google Cloud", icon: "googlecloud" },
     { name: "PyTorch", icon: "pytorch" },
     { name: "Scikit-learn", icon: "scikitlearn" },
