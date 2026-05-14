@@ -136,7 +136,7 @@ export function ChatWidget() {
   return (
     <>
       {open && (
-        <div className="fixed bottom-24 right-6 z-[100] flex w-[360px] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
+        <div className="fixed bottom-24 right-6 z-[9999] flex w-[360px] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
           {/* Header */}
           <div className="flex items-center justify-between bg-gradient-to-r from-[#0049D7] to-[#0B2F8A] px-4 py-3.5">
             <div className="flex items-center gap-3">
@@ -243,7 +243,7 @@ export function ChatWidget() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close support chat" : "Open support chat"}
-        className="fixed bottom-6 right-6 z-[100] grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-[#0049D7] to-[#0B2F8A] text-white shadow-[0_8px_30px_rgba(0,73,215,0.45)] transition-all hover:scale-110 hover:shadow-[0_12px_40px_rgba(0,73,215,0.55)]"
+        className="fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#0049D7] to-[#0B2F8A] text-white shadow-[0_8px_30px_rgba(0,73,215,0.45)] transition-all hover:scale-110 hover:shadow-[0_12px_40px_rgba(0,73,215,0.55)]"
       >
         {open ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
       </button>
