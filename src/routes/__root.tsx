@@ -12,7 +12,8 @@ import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingWhatsApp, BackToTop } from "@/components/layout/Floaters";
+import { BackToTop } from "@/components/layout/Floaters";
+import { ChatWidget } from "@/components/layout/ChatWidget";
 import { site } from "@/lib/site";
 
 function NotFoundComponent() {
@@ -143,7 +144,7 @@ function RootComponent() {
         <Outlet />
       </main>
       <Footer />
-      <FloatingWhatsApp />
+      <ChatWidget />
       <BackToTop />
       <Toaster theme="dark" position="top-right" richColors />
     </QueryClientProvider>

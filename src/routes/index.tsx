@@ -1763,7 +1763,6 @@ function HomePage() {
       <TechStack />
       <InteractiveFAQ />
       <FinalCTA />
-      <FloatingElements />
     </>
   );
 }

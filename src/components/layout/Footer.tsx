@@ -19,14 +19,16 @@ export function Footer() {
           </p>
           <div className="mt-5 flex items-center gap-3">
             {[
-              { Icon: Linkedin, label: "LinkedIn" },
-              { Icon: Facebook, label: "Facebook" },
-              { Icon: Instagram, label: "Instagram" },
-              { Icon: MessageCircle, label: "WhatsApp" },
-            ].map(({ Icon, label }) => (
+              { Icon: Linkedin, label: "LinkedIn", href: "#" },
+              { Icon: Facebook, label: "Facebook", href: "#" },
+              { Icon: Instagram, label: "Instagram", href: "#" },
+              { Icon: MessageCircle, label: "WhatsApp", href: site.whatsapp },
+            ].map(({ Icon, label, href }) => (
               <a
                 key={label}
-                href="#"
+                href={href}
+                target={href !== "#" ? "_blank" : undefined}
+                rel={href !== "#" ? "noopener noreferrer" : undefined}
                 aria-label={label}
                 className="grid h-9 w-9 place-items-center rounded-lg border border-[#0B1B3D]/10 text-[#5B6478] transition hover:border-[rgba(0,73,215,0.3)] hover:text-[#0049D7]"
               >
