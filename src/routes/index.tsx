@@ -707,7 +707,139 @@ function SmartForce() {
   );
 }
 
-/* ---------- 10. TESTIMONIALS ---------- */
+/* ---------- 9. DIGITALIZATION & DATA COMPRESSION FOCUS ---------- */
+function DigitalizationFocus() {
+  return (
+    <section className="bg-[#0B1B3D] px-6 py-24 text-white">
+      <div className="mx-auto max-w-7xl">
+        <ScrollReveal>
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionTag>Modernization Impact</SectionTag>
+            <h2 className="mt-5 font-display text-4xl font-extrabold sm:text-5xl">
+              Digitalization & <span className="text-gradient-cg">Data Compression</span>
+            </h2>
+            <p className="mt-5 text-lg text-white/80">
+              Transform your operations with AI-powered digitalization. Reduce storage costs by up to 70% while improving accessibility and compliance.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.2}>
+          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+            {[
+              { title: "Storage Savings", value: "70%", desc: "Average reduction in storage costs through AI compression" },
+              { title: "Processing Speed", value: "40%", desc: "Faster document retrieval and processing times" },
+              { title: "Compliance Rate", value: "100%", desc: "Full PDPA compliance with automated workflows" },
+            ].map((stat, i) => (
+              <div key={i} className="rounded-2xl border border-white/10 bg-white/[0.04] p-8 text-center backdrop-blur">
+                <div className="font-display text-5xl font-extrabold text-[#FFB400]">{stat.value}</div>
+                <div className="mt-2 font-heading text-lg font-semibold">{stat.title}</div>
+                <div className="mt-3 text-sm text-white/70">{stat.desc}</div>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 10. PROJECT SHOWCASE ---------- */
+function ProjectShowcase() {
+  const projects = [
+    {
+      name: "Radpics AI",
+      tagline: "AI-Powered Medical Imaging Platform",
+      description: "Enterprise-grade PACS, EMR, and workflow automation for hospitals and diagnostic centres. 40% faster reporting, 30% cost reduction.",
+      iconName: "Activity",
+      color: "#0049D7",
+      features: ["AI-Powered PACS", "Multi-center Diagnostics", "Remote Reporting", "DICOM Compression"],
+    },
+    {
+      name: "OptiStack",
+      tagline: "AI-Powered Cloud Cost Decision Engine",
+      description: "Detect cloud waste, unused SaaS licenses, and AI token overspend. Average customer saves $240K/year across AWS, Azure, and GCP.",
+      iconName: "Database",
+      color: "#FFB400",
+      features: ["Multi-Cloud Visibility", "SaaS License Tracking", "AI Token Monitoring", "Automated Savings"],
+    },
+    {
+      name: "MWMSYS",
+      tagline: "Migrant Worker Management System",
+      description: "Comprehensive HRMS platform for migrant workers ensuring compliance, dispute resolution, and improved workforce productivity.",
+      iconName: "Users",
+      color: "#10B981",
+      features: ["24/7 Call Centre", "HRMS Platform", "Dispute Resolution", "Compliance Monitoring"],
+    },
+    {
+      name: "HomeFood",
+      tagline: "Home Cook Food Delivery Platform",
+      description: "Connects 15,000+ home cooks with customers. Earn RM2,000-8,000 monthly. 28-min average delivery, 4.8★ rating.",
+      iconName: "Utensils",
+      color: "#F97316",
+      features: ["Verified Kitchens", "Instant Payouts", "Real-time Tracking", "70% to Cooks"],
+    },
+  ];
+
+  const getIcon = (iconName: string) => {
+    const iconMap: Record<string, any> = {
+      Activity: Icons.Activity,
+      Database: Icons.Database,
+      Users: Icons.Users,
+      Utensils: Icons.Utensils,
+    };
+    return iconMap[iconName] || Icons.Box;
+  };
+
+  return (
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <ScrollReveal>
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionTag>Our Projects</SectionTag>
+            <h2 className="mt-5 font-display text-4xl font-extrabold sm:text-5xl">
+              Transforming Industries with <span className="text-gradient-cg">AI Innovation</span>
+            </h2>
+            <p className="mt-5 text-lg text-[#5B6478]">
+              From healthcare to cloud infrastructure, our AI solutions drive real modernization impact across industries.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.2}>
+          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
+            {projects.map((project, i) => {
+              const IconComponent = getIcon(project.iconName);
+              return (
+                <div key={i} className="group rounded-2xl border border-[rgba(0,73,215,0.1)] bg-white p-8 shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+                  <div className="flex items-start gap-4">
+                    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl" style={{ backgroundColor: `${project.color}20` }}>
+                      <IconComponent className="h-7 w-7" style={{ color: project.color }} />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-display text-2xl font-bold text-[#0B1B3D]">{project.name}</h3>
+                      <p className="mt-1 text-sm font-semibold text-[#0049D7]">{project.tagline}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-[#5B6478]">{project.description}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {project.features.map((feature, j) => (
+                          <span key={j} className="rounded-full border border-[rgba(0,73,215,0.2)] bg-[rgba(0,73,215,0.06)] px-3 py-1 text-xs font-medium text-[#0B1B3D]">
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 11. TESTIMONIALS ---------- */
 const testimonials = [
   { q: "Delivered on time and understood compliance requirements immediately.", n: "Ahmad Faizal", t: "IT Director, Ministry of Home Affairs" },
   { q: "Cut our patient processing time by 40%. Excellent local team.", n: "Dr. Sarah Lim", t: "CIO, Sunway Medical Centre" },
@@ -1250,6 +1382,8 @@ function HomePage() {
       <ServicesGrid />
       <CaseStudyPreview />
       <SmartForce />
+      <DigitalizationFocus />
+      <ProjectShowcase />
       <Industries />
       <CertificationsBar />
       <Testimonials />
