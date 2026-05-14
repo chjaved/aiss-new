@@ -498,49 +498,6 @@ function TrustBar() {
 }
 
 
-/* ---------- 4. PAIN POINTS ---------- */
-function PainPoints() {
-  const pains = [
-    { Icon: Icons.AlertTriangle, text: "Drowning in paperwork and manual approvals" },
-    { Icon: Icons.Clock, text: "Slow decisions because critical data lives in disconnected silos across departments" },
-    { Icon: Icons.Shield, text: "Security risks from legacy systems and manual access" },
-    { Icon: Icons.Users, text: "IT team rebuilding the same tools repeatedly" },
-    { Icon: Icons.BarChart3, text: "No real-time visibility into operations or KPIs" },
-    { Icon: Icons.Globe, text: "Your competitors are already automating - you're not" },
-  ];
-  return (
-    <section className="bg-[#F4F7FB] px-6 py-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-2xl text-center">
-          <SectionTag>Sound Familiar?</SectionTag>
-          <h2 className="mt-5 font-display text-3xl font-extrabold sm:text-4xl">
-            Is Your Business Stuck in <span className="text-[#FFB400]">Manual Mode?</span>
-          </h2>
-          <p className="mt-4 text-[#5B6478]">
-            Most Malaysian organisations are losing time and revenue to outdated processes. Here's what we hear every day.
-          </p>
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {pains.map((p, i) => (
-            <ScrollReveal key={p.text} delay={(i % 3) * 0.08}>
-              <GlassCard className="flex h-full items-start gap-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[rgba(255,180,0,0.1)] text-[#FFB400]">
-                  <p.Icon className="h-5 w-5" />
-                </span>
-                <p className="font-heading text-[15px] font-medium text-[#0B1B3D]">{p.text}</p>
-              </GlassCard>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        <p className="mx-auto mt-10 max-w-xl text-center italic text-[#5B6478]">
-          We've solved all of these - for government agencies, hospitals, and enterprise clients across Malaysia.
-        </p>
-      </div>
-    </section>
-  );
-}
 
 /* ---------- 5. SERVICES GRID ---------- */
 function ServicesGrid() {
@@ -1258,7 +1215,6 @@ function HomePage() {
     <>
       <Hero />
       <TrustBar />
-      <PainPoints />
       <ServicesGrid />
       <CaseStudyPreview />
       <SmartForce />
