@@ -13,7 +13,6 @@ import appCss from "../styles.css?url";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/layout/Floaters";
-import { ChatWidget } from "@/components/layout/ChatWidget";
 import { site } from "@/lib/site";
 
 function NotFoundComponent() {
@@ -125,10 +124,18 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `window.__AISS_KEY__="${import.meta.env.VITE_OPENAI_API_KEY || ''}";`,
+          }}
+        />
       </head>
       <body>
         {children}
         <Scripts />
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        <script src="/chat.js" defer />
       </body>
     </html>
   );
@@ -144,7 +151,6 @@ function RootComponent() {
         <Outlet />
       </main>
       <Footer />
-      <ChatWidget />
       <BackToTop />
       <Toaster theme="dark" position="top-right" richColors />
     </QueryClientProvider>
