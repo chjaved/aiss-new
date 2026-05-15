@@ -2000,8 +2000,8 @@ function HomePage() {
     <>
       <Hero />
       <DocumentCompressionFlow />
-      <ServicesGrid />
       <ProjectShowcase />
+      <ServicesGrid />
       <DigitalizationFocus />
       <ModernizationImpact />
       <TechStack />
