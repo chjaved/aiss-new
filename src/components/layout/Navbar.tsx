@@ -191,56 +191,42 @@ export function Navbar() {
         </button>
       </nav>
 
-      <AnimatePresence>
-        {mobile && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobile(false)}
-              className="fixed inset-0 top-[72px] z-[55] bg-black/50 lg:hidden"
-            />
-            <motion.div
-              initial={{ opacity: 0, x: -300 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -300 }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed inset-0 top-[72px] z-[60] flex flex-col bg-[#FFFFFF] px-6 pb-10 pt-6 lg:hidden overflow-y-auto"
-            >
-              <ul className="flex flex-col">
-                {[{ to: "/", label: "Home" }, { to: "/about", label: "About" }, { to: "/services", label: "Services" }, { to: "/industries", label: "Industries" }, { to: "/case-studies", label: "Case Studies" }, { to: "/blog", label: "Blog" }, { to: "/careers", label: "Careers" }, { to: "/contact", label: "Contact" }].map((l, i) => (
-                  <motion.li
-                    key={l.to}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="border-b border-[#0B1B3D]/10"
-                  >
-                    <Link
-                      to={l.to}
-                      className="block py-4 font-display text-2xl font-bold text-[#0B1B3D]"
-                    >
-                      {l.label}
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
-              <div className="mt-8 flex flex-col gap-3">
-                <PrimaryButton to="/contact" size="md">Book Free Demo</PrimaryButton>
-                <a
-                  href={site.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-heading font-semibold text-white"
+      {mobile && (
+        <>
+          <div
+            onClick={() => setMobile(false)}
+            className="fixed inset-0 top-[72px] z-[55] bg-black/50 lg:hidden"
+          />
+          <div className="fixed inset-0 top-[72px] z-[60] flex flex-col bg-[#FFFFFF] px-6 pb-10 pt-6 lg:hidden overflow-y-auto">
+            <ul className="flex flex-col">
+              {[{ to: "/", label: "Home" }, { to: "/about", label: "About" }, { to: "/services", label: "Services" }, { to: "/industries", label: "Industries" }, { to: "/case-studies", label: "Case Studies" }, { to: "/blog", label: "Blog" }, { to: "/careers", label: "Careers" }, { to: "/contact", label: "Contact" }].map((l, i) => (
+                <li
+                  key={l.to}
+                  className="border-b border-[#0B1B3D]/10"
                 >
-                  <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
-                </a>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                  <Link
+                    to={l.to}
+                    className="block py-4 font-display text-2xl font-bold text-[#0B1B3D]"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-col gap-3">
+              <PrimaryButton to="/contact" size="md">Book Free Demo</PrimaryButton>
+              <a
+                href={site.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-heading font-semibold text-white"
+              >
+                <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+        </>
+      )}
     </header>
   );
 }
