@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin, Facebook, Instagram, MessageCircle, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { services, site } from "@/lib/site";
+import logoUrl from "@/assets/aiss-logo.png";
 
 export function Footer() {
   return (
@@ -9,9 +10,11 @@ export function Footer() {
         {/* Brand */}
         <div className="lg:col-span-1">
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-display text-2xl font-extrabold text-[#0049D7]">
-              AI Software Solutions<span className="text-[#FFB400]">.</span>
-            </span>
+            <img
+              src={logoUrl}
+              alt="AISS logo"
+              className="h-10 w-auto"
+            />
           </Link>
           <p className="mt-3 font-body text-sm text-[#5B6478]">{site.tagline}</p>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#5B6478]">

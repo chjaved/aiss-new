@@ -24,6 +24,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Premier Malaysian AI software company building intelligent automation, custom software, and SmartForce DMS for government, enterprise, and healthcare." },
       { property: "og:title", content: "AI Software Solution | Intelligent Software. Real Results." },
       { property: "og:description", content: "AI-powered software for Malaysian government, enterprise & healthcare. Petaling Jaya based." },
+    ],
+    links: [
       { rel: "icon", href: aissLogo },
     ],
   }),
