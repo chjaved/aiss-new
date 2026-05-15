@@ -837,6 +837,86 @@ function DigitalizationFocus() {
   );
 }
 
+/* ---------- 10. DOCUMENT WORKFLOW INFOGRAPHIC ---------- */
+function DocumentWorkflowInfographic() {
+  const steps = [
+    { icon: "Upload", label: "Ingest", color: "#0049D7" },
+    { icon: "Scan", label: "OCR", color: "#0049D7" },
+    { icon: "Cpu", label: "Compress", color: "#FFB400" },
+    { icon: "Search", label: "Index", color: "#10B981" },
+    { icon: "Lock", label: "Secure", color: "#0049D7" },
+    { icon: "Zap", label: "Retrieve", color: "#FFB400" },
+  ];
+
+  return (
+    <section className="relative overflow-hidden bg-white px-6 py-16">
+      <div className="mx-auto max-w-6xl">
+        <ScrollReveal>
+          <div className="text-center">
+            <SectionTag>Workflow</SectionTag>
+            <h2 className="mt-4 font-display text-3xl font-extrabold sm:text-4xl">
+              Document Compression <span className="text-gradient-cg">Pipeline</span>
+            </h2>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.1}>
+          <div className="mt-12 relative">
+            {/* Flow chart */}
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              {steps.map((step, i) => {
+                const StepIcon = (Icons[step.icon as keyof typeof Icons] ?? Icons.Box) as Icons.LucideIcon;
+                const isLast = i === steps.length - 1;
+                return (
+                  <div key={step.label} className="flex items-center">
+                    <div className="group relative">
+                      <div
+                        className="flex h-20 w-20 items-center justify-center rounded-2xl border-2 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
+                        style={{
+                          borderColor: step.color,
+                          backgroundColor: `${step.color}10`,
+                        }}
+                      >
+                        <StepIcon className="h-8 w-8" style={{ color: step.color }} />
+                      </div>
+                      <div className="mt-3 text-center">
+                        <p className="font-heading text-xs font-semibold text-[#0B1B3D]">{step.label}</p>
+                      </div>
+                      {/* Step number */}
+                      <div
+                        className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold text-white shadow-md"
+                        style={{ backgroundColor: step.color }}
+                      >
+                        {i + 1}
+                      </div>
+                    </div>
+                    {!isLast && (
+                      <div className="mx-2 hidden md:block">
+                        <Icons.ArrowRight className="h-6 w-6 text-[#0049D7]/30" />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* VFS badge */}
+            <div className="mt-12 flex justify-center">
+              <div className="inline-flex items-center gap-3 rounded-full border border-[rgba(0,73,215,0.2)] bg-[#F4F7FB] px-6 py-3">
+                <Icons.Building2 className="h-5 w-5 text-[#0049D7]" />
+                <div>
+                  <p className="text-xs font-semibold text-[#5B6478]">Trusted by VFS Global</p>
+                  <p className="text-[10px] text-[#5B6478]/70">Processing 12M+ documents daily</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- 11. PROJECT SHOWCASE ---------- */
 type Project = {
   slug: string;
@@ -1801,6 +1881,7 @@ function HomePage() {
       <ServicesGrid />
       <ProjectShowcase />
       <DigitalizationFocus />
+      <DocumentWorkflowInfographic />
       <Industries />
       <TechStack />
       <InteractiveFAQ />
