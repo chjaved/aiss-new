@@ -837,190 +837,240 @@ function DigitalizationFocus() {
   );
 }
 
-/* ---------- 10. DOCUMENT ARCHITECTURE ---------- */
-function DocumentArchitecture() {
-  const components = [
+/* ---------- 10. DOCUMENT COMPRESSION FLOW DIAGRAM ---------- */
+function DocumentCompressionFlow() {
+  const steps = [
     {
-      name: "Ingestion Layer",
-      type: "API Gateway",
-      specs: [
-        "RESTful API endpoints for batch upload",
-        "Supports PDF, TIFF, JPEG, PNG, DOCX formats",
-        "Max file size: 500MB per document",
-        "Concurrent processing: 10,000+ documents/hour",
-        "Auto-rotation and normalization preprocessing",
-      ],
+      id: 1,
+      title: "Document Ingestion",
+      description: "Upload from scanners, email, or existing repositories",
+      icon: "Upload",
       color: "#0049D7",
+      details: ["PDF, TIFF, JPEG, PNG, DOCX", "Max 500MB per file", "10,000+ docs/hour throughput"],
     },
     {
-      name: "OCR Engine",
-      type: "Multi-Language Recognition",
-      specs: [
-        "Tesseract 5.0+ with custom ML models",
-        "99.2% accuracy on Bahasa Malaysia & English",
-        "Handles aged, damaged, and handwritten documents",
-        "50+ language support with auto-detection",
-        "DPI optimization (200-600 DPI adaptive)",
-      ],
+      id: 2,
+      title: "AI-Powered OCR",
+      description: "Multi-language text extraction with 99.2% accuracy",
+      icon: "Scan",
       color: "#0049D7",
+      details: ["Bahasa Malaysia & English", "Handles aged/damaged docs", "50+ language support"],
     },
     {
-      name: "Compression Core",
-      type: "AI-Powered Engine",
-      specs: [
-        "Proprietary ML model for content-aware compression",
-        "70% average reduction without quality loss",
-        "Lossless text extraction layer",
-        "Progressive JPEG for web delivery",
-        "H.265 video compression for embedded media",
-      ],
+      id: 3,
+      title: "Content Analysis",
+      description: "ML model analyzes document structure and content",
+      icon: "Cpu",
       color: "#FFB400",
+      details: ["Identifies text, images, tables", "Content-aware optimization", "Metadata extraction"],
     },
     {
-      name: "Indexing System",
-      type: "Elasticsearch Cluster",
-      specs: [
-        "Full-text search across 10M+ documents",
-        "Auto-tagging with NLP entity extraction",
-        "Metadata extraction (dates, names, locations)",
-        "Faceted search with 50ms response time",
-        "Vector embeddings for semantic search",
-      ],
+      id: 4,
+      title: "Intelligent Compression",
+      description: "70% reduction without quality loss",
+      icon: "Zap",
+      color: "#FFB400",
+      details: ["Lossless text layer", "Progressive JPEG for web", "H.265 for embedded media"],
+    },
+    {
+      id: 5,
+      title: "Smart Indexing",
+      description: "Full-text search with semantic understanding",
+      icon: "Search",
       color: "#10B981",
+      details: ["10M+ documents indexed", "50ms search response", "Vector embeddings"],
     },
     {
-      name: "Security Layer",
-      type: "PDPA-Compliant Vault",
-      specs: [
-        "AES-256 encryption at rest & in transit",
-        "Role-based access control (RBAC)",
-        "Complete audit trail with immutable logs",
-        "GDPR & PDPA compliance built-in",
-        "Biometric authentication support",
-      ],
+      id: 6,
+      title: "Secure Delivery",
+      description: "Encrypted storage with instant retrieval",
+      icon: "Lock",
       color: "#0049D7",
+      details: ["AES-256 encryption", "40% faster retrieval", "PDPA compliant"],
     },
-    {
-      name: "CDN Delivery",
-      type: "Edge Network",
-      specs: [
-        "Global CDN with 200+ edge locations",
-        "40% faster document retrieval",
-        "On-demand decompression at edge",
-        "Caching with intelligent invalidation",
-        "WebP/AVIF format conversion",
-      ],
-      color: "#FFB400",
-    },
-  ];
-
-  const metrics = [
-    { label: "Throughput", value: "10K+", unit: "docs/hr" },
-    { label: "Compression Ratio", value: "70%", unit: "avg" },
-    { label: "OCR Accuracy", value: "99.2%", unit: "rate" },
-    { label: "Search Latency", value: "50ms", unit: "p99" },
-    { label: "Storage Saved", value: "12.4", unit: "TB/day" },
-    { label: "Uptime", value: "99.9%", unit: "SLA" },
   ];
 
   return (
-    <section className="relative overflow-hidden bg-[#0B1B3D] px-6 py-24 text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30" />
-      
-      <div className="relative mx-auto max-w-7xl">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#F4F7FB] to-white px-6 py-24">
+      <div className="mx-auto max-w-7xl">
         <ScrollReveal>
           <div className="text-center">
-            <SectionTag className="text-[#0049D7]">System Architecture</SectionTag>
+            <SectionTag>Compression Pipeline</SectionTag>
             <h2 className="mt-5 font-display text-4xl font-extrabold sm:text-5xl">
-              Document Processing <span className="text-[#FFB400]">Infrastructure</span>
+              How Document <span className="text-gradient-cg">Compression Works</span>
             </h2>
-            <p className="mt-4 text-lg text-white/70">
-              Enterprise-grade architecture designed for millions of documents with sub-second response times
+            <p className="mt-5 text-lg text-[#5B6478]">
+              From upload to delivery — see how our AI-powered system processes millions of documents
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Architecture Metrics */}
         <ScrollReveal delay={0.1}>
-          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
-            {metrics.map((metric) => (
-              <div key={metric.label} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-                <p className="font-display text-3xl font-extrabold text-[#FFB400]">{metric.value}</p>
-                <p className="mt-1 text-xs text-white/60">{metric.label}</p>
-                <p className="text-[10px] text-white/40">{metric.unit}</p>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-
-        {/* Architecture Components */}
-        <ScrollReveal delay={0.2}>
-          <div className="mt-16 space-y-6">
-            {components.map((component, i) => (
-              <div
-                key={component.name}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-white/[0.08] to-transparent p-6 backdrop-blur transition-all duration-300 hover:border-[#0049D7]/50 hover:bg-white/[0.12]"
-              >
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3">
-                      <div
-                        className="h-3 w-3 rounded-full"
-                        style={{ backgroundColor: component.color }}
+          <div className="mt-20 relative">
+            {/* Flow Diagram */}
+            <div className="space-y-8">
+              {steps.map((step, index) => {
+                const StepIcon = (Icons[step.icon as keyof typeof Icons] ?? Icons.Box) as Icons.LucideIcon;
+                const isLast = index === steps.length - 1;
+                
+                return (
+                  <motion.div
+                    key={step.id}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="relative"
+                  >
+                    {/* Connecting Line */}
+                    {!isLast && (
+                      <motion.div
+                        initial={{ height: 0 }}
+                        whileInView={{ height: "100%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                        className="absolute left-[28px] top-16 h-16 w-0.5 bg-gradient-to-b from-[#0049D7]/50 to-[#0049D7]/20"
                       />
-                      <h3 className="font-heading text-xl font-bold">{component.name}</h3>
-                      <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/70">
-                        {component.type}
-                      </span>
-                    </div>
-                    <ul className="mt-4 space-y-2">
-                      {component.specs.map((spec) => (
-                        <li key={spec} className="flex items-start gap-2 text-sm text-white/80">
-                          <Icons.CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#10B981]" />
-                          {spec}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="mt-4 flex shrink-0 items-center gap-2 text-xs text-white/40 md:mt-0">
-                    <Icons.Cpu className="h-4 w-4" />
-                    <span>Component {i + 1}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
+                    )}
 
-        {/* VFS Integration Note */}
-        <ScrollReveal delay={0.3}>
-          <div className="mt-16 rounded-2xl border border-[#0049D7]/30 bg-[#0049D7]/10 p-6 backdrop-blur">
-            <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-start md:text-left">
-              <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#0049D7] to-[#FFB400] flex items-center justify-center">
-                <Icons.Building2 className="h-8 w-8 text-white" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-heading text-lg font-bold">VFS Global Production Deployment</h3>
-                <p className="mt-2 text-sm text-white/70">
-                  This architecture is currently deployed across 140+ countries, processing 12M+ visa documents daily with 99.9% uptime.
-                  The system handles peak loads of 50,000 concurrent document uploads during visa application surges.
-                </p>
-              </div>
-              <div className="flex shrink-0 gap-4 text-center">
-                <div>
-                  <p className="font-display text-2xl font-extrabold text-[#FFB400]">140+</p>
-                  <p className="text-[10px] text-white/60">Countries</p>
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-extrabold text-[#FFB400]">12M+</p>
-                  <p className="text-[10px] text-white/60">Daily Docs</p>
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-extrabold text-[#FFB400]">65%</p>
-                  <p className="text-[10px] text-white/60">Cost Saved</p>
-                </div>
-              </div>
+                    <div className="flex items-start gap-6">
+                      {/* Step Number Circle */}
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.1 }}
+                        className="relative shrink-0"
+                      >
+                        <div
+                          className="flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg"
+                          style={{ backgroundColor: step.color }}
+                        >
+                          <StepIcon className="h-7 w-7 text-white" />
+                        </div>
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
+                          className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-white text-sm font-bold shadow-md"
+                          style={{ color: step.color }}
+                        >
+                          {step.id}
+                        </motion.div>
+                      </motion.div>
+
+                      {/* Step Content */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                        className="flex-1 rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#0049D7]/30"
+                      >
+                        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                          <div className="flex-1">
+                            <h3 className="font-heading text-xl font-bold text-[#0B1B3D]">{step.title}</h3>
+                            <p className="mt-2 text-sm text-[#5B6478]">{step.description}</p>
+                            
+                            {/* Details */}
+                            <div className="mt-4 flex flex-wrap gap-2">
+                              {step.details.map((detail) => (
+                                <motion.span
+                                  key={detail}
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  whileInView={{ opacity: 1, scale: 1 }}
+                                  viewport={{ once: true }}
+                                  transition={{ duration: 0.3, delay: index * 0.1 + 0.4 }}
+                                  className="rounded-full border border-[rgba(0,73,215,0.15)] bg-[rgba(0,73,215,0.05)] px-3 py-1.5 text-xs font-medium text-[#0B1B3D]"
+                                  style={{ borderColor: `${step.color}30`, backgroundColor: `${step.color}10` }}
+                                >
+                                  {detail}
+                                </motion.span>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Animated Progress Indicator */}
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
+                            className="mt-4 md:mt-0"
+                          >
+                            <div className="flex items-center gap-2 text-xs text-[#5B6478]">
+                              <motion.div
+                                initial={{ width: 0 }}
+                                whileInView={{ width: "100%" }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: index * 0.1 + 0.6 }}
+                                className="h-1 w-16 rounded-full"
+                                style={{ backgroundColor: step.color }}
+                              />
+                              <span>Step {step.id} of {steps.length}</span>
+                            </div>
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
+
+            {/* VFS Badge */}
+            <ScrollReveal delay={0.8}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="mt-16 rounded-2xl border border-[rgba(0,73,215,0.15)] bg-gradient-to-br from-[#0B1B3D] to-[#1a2e4d] p-8 shadow-xl"
+              >
+                <div className="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left">
+                  <div className="h-16 w-16 shrink-0 rounded-2xl bg-gradient-to-br from-[#0049D7] to-[#FFB400] flex items-center justify-center">
+                    <Icons.Building2 className="h-8 w-8 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading text-lg font-bold text-white">Trusted by VFS Global</h3>
+                    <p className="mt-2 text-sm text-white/70">
+                      This compression pipeline processes 12M+ visa documents daily across 140+ countries with 99.9% uptime.
+                      Peak loads of 50,000 concurrent uploads handled seamlessly.
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 gap-6 text-center">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.9 }}
+                    >
+                      <p className="font-display text-3xl font-extrabold text-[#FFB400]">12M+</p>
+                      <p className="text-[10px] text-white/60">Daily Docs</p>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 1.0 }}
+                    >
+                      <p className="font-display text-3xl font-extrabold text-[#FFB400]">70%</p>
+                      <p className="text-[10px] text-white/60">Compression</p>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 1.1 }}
+                    >
+                      <p className="font-display text-3xl font-extrabold text-[#FFB400]">99.9%</p>
+                      <p className="text-[10px] text-white/60">Uptime</p>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            </ScrollReveal>
           </div>
         </ScrollReveal>
       </div>
@@ -1992,7 +2042,7 @@ function HomePage() {
       <ServicesGrid />
       <ProjectShowcase />
       <DigitalizationFocus />
-      <DocumentArchitecture />
+      <DocumentCompressionFlow />
       <Industries />
       <TechStack />
       <InteractiveFAQ />
