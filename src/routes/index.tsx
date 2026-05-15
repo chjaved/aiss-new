@@ -884,21 +884,6 @@ function ProjectShowcase() {
       ],
     },
     {
-      slug: "optistack",
-      name: "OptiStack",
-      tagline: "AI-Powered Cloud Cost Decision Engine",
-      description: "Detect cloud waste, unused SaaS licenses, and AI token overspend across AWS, Azure, and GCP. Auto-generates Jira tickets with full context.",
-      iconName: "Database",
-      color: "#FFB400",
-      industry: "Cloud FinOps",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=85&auto=format&fit=crop",
-      features: ["Multi-Cloud", "SaaS License Tracking", "AI Token Monitoring", "Auto-Savings"],
-      metrics: [
-        { label: "Avg. savings/yr", value: "$240K" },
-        { label: "Services tracked", value: "100+" },
-      ],
-    },
-    {
       slug: "mwmsys",
       name: "MWMSYS",
       tagline: "Migrant Worker Management System",
@@ -951,7 +936,6 @@ function ProjectShowcase() {
   const iconMap: Record<string, Icons.LucideIcon> = {
     FileStack: Icons.FileStack,
     Activity: Icons.Activity,
-    Database: Icons.Database,
     Users: Icons.Users,
     Utensils: Icons.Utensils,
     Coffee: Icons.Coffee,
@@ -967,7 +951,7 @@ function ProjectShowcase() {
               Transforming Industries with <span className="text-gradient-cg">AI Innovation</span>
             </h2>
             <p className="mt-5 text-lg text-[#5B6478]">
-              Government-grade document automation, healthcare imaging, cloud optimization, and compliance management — four enterprise platforms built for Malaysian operations.
+              AI-powered document compression, healthcare imaging, and workforce management — three enterprise platforms focused on digital transformation and operational efficiency.
             </p>
           </div>
         </ScrollReveal>
