@@ -50,17 +50,45 @@
   var inp = document.getElementById('aiss-inp');
   var sendBtn = document.getElementById('aiss-send');
 
-  function esc(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // Render plain user text: just escape + line breaks
+  function fmtUser(s) {
+    return escHtml(s).replace(/\n/g,'<br>');
+  }
+
+  // Render assistant reply: strip stray markdown markers and convert basic markdown to HTML
+  function fmtAssistant(s) {
+    var t = s.trim();
+    // Strip leading bullet markers that the model may emit despite instructions
+    t = t.replace(/^\s*[-*•]\s+/gm, '');
+    // Strip leading markdown headings (# ##)
+    t = t.replace(/^\s*#{1,6}\s+/gm, '');
+    // Collapse 3+ newlines into 2
+    t = t.replace(/\n{3,}/g, '\n\n');
+    // Escape, then re-introduce safe inline markdown
+    var html = escHtml(t);
+    // **bold** → <strong>
+    html = html.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+    // *italic* / _italic_ → <em> (but skip lone asterisks)
+    html = html.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
+    html = html.replace(/(^|\W)_([^_\n]+)_(?=\W|$)/g, '$1<em>$2</em>');
+    // `code` → styled span
+    html = html.replace(/`([^`\n]+)`/g, '<code style="background:rgba(0,73,215,.08);padding:1px 5px;border-radius:4px;font-size:.92em">$1</code>');
+    // Newlines → <br>
+    html = html.replace(/\n/g, '<br>');
+    return html;
   }
 
   function render() {
     var html = '';
     messages.forEach(function(m) {
       if (m.role === 'assistant') {
-        html += '<div class="aiss-m a"><div class="aiss-mi">' + ICO_BOT_SM + '</div><div class="aiss-b">' + esc(m.content) + '</div></div>';
+        html += '<div class="aiss-m a"><div class="aiss-mi">' + ICO_BOT_SM + '</div><div class="aiss-b">' + fmtAssistant(m.content) + '</div></div>';
       } else {
-        html += '<div class="aiss-m u"><div class="aiss-b">' + esc(m.content) + '</div></div>';
+        html += '<div class="aiss-m u"><div class="aiss-b">' + fmtUser(m.content) + '</div></div>';
       }
     });
     if (loading) {
