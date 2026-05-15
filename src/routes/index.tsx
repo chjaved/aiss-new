@@ -15,6 +15,7 @@ import { ScrollReveal } from "@/components/brand/ScrollReveal";
 import { AnimatedCounter } from "@/components/brand/AnimatedCounter";
 import { services, industries, site } from "@/lib/site";
 import heroVideo from "@/assets/14851872_3840_2160_30fps.mp4";
+import aissLogo from "@/assets/aiss-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Premier Malaysian AI software company building intelligent automation, custom software, and SmartForce DMS for government, enterprise, and healthcare." },
       { property: "og:title", content: "AI Software Solution | Intelligent Software. Real Results." },
       { property: "og:description", content: "AI-powered software for Malaysian government, enterprise & healthcare. Petaling Jaya based." },
+      { rel: "icon", href: aissLogo },
     ],
   }),
   component: HomePage,
