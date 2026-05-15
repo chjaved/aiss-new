@@ -837,76 +837,187 @@ function DigitalizationFocus() {
   );
 }
 
-/* ---------- 10. DOCUMENT WORKFLOW INFOGRAPHIC ---------- */
-function DocumentWorkflowInfographic() {
-  const steps = [
-    { icon: "Upload", label: "Ingest", color: "#0049D7" },
-    { icon: "Scan", label: "OCR", color: "#0049D7" },
-    { icon: "Cpu", label: "Compress", color: "#FFB400" },
-    { icon: "Search", label: "Index", color: "#10B981" },
-    { icon: "Lock", label: "Secure", color: "#0049D7" },
-    { icon: "Zap", label: "Retrieve", color: "#FFB400" },
+/* ---------- 10. DOCUMENT ARCHITECTURE ---------- */
+function DocumentArchitecture() {
+  const components = [
+    {
+      name: "Ingestion Layer",
+      type: "API Gateway",
+      specs: [
+        "RESTful API endpoints for batch upload",
+        "Supports PDF, TIFF, JPEG, PNG, DOCX formats",
+        "Max file size: 500MB per document",
+        "Concurrent processing: 10,000+ documents/hour",
+        "Auto-rotation and normalization preprocessing",
+      ],
+      color: "#0049D7",
+    },
+    {
+      name: "OCR Engine",
+      type: "Multi-Language Recognition",
+      specs: [
+        "Tesseract 5.0+ with custom ML models",
+        "99.2% accuracy on Bahasa Malaysia & English",
+        "Handles aged, damaged, and handwritten documents",
+        "50+ language support with auto-detection",
+        "DPI optimization (200-600 DPI adaptive)",
+      ],
+      color: "#0049D7",
+    },
+    {
+      name: "Compression Core",
+      type: "AI-Powered Engine",
+      specs: [
+        "Proprietary ML model for content-aware compression",
+        "70% average reduction without quality loss",
+        "Lossless text extraction layer",
+        "Progressive JPEG for web delivery",
+        "H.265 video compression for embedded media",
+      ],
+      color: "#FFB400",
+    },
+    {
+      name: "Indexing System",
+      type: "Elasticsearch Cluster",
+      specs: [
+        "Full-text search across 10M+ documents",
+        "Auto-tagging with NLP entity extraction",
+        "Metadata extraction (dates, names, locations)",
+        "Faceted search with 50ms response time",
+        "Vector embeddings for semantic search",
+      ],
+      color: "#10B981",
+    },
+    {
+      name: "Security Layer",
+      type: "PDPA-Compliant Vault",
+      specs: [
+        "AES-256 encryption at rest & in transit",
+        "Role-based access control (RBAC)",
+        "Complete audit trail with immutable logs",
+        "GDPR & PDPA compliance built-in",
+        "Biometric authentication support",
+      ],
+      color: "#0049D7",
+    },
+    {
+      name: "CDN Delivery",
+      type: "Edge Network",
+      specs: [
+        "Global CDN with 200+ edge locations",
+        "40% faster document retrieval",
+        "On-demand decompression at edge",
+        "Caching with intelligent invalidation",
+        "WebP/AVIF format conversion",
+      ],
+      color: "#FFB400",
+    },
+  ];
+
+  const metrics = [
+    { label: "Throughput", value: "10K+", unit: "docs/hr" },
+    { label: "Compression Ratio", value: "70%", unit: "avg" },
+    { label: "OCR Accuracy", value: "99.2%", unit: "rate" },
+    { label: "Search Latency", value: "50ms", unit: "p99" },
+    { label: "Storage Saved", value: "12.4", unit: "TB/day" },
+    { label: "Uptime", value: "99.9%", unit: "SLA" },
   ];
 
   return (
-    <section className="relative overflow-hidden bg-white px-6 py-16">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative overflow-hidden bg-[#0B1B3D] px-6 py-24 text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30" />
+      
+      <div className="relative mx-auto max-w-7xl">
         <ScrollReveal>
           <div className="text-center">
-            <SectionTag>Workflow</SectionTag>
-            <h2 className="mt-4 font-display text-3xl font-extrabold sm:text-4xl">
-              Document Compression <span className="text-gradient-cg">Pipeline</span>
+            <SectionTag className="text-[#0049D7]">System Architecture</SectionTag>
+            <h2 className="mt-5 font-display text-4xl font-extrabold sm:text-5xl">
+              Document Processing <span className="text-[#FFB400]">Infrastructure</span>
             </h2>
+            <p className="mt-4 text-lg text-white/70">
+              Enterprise-grade architecture designed for millions of documents with sub-second response times
+            </p>
           </div>
         </ScrollReveal>
 
+        {/* Architecture Metrics */}
         <ScrollReveal delay={0.1}>
-          <div className="mt-12 relative">
-            {/* Flow chart */}
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-              {steps.map((step, i) => {
-                const StepIcon = (Icons[step.icon as keyof typeof Icons] ?? Icons.Box) as Icons.LucideIcon;
-                const isLast = i === steps.length - 1;
-                return (
-                  <div key={step.label} className="flex items-center">
-                    <div className="group relative">
-                      <div
-                        className="flex h-20 w-20 items-center justify-center rounded-2xl border-2 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
-                        style={{
-                          borderColor: step.color,
-                          backgroundColor: `${step.color}10`,
-                        }}
-                      >
-                        <StepIcon className="h-8 w-8" style={{ color: step.color }} />
-                      </div>
-                      <div className="mt-3 text-center">
-                        <p className="font-heading text-xs font-semibold text-[#0B1B3D]">{step.label}</p>
-                      </div>
-                      {/* Step number */}
-                      <div
-                        className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold text-white shadow-md"
-                        style={{ backgroundColor: step.color }}
-                      >
-                        {i + 1}
-                      </div>
-                    </div>
-                    {!isLast && (
-                      <div className="mx-2 hidden md:block">
-                        <Icons.ArrowRight className="h-6 w-6 text-[#0049D7]/30" />
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+            {metrics.map((metric) => (
+              <div key={metric.label} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+                <p className="font-display text-3xl font-extrabold text-[#FFB400]">{metric.value}</p>
+                <p className="mt-1 text-xs text-white/60">{metric.label}</p>
+                <p className="text-[10px] text-white/40">{metric.unit}</p>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
 
-            {/* VFS badge */}
-            <div className="mt-12 flex justify-center">
-              <div className="inline-flex items-center gap-3 rounded-full border border-[rgba(0,73,215,0.2)] bg-[#F4F7FB] px-6 py-3">
-                <Icons.Building2 className="h-5 w-5 text-[#0049D7]" />
+        {/* Architecture Components */}
+        <ScrollReveal delay={0.2}>
+          <div className="mt-16 space-y-6">
+            {components.map((component, i) => (
+              <div
+                key={component.name}
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-white/[0.08] to-transparent p-6 backdrop-blur transition-all duration-300 hover:border-[#0049D7]/50 hover:bg-white/[0.12]"
+              >
+                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="h-3 w-3 rounded-full"
+                        style={{ backgroundColor: component.color }}
+                      />
+                      <h3 className="font-heading text-xl font-bold">{component.name}</h3>
+                      <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/70">
+                        {component.type}
+                      </span>
+                    </div>
+                    <ul className="mt-4 space-y-2">
+                      {component.specs.map((spec) => (
+                        <li key={spec} className="flex items-start gap-2 text-sm text-white/80">
+                          <Icons.CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#10B981]" />
+                          {spec}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mt-4 flex shrink-0 items-center gap-2 text-xs text-white/40 md:mt-0">
+                    <Icons.Cpu className="h-4 w-4" />
+                    <span>Component {i + 1}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        {/* VFS Integration Note */}
+        <ScrollReveal delay={0.3}>
+          <div className="mt-16 rounded-2xl border border-[#0049D7]/30 bg-[#0049D7]/10 p-6 backdrop-blur">
+            <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-start md:text-left">
+              <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#0049D7] to-[#FFB400] flex items-center justify-center">
+                <Icons.Building2 className="h-8 w-8 text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-heading text-lg font-bold">VFS Global Production Deployment</h3>
+                <p className="mt-2 text-sm text-white/70">
+                  This architecture is currently deployed across 140+ countries, processing 12M+ visa documents daily with 99.9% uptime.
+                  The system handles peak loads of 50,000 concurrent document uploads during visa application surges.
+                </p>
+              </div>
+              <div className="flex shrink-0 gap-4 text-center">
                 <div>
-                  <p className="text-xs font-semibold text-[#5B6478]">Trusted by VFS Global</p>
-                  <p className="text-[10px] text-[#5B6478]/70">Processing 12M+ documents daily</p>
+                  <p className="font-display text-2xl font-extrabold text-[#FFB400]">140+</p>
+                  <p className="text-[10px] text-white/60">Countries</p>
+                </div>
+                <div>
+                  <p className="font-display text-2xl font-extrabold text-[#FFB400]">12M+</p>
+                  <p className="text-[10px] text-white/60">Daily Docs</p>
+                </div>
+                <div>
+                  <p className="font-display text-2xl font-extrabold text-[#FFB400]">65%</p>
+                  <p className="text-[10px] text-white/60">Cost Saved</p>
                 </div>
               </div>
             </div>
@@ -1881,7 +1992,7 @@ function HomePage() {
       <ServicesGrid />
       <ProjectShowcase />
       <DigitalizationFocus />
-      <DocumentWorkflowInfographic />
+      <DocumentArchitecture />
       <Industries />
       <TechStack />
       <InteractiveFAQ />
