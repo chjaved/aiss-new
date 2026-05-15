@@ -180,16 +180,16 @@ export function Navbar() {
             Book Free Demo <ArrowRight className="h-4 w-4" />
           </PrimaryButton>
         </div>
-
-        <button
-          type="button"
-          aria-label="Open menu"
-          onClick={() => setMobile(!mobile)}
-          className="relative z-[100] grid h-10 w-10 cursor-pointer place-items-center rounded-lg border border-[rgba(0,73,215,0.2)] text-[#0049D7] lg:hidden hover:bg-[rgba(0,73,215,0.05)] active:bg-[rgba(0,73,215,0.1)]"
-        >
-          {mobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
       </nav>
+
+      <button
+        type="button"
+        aria-label="Open menu"
+        onClick={() => setMobile(!mobile)}
+        className="absolute right-5 top-3.5 z-[100] grid h-10 w-10 cursor-pointer place-items-center rounded-lg border border-[rgba(0,73,215,0.2)] text-[#0049D7] lg:hidden hover:bg-[rgba(0,73,215,0.05)] active:bg-[rgba(0,73,215,0.1)]"
+      >
+        {mobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+      </button>
 
       {mobile && (
         <>
