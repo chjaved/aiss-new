@@ -107,7 +107,7 @@ export function Navbar() {
   }, [path]);
 
   // Always show a solid/translucent background on all pages
-  const headerBg = "border-b border-[rgba(0,73,215,0.08)] bg-white/85 backdrop-blur-xl shadow-[0_4px_24px_-12px_rgba(11,27,61,0.12)]";
+  const headerBg = "border-b border-[rgba(0,73,215,0.08)] bg-white/70 backdrop-blur-xl shadow-[0_4px_24px_-12px_rgba(11,27,61,0.12)]";
 
   return (
     <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-300", headerBg)}>
