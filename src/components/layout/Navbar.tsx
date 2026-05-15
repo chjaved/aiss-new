@@ -1,11 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef } from "react";
 
-import { Menu, X, MessageCircle, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, MessageCircle, ChevronDown, ArrowRight } from "lucide-react";
 import { services, industries, site } from "@/lib/site";
 import { PrimaryButton } from "@/components/brand/Buttons";
 import * as Icons from "lucide-react";
-import { cn } from "@/lib/utils";
 
 import logoUrl from "@/assets/aiss-logo.png";
 
@@ -87,7 +86,22 @@ function IndustriesMega() {
 }
 
 export function Navbar() {
-  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
+
+  function toggle() {
+    const menu = menuRef.current;
+    const btn = btnRef.current;
+    if (!menu) return;
+    const isOpen = menu.style.display === "block";
+    menu.style.display = isOpen ? "none" : "block";
+    if (btn) btn.setAttribute("data-open", isOpen ? "false" : "true");
+  }
+
+  function close() {
+    if (menuRef.current) menuRef.current.style.display = "none";
+    if (btnRef.current) btnRef.current.setAttribute("data-open", "false");
+  }
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[rgba(0,73,215,0.08)] bg-white shadow-[0_4px_24px_-12px_rgba(11,27,61,0.12)]">
@@ -133,27 +147,25 @@ export function Navbar() {
             </PrimaryButton>
           </div>
 
-          {/* Hamburger — visible only below lg breakpoint */}
           <button
+            ref={btnRef}
             type="button"
-            onClick={() => setOpen((prev) => !prev)}
-            className={cn(
-              "flex h-10 w-10 items-center justify-center rounded-lg border bg-white text-[#0049D7] lg:hidden",
-              open ? "border-[#0049D7]" : "border-[rgba(0,73,215,0.25)]"
-            )}
+            data-open="false"
+            onClick={toggle}
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[rgba(0,73,215,0.25)] bg-white text-[#0049D7] lg:hidden"
           >
-            {open ? <X size={20} /> : <Menu size={20} />}
+            <Menu size={20} />
           </button>
         </div>
       </div>
 
-      {/* Mobile drawer — rendered in DOM when open=true */}
-      {open && (
-        <div
-          style={{ display: "block" }}
-          className="border-t border-[rgba(0,73,215,0.1)] bg-white px-5 pb-6 pt-2"
-        >
-          <ul>
+      {/* Mobile drawer — always in DOM, toggled via direct style */}
+      <div
+        ref={menuRef}
+        style={{ display: "none" }}
+      >
+        <div style={{ borderTop: "1px solid rgba(0,73,215,0.1)", background: "#fff", padding: "8px 20px 24px" }}>
+          <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
             {[
               { to: "/", label: "Home" },
               { to: "/about", label: "About" },
@@ -165,8 +177,8 @@ export function Navbar() {
               <li key={l.to} style={{ borderBottom: "1px solid rgba(0,73,215,0.08)" }}>
                 <Link
                   to={l.to}
-                  onClick={() => setOpen(false)}
-                  style={{ display: "block", padding: "12px 0", fontSize: "16px", fontWeight: 700, color: "#0B1B3D" }}
+                  onClick={close}
+                  style={{ display: "block", padding: "12px 0", fontSize: "16px", fontWeight: 700, color: "#0B1B3D", textDecoration: "none" }}
                 >
                   {l.label}
                 </Link>
@@ -179,13 +191,13 @@ export function Navbar() {
               href={site.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", borderRadius: "9999px", background: "#25D366", padding: "12px 24px", fontWeight: 700, color: "#fff" }}
+              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", borderRadius: "9999px", background: "#25D366", padding: "12px 24px", fontWeight: 700, color: "#fff", textDecoration: "none" }}
             >
               <MessageCircle size={16} /> Chat on WhatsApp
             </a>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }
