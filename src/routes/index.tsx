@@ -2003,7 +2003,6 @@ function HomePage() {
       <ProjectShowcase />
       <ServicesGrid />
       <DigitalizationFocus />
-      <ModernizationImpact />
       <TechStack />
       <InteractiveFAQ />
       <FinalCTA />
