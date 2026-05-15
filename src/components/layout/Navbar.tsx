@@ -197,7 +197,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-[64px] z-40 flex flex-col bg-[#FFFFFF] px-6 pb-10 pt-6 lg:hidden"
+            className="fixed inset-0 top-[64px] z-[60] flex flex-col bg-[#FFFFFF] px-6 pb-10 pt-6 lg:hidden"
           >
             <ul className="flex flex-col">
               {[{ to: "/", label: "Home" }, { to: "/about", label: "About" }, { to: "/services", label: "Services" }, { to: "/industries", label: "Industries" }, { to: "/case-studies", label: "Case Studies" }, { to: "/blog", label: "Blog" }, { to: "/careers", label: "Careers" }, { to: "/contact", label: "Contact" }].map((l, i) => (
