@@ -6,7 +6,6 @@ import { services, industries, site } from "@/lib/site";
 import { PrimaryButton } from "@/components/brand/Buttons";
 import * as Icons from "lucide-react";
 import { cn } from "@/lib/utils";
-import { MessageCircle } from "lucide-react";
 
 import logoUrl from "@/assets/aiss-logo.png";
 
@@ -102,8 +101,6 @@ export function Navbar() {
 
   useEffect(() => {
     setMobile(false);
-    setServicesOpen(false);
-    setIndustriesOpen(false);
   }, [path]);
 
   // Always show a solid/translucent background on all pages
