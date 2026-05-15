@@ -126,7 +126,7 @@ function Hero() {
             className="mt-6 font-display text-[clamp(2.4rem,5.5vw,4.5rem)] font-extrabold leading-[1.02] tracking-tight text-white"
             style={{ textShadow: "0 2px 30px rgba(0,0,0,0.45)" }}
           >
-            Modern Software for Government & Enterprise Operations.
+            Modern Infrastructure for Government & Enterprise Operations.
           </motion.h1>
 
           <motion.p
@@ -135,7 +135,7 @@ function Hero() {
             transition={{ duration: 0.7, delay: noAnim ? 0 : 0.25 }}
             className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg"
           >
-            We build enterprise systems that solve operational problems.
+            Digitize workflows, reduce storage overhead, and modernize critical operations with secure enterprise systems.
           </motion.p>
 
           <motion.div
