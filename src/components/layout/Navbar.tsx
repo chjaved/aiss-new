@@ -196,6 +196,7 @@ export function Navbar() {
           </div>
 
           <button
+            id="mobile-menu-toggle"
             ref={btnRef}
             type="button"
             data-open="false"

@@ -130,6 +130,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <Scripts />
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         <script src="/chat.js" defer />
+        <script src="/navbar.js" defer />
       </body>
     </html>
   );
