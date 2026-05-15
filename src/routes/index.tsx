@@ -1975,10 +1975,10 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <DocumentCompressionFlow />
       <ServicesGrid />
       <ProjectShowcase />
       <DigitalizationFocus />
-      <DocumentCompressionFlow />
       <Industries />
       <TechStack />
       <InteractiveFAQ />
