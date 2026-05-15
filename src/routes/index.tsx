@@ -97,9 +97,9 @@ function Hero() {
         />
       </div>
       {/* Cinematic overlays — strong enough for text readability */}
-      <div className="pointer-events-none absolute inset-0 z-10 bg-[#0B1B3D]/55" aria-hidden />
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-[#0B1B3D]/90 via-[#0B1B3D]/55 to-[#0B1B3D]/30" aria-hidden />
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#0B1B3D] via-transparent to-[#0B1B3D]/40" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-[#0B1B3D]/45" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-[#0B1B3D]/80 via-[#0B1B3D]/45 to-[#0B1B3D]/20" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#0B1B3D]/90 via-transparent to-[#0B1B3D]/30" aria-hidden />
       <div className="pointer-events-none absolute inset-0 z-10 bg-grid opacity-[0.08]" aria-hidden />
       <div className="pointer-events-none absolute -left-40 top-1/4 z-10 h-[28rem] w-[28rem] rounded-full bg-[#0049D7] opacity-30 blur-[160px]" aria-hidden />
       <div className="pointer-events-none absolute -right-32 bottom-0 z-10 h-[24rem] w-[24rem] rounded-full bg-[#FFB400] opacity-15 blur-[180px]" aria-hidden />
