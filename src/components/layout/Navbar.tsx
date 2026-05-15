@@ -107,8 +107,8 @@ export function Navbar() {
   const headerBg = "border-b border-[rgba(0,73,215,0.08)] bg-white/55 backdrop-blur-xl shadow-[0_4px_24px_-12px_rgba(11,27,61,0.12)]";
 
   return (
-    <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-300", headerBg)}>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
+    <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-300 pointer-events-auto", headerBg)}>
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3.5 sm:px-8 pointer-events-auto">
         <Logo />
 
         <ul className="hidden items-center gap-1 lg:flex">
@@ -185,7 +185,7 @@ export function Navbar() {
           type="button"
           aria-label="Open menu"
           onClick={() => setMobile(!mobile)}
-          className="grid h-10 w-10 cursor-pointer place-items-center rounded-lg border border-[rgba(0,73,215,0.2)] text-[#0049D7] lg:hidden hover:bg-[rgba(0,73,215,0.05)] active:bg-[rgba(0,73,215,0.1)]"
+          className="relative z-[100] grid h-10 w-10 cursor-pointer place-items-center rounded-lg border border-[rgba(0,73,215,0.2)] text-[#0049D7] lg:hidden hover:bg-[rgba(0,73,215,0.05)] active:bg-[rgba(0,73,215,0.1)]"
         >
           {mobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
