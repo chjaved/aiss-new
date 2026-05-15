@@ -914,60 +914,31 @@ function DocumentCompressionFlow() {
                 const isLast = index === steps.length - 1;
                 
                 return (
-                  <motion.div
-                    key={step.id}
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="relative"
-                  >
+                  <div key={step.id} className="relative">
                     {/* Connecting Line */}
                     {!isLast && (
-                      <motion.div
-                        initial={{ height: 0 }}
-                        whileInView={{ height: "100%" }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-                        className="absolute left-[28px] top-16 h-16 w-0.5 bg-gradient-to-b from-[#0049D7]/50 to-[#0049D7]/20"
-                      />
+                      <div className="absolute left-[28px] top-16 h-16 w-0.5 bg-gradient-to-b from-[#0049D7]/50 to-[#0049D7]/20" />
                     )}
 
                     <div className="flex items-start gap-6">
                       {/* Step Number Circle */}
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="relative shrink-0"
-                      >
+                      <div className="relative shrink-0">
                         <div
                           className="flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg"
                           style={{ backgroundColor: step.color }}
                         >
                           <StepIcon className="h-7 w-7 text-white" />
                         </div>
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          whileInView={{ scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
+                        <div
                           className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-white text-sm font-bold shadow-md"
                           style={{ color: step.color }}
                         >
                           {step.id}
-                        </motion.div>
-                      </motion.div>
+                        </div>
+                      </div>
 
                       {/* Step Content */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                        className="flex-1 rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#0049D7]/30"
-                      >
+                      <div className="flex-1 rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#0049D7]/30">
                         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                           <div className="flex-1">
                             <h3 className="font-heading text-xl font-bold text-[#0B1B3D]">{step.title}</h3>
@@ -976,58 +947,38 @@ function DocumentCompressionFlow() {
                             {/* Details */}
                             <div className="mt-4 flex flex-wrap gap-2">
                               {step.details.map((detail) => (
-                                <motion.span
+                                <span
                                   key={detail}
-                                  initial={{ opacity: 0, scale: 0.8 }}
-                                  whileInView={{ opacity: 1, scale: 1 }}
-                                  viewport={{ once: true }}
-                                  transition={{ duration: 0.3, delay: index * 0.1 + 0.4 }}
                                   className="rounded-full border border-[rgba(0,73,215,0.15)] bg-[rgba(0,73,215,0.05)] px-3 py-1.5 text-xs font-medium text-[#0B1B3D]"
                                   style={{ borderColor: `${step.color}30`, backgroundColor: `${step.color}10` }}
                                 >
                                   {detail}
-                                </motion.span>
+                                </span>
                               ))}
                             </div>
                           </div>
 
-                          {/* Animated Progress Indicator */}
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
-                            className="mt-4 md:mt-0"
-                          >
+                          {/* Progress Indicator */}
+                          <div className="mt-4 md:mt-0">
                             <div className="flex items-center gap-2 text-xs text-[#5B6478]">
-                              <motion.div
-                                initial={{ width: 0 }}
-                                whileInView={{ width: "100%" }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: index * 0.1 + 0.6 }}
+                              <div
                                 className="h-1 w-16 rounded-full"
                                 style={{ backgroundColor: step.color }}
                               />
                               <span>Step {step.id} of {steps.length}</span>
                             </div>
-                          </motion.div>
+                          </div>
                         </div>
-                      </motion.div>
+                      </div>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
 
             {/* VFS Badge */}
-            <ScrollReveal delay={0.8}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mt-16 rounded-2xl border border-[rgba(0,73,215,0.15)] bg-gradient-to-br from-[#0B1B3D] to-[#1a2e4d] p-8 shadow-xl"
-              >
+            <ScrollReveal delay={0.3}>
+              <div className="mt-16 rounded-2xl border border-[rgba(0,73,215,0.15)] bg-gradient-to-br from-[#0B1B3D] to-[#1a2e4d] p-8 shadow-xl">
                 <div className="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left">
                   <div className="h-16 w-16 shrink-0 rounded-2xl bg-gradient-to-br from-[#0049D7] to-[#FFB400] flex items-center justify-center">
                     <Icons.Building2 className="h-8 w-8 text-white" />
@@ -1040,36 +991,21 @@ function DocumentCompressionFlow() {
                     </p>
                   </div>
                   <div className="flex shrink-0 gap-6 text-center">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.9 }}
-                    >
+                    <div>
                       <p className="font-display text-3xl font-extrabold text-[#FFB400]">12M+</p>
                       <p className="text-[10px] text-white/60">Daily Docs</p>
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 1.0 }}
-                    >
+                    </div>
+                    <div>
                       <p className="font-display text-3xl font-extrabold text-[#FFB400]">70%</p>
                       <p className="text-[10px] text-white/60">Compression</p>
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 1.1 }}
-                    >
+                    </div>
+                    <div>
                       <p className="font-display text-3xl font-extrabold text-[#FFB400]">99.9%</p>
                       <p className="text-[10px] text-white/60">Uptime</p>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </ScrollReveal>
           </div>
         </ScrollReveal>
