@@ -180,52 +180,50 @@ export function Navbar() {
             Book Free Demo <ArrowRight className="h-4 w-4" />
           </PrimaryButton>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setMobile(!mobile)}
+          className="lg:hidden flex items-center gap-2 rounded-lg border border-[rgba(0,73,215,0.2)] bg-white px-4 py-2 text-[#0049D7]"
+        >
+          {mobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </nav>
 
-      <button
-        type="button"
-        aria-label="Open menu"
-        onClick={() => setMobile(!mobile)}
-        className="absolute right-5 top-3.5 z-[100] grid h-10 w-10 cursor-pointer place-items-center rounded-lg border border-[rgba(0,73,215,0.2)] text-[#0049D7] lg:hidden hover:bg-[rgba(0,73,215,0.05)] active:bg-[rgba(0,73,215,0.1)]"
-      >
-        {mobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-      </button>
-
       {mobile && (
-        <>
-          <div
-            onClick={() => setMobile(false)}
-            className="fixed inset-0 top-[72px] z-[55] bg-black/50 lg:hidden"
-          />
-          <div className="fixed inset-0 top-[72px] z-[60] flex flex-col bg-[#FFFFFF] px-6 pb-10 pt-6 lg:hidden overflow-y-auto">
-            <ul className="flex flex-col">
-              {[{ to: "/", label: "Home" }, { to: "/about", label: "About" }, { to: "/services", label: "Services" }, { to: "/industries", label: "Industries" }, { to: "/case-studies", label: "Case Studies" }, { to: "/blog", label: "Blog" }, { to: "/careers", label: "Careers" }, { to: "/contact", label: "Contact" }].map((l, i) => (
-                <li
-                  key={l.to}
-                  className="border-b border-[#0B1B3D]/10"
-                >
-                  <Link
-                    to={l.to}
-                    className="block py-4 font-display text-2xl font-bold text-[#0B1B3D]"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex flex-col gap-3">
-              <PrimaryButton to="/contact" size="md">Book Free Demo</PrimaryButton>
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-heading font-semibold text-white"
-              >
-                <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
-              </a>
-            </div>
+        <div className="lg:hidden bg-white border-t border-[rgba(0,73,215,0.1)] px-6 py-4">
+          <ul className="space-y-4">
+            <li>
+              <Link to="/" className="block py-2 text-lg font-semibold text-[#0B1B3D]">Home</Link>
+            </li>
+            <li>
+              <Link to="/about" className="block py-2 text-lg font-semibold text-[#0B1B3D]">About</Link>
+            </li>
+            <li>
+              <Link to="/services" className="block py-2 text-lg font-semibold text-[#0B1B3D]">Services</Link>
+            </li>
+            <li>
+              <Link to="/industries" className="block py-2 text-lg font-semibold text-[#0B1B3D]">Industries</Link>
+            </li>
+            <li>
+              <Link to="/case-studies" className="block py-2 text-lg font-semibold text-[#0B1B3D]">Case Studies</Link>
+            </li>
+            <li>
+              <Link to="/contact" className="block py-2 text-lg font-semibold text-[#0B1B3D]">Contact</Link>
+            </li>
+          </ul>
+          <div className="mt-6 flex flex-col gap-3">
+            <PrimaryButton to="/contact" size="md">Book Free Demo</PrimaryButton>
+            <a
+              href={site.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-heading font-semibold text-white"
+            >
+              <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
+            </a>
           </div>
-        </>
+        </div>
       )}
     </header>
   );
