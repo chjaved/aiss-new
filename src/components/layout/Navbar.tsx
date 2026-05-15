@@ -100,11 +100,15 @@ export function Navbar() {
   function toggle() {
     const menu = menuRef.current;
     const btn = btnRef.current;
+    console.log("[Navbar toggle] menuRef.current:", menu);
+    console.log("[Navbar toggle] btnRef.current:", btn);
     if (!menu) return;
     // FIX: check against "block", close with "none" — never use "" which hands
     // control back to CSS and makes behaviour unpredictable
     const isOpen = menu.style.display === "block";
+    console.log("[Navbar toggle] isOpen:", isOpen, "current display:", menu.style.display);
     menu.style.display = isOpen ? "none" : "block";
+    console.log("[Navbar toggle] new display:", menu.style.display);
     if (btn) btn.setAttribute("data-open", isOpen ? "false" : "true");
   }
 
