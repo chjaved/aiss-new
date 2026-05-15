@@ -640,32 +640,56 @@ function WhyAISS() {
 }
 
 /* ---------- 8. INDUSTRIES ---------- */
-function Industries() {
+function ModernizationImpact() {
   return (
-    <section className="bg-[#F4F7FB] px-6 py-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-2xl text-center">
-          <SectionTag>Who We Serve</SectionTag>
-          <h2 className="mt-5 font-display text-3xl font-extrabold sm:text-4xl">
-            Solutions for <span className="text-[#FFB400]">Every Sector</span>
+    <section className="relative overflow-hidden bg-white px-6 py-24">
+      <div className="pointer-events-none absolute -right-40 top-20 h-96 w-96 rounded-full bg-[#0049D7] opacity-[0.08] blur-[120px]" />
+      <div className="pointer-events-none absolute -left-40 bottom-20 h-96 w-96 rounded-full bg-[#FFB400] opacity-[0.08] blur-[120px]" />
+      
+      <div className="relative mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionTag>Modernization Impact</SectionTag>
+          <h2 className="mt-5 font-display text-4xl font-extrabold sm:text-5xl">
+            Digitalize once.<br />
+            <span className="text-gradient-cg">Save storage forever.</span>
           </h2>
+          <p className="mt-6 text-lg text-[#5B6478]">
+            Our AI compression engine shrinks documents, scans, and media without quality loss — cutting storage bills, speeding up retrieval, and keeping every file compliant with PDPA out of the box.
+          </p>
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
-          {industries.map((ind, i) => {
-            const Ico = (Icons[ind.icon as keyof typeof Icons] ?? Icons.Box) as Icons.LucideIcon;
-            return (
-              <ScrollReveal key={ind.name} delay={(i % 4) * 0.05}>
-                <Link to="/industries/$slug" params={{ slug: ind.slug }} className="group relative flex flex-col items-center gap-3 overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.1)] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-[#FFB400] hover:shadow-lg">
-                  <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#0049D7] to-[#FFB400] transition-transform duration-500 group-hover:scale-x-100" />
-                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition group-hover:bg-[#FFB400]/15 group-hover:text-[#FFB400]">
-                    <Ico className="h-6 w-6" />
-                  </span>
-                  <span className="text-center font-heading text-xs font-semibold text-[#0B1B3D]">{ind.name}</span>
-                </Link>
-              </ScrollReveal>
-            );
-          })}
-        </div>
+
+        <ScrollReveal delay={0.2}>
+          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="rounded-2xl border border-[rgba(0,73,215,0.12)] bg-[#F4F7FB] p-8 text-center">
+              <p className="font-display text-5xl font-extrabold text-[#0049D7]">70%</p>
+              <p className="mt-2 font-heading text-sm font-semibold text-[#0B1B3D]">Less storage cost</p>
+            </div>
+            <div className="rounded-2xl border border-[rgba(0,73,215,0.12)] bg-[#F4F7FB] p-8 text-center">
+              <p className="font-display text-5xl font-extrabold text-[#FFB400]">40%</p>
+              <p className="mt-2 font-heading text-sm font-semibold text-[#0B1B3D]">Faster retrieval</p>
+            </div>
+            <div className="rounded-2xl border border-[rgba(0,73,215,0.12)] bg-[#F4F7FB] p-8 text-center">
+              <p className="font-display text-5xl font-extrabold text-[#10B981]">100%</p>
+              <p className="mt-2 font-heading text-sm font-semibold text-[#0B1B3D]">PDPA compliant</p>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.3}>
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <PrimaryButton asChild>
+              <Link to="/products/smartforce-dms">
+                Explore SmartForce DMS
+                <Icons.ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </PrimaryButton>
+            <SecondaryButton asChild>
+              <Link to="/contact">
+                Estimate your savings
+              </Link>
+            </SecondaryButton>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
@@ -1979,7 +2003,7 @@ function HomePage() {
       <ServicesGrid />
       <ProjectShowcase />
       <DigitalizationFocus />
-      <Industries />
+      <ModernizationImpact />
       <TechStack />
       <InteractiveFAQ />
       <FinalCTA />
