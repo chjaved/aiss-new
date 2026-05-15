@@ -176,8 +176,8 @@ function Hero() {
             <div className="relative">
               <div className="relative rounded-[14px] border-[10px] border-[#1a1a2e] bg-[#0a0a14] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)]">
                 <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=85&auto=format&fit=crop"
-                  alt="AISS CRM and Data Compression Platform Dashboard"
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&auto=format&fit=crop"
+                  alt="AISS Enterprise CRM Platform Dashboard"
                   className="block w-full rounded-[4px]"
                   loading="eager"
                 />
