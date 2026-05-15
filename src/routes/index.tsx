@@ -839,6 +839,7 @@ function DigitalizationFocus() {
 
 /* ---------- 10. PROJECT SHOWCASE ---------- */
 type Project = {
+  slug: string;
   name: string;
   tagline: string;
   description: string;
@@ -853,6 +854,7 @@ type Project = {
 function ProjectShowcase() {
   const projects: Project[] = [
     {
+      slug: "smartforce-dms",
       name: "SmartForce DMS",
       tagline: "AI Data Compression & Document Management",
       description: "Government-grade document automation with AI compression, secure access, and PDPA-compliant workflows for high-volume document operations.",
@@ -867,6 +869,7 @@ function ProjectShowcase() {
       ],
     },
     {
+      slug: "radpics-ai",
       name: "Radpics AI",
       tagline: "AI-Powered Medical Imaging Platform",
       description: "Enterprise PACS, EMR, and workflow automation for hospitals and diagnostic centres. AI-assisted reporting and DICOM compression at scale.",
@@ -881,6 +884,7 @@ function ProjectShowcase() {
       ],
     },
     {
+      slug: "optistack",
       name: "OptiStack",
       tagline: "AI-Powered Cloud Cost Decision Engine",
       description: "Detect cloud waste, unused SaaS licenses, and AI token overspend across AWS, Azure, and GCP. Auto-generates Jira tickets with full context.",
@@ -895,6 +899,7 @@ function ProjectShowcase() {
       ],
     },
     {
+      slug: "mwmsys",
       name: "MWMSYS",
       tagline: "Migrant Worker Management System",
       description: "Comprehensive HRMS for migrant workers covering compliance, dispute resolution, 24/7 call centre, and workforce productivity.",
@@ -909,6 +914,7 @@ function ProjectShowcase() {
       ],
     },
     {
+      slug: "homefood",
       name: "HomeFood",
       tagline: "Home Cook Food Delivery Platform",
       description: "Connects 15,000+ home cooks with customers across KL & Selangor. Verified kitchens, instant payouts, real-time delivery tracking.",
@@ -923,6 +929,7 @@ function ProjectShowcase() {
       ],
     },
     {
+      slug: "jommamak",
       name: "JomMamak",
       tagline: "Malaysia's Mamak Food Delivery Platform",
       description: "Order from 200+ verified mamak stalls in minutes. Late-night delivery till 3am with real-time tracking from kitchen to doorstep.",
@@ -948,11 +955,11 @@ function ProjectShowcase() {
   };
 
   return (
-    <section id="projects" className="relative overflow-hidden bg-gradient-to-b from-white via-[#F4F7FB] to-white px-6 py-24">
+    <section id="products" className="relative overflow-hidden bg-gradient-to-b from-white via-[#F4F7FB] to-white px-6 py-24">
       <div className="mx-auto max-w-7xl">
         <ScrollReveal>
           <div className="mx-auto max-w-3xl text-center">
-            <SectionTag>Our Projects</SectionTag>
+            <SectionTag>Our Products</SectionTag>
             <h2 className="mt-5 font-display text-4xl font-extrabold sm:text-5xl">
               Transforming Industries with <span className="text-gradient-cg">AI Innovation</span>
             </h2>
@@ -967,8 +974,10 @@ function ProjectShowcase() {
             const IconComponent = iconMap[project.iconName] ?? Icons.Box;
             return (
               <ScrollReveal key={project.name} delay={(i % 3) * 0.08}>
-              <article
-                className="group relative h-full overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white shadow-[0_8px_30px_-12px_rgba(11,27,61,0.15)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_24px_60px_-20px_rgba(0,73,215,0.35)]"
+              <Link
+                to="/products/$slug"
+                params={{ slug: project.slug }}
+                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[rgba(0,73,215,0.12)] bg-white shadow-[0_8px_30px_-12px_rgba(11,27,61,0.15)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_24px_60px_-20px_rgba(0,73,215,0.35)]"
               >
                 {/* Image with zoom on hover */}
                 <div className="relative h-48 overflow-hidden">
@@ -1027,14 +1036,14 @@ function ProjectShowcase() {
                     ))}
                   </div>
 
-                  {/* Reveal-on-hover CTA */}
+                  {/* CTA */}
                   <div className="flex items-center justify-between border-t border-[rgba(0,73,215,0.08)] pt-4">
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-[#5B6478]">Built by AISS</span>
                     <span
                       className="inline-flex items-center gap-1 text-sm font-semibold transition group-hover:gap-2"
                       style={{ color: project.color }}
                     >
-                      View case study <Icons.ArrowRight className="h-4 w-4" />
+                      View details <Icons.ArrowRight className="h-4 w-4" />
                     </span>
                   </div>
                 </div>
@@ -1044,7 +1053,7 @@ function ProjectShowcase() {
                   className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
                   style={{ backgroundColor: project.color }}
                 />
-              </article>
+              </Link>
               </ScrollReveal>
             );
           })}
