@@ -38,8 +38,12 @@ function ServicesMega() {
         {services.map((s) => {
           const Ico = (Icons[s.iconName as keyof typeof Icons] ?? Icons.Box) as Icons.LucideIcon;
           return (
-            <Link key={s.slug} to="/services/$slug" params={{ slug: s.slug }}
-              className="group/item flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-[rgba(0,73,215,0.06)]">
+            <Link
+              key={s.slug}
+              to="/services/$slug"
+              params={{ slug: s.slug }}
+              className="group/item flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-[rgba(0,73,215,0.06)]"
+            >
               <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition-colors group-hover/item:bg-[rgba(0,73,215,0.15)]">
                 <Ico className="h-4 w-4" />
               </span>
@@ -68,8 +72,12 @@ function IndustriesMega() {
         {industries.map((ind) => {
           const Ico = (Icons[ind.icon as keyof typeof Icons] ?? Icons.Box) as Icons.LucideIcon;
           return (
-            <Link key={ind.slug} to="/industries/$slug" params={{ slug: ind.slug }}
-              className="group/item flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-[rgba(0,73,215,0.06)]">
+            <Link
+              key={ind.slug}
+              to="/industries/$slug"
+              params={{ slug: ind.slug }}
+              className="group/item flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-[rgba(0,73,215,0.06)]"
+            >
               <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[rgba(0,73,215,0.08)] text-[#0049D7] transition-colors group-hover/item:bg-[rgba(0,73,215,0.15)]">
                 <Ico className="h-4 w-4" />
               </span>
@@ -93,14 +101,16 @@ export function Navbar() {
     const menu = menuRef.current;
     const btn = btnRef.current;
     if (!menu) return;
-    // CSS hides it by default, so if display is empty string, it's hidden
+    // FIX: check against "block", close with "none" — never use "" which hands
+    // control back to CSS and makes behaviour unpredictable
     const isOpen = menu.style.display === "block";
-    menu.style.display = isOpen ? "" : "block";
+    menu.style.display = isOpen ? "none" : "block";
     if (btn) btn.setAttribute("data-open", isOpen ? "false" : "true");
   }
 
   function close() {
-    if (menuRef.current) menuRef.current.style.display = "";
+    // FIX: use "none" explicitly instead of ""
+    if (menuRef.current) menuRef.current.style.display = "none";
     if (btnRef.current) btnRef.current.setAttribute("data-open", "false");
   }
 
@@ -112,13 +122,30 @@ export function Navbar() {
         {/* Desktop nav */}
         <ul className="hidden items-center gap-1 lg:flex">
           <li>
-            <Link to="/" className="rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]" activeProps={{ className: "text-[#0049D7]" }} activeOptions={{ exact: true }}>Home</Link>
+            <Link
+              to="/"
+              className="rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]"
+              activeProps={{ className: "text-[#0049D7]" }}
+              activeOptions={{ exact: true }}
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/about" className="rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]" activeProps={{ className: "text-[#0049D7]" }}>About</Link>
+            <Link
+              to="/about"
+              className="rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]"
+              activeProps={{ className: "text-[#0049D7]" }}
+            >
+              About
+            </Link>
           </li>
           <li className="group relative">
-            <Link to="/services" className="inline-flex items-center gap-1 rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]" activeProps={{ className: "text-[#0049D7]" }}>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-1 rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]"
+              activeProps={{ className: "text-[#0049D7]" }}
+            >
               Services <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
             </Link>
             <div className="pointer-events-none invisible absolute left-1/2 top-full z-50 w-[min(760px,92vw)] -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
@@ -126,7 +153,11 @@ export function Navbar() {
             </div>
           </li>
           <li className="group relative">
-            <Link to="/industries" className="inline-flex items-center gap-1 rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]" activeProps={{ className: "text-[#0049D7]" }}>
+            <Link
+              to="/industries"
+              className="inline-flex items-center gap-1 rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]"
+              activeProps={{ className: "text-[#0049D7]" }}
+            >
               Industries <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
             </Link>
             <div className="pointer-events-none invisible absolute left-1/2 top-full z-50 w-[min(760px,92vw)] -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
@@ -134,10 +165,22 @@ export function Navbar() {
             </div>
           </li>
           <li>
-            <Link to="/case-studies" className="rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]" activeProps={{ className: "text-[#0049D7]" }}>Case Studies</Link>
+            <Link
+              to="/case-studies"
+              className="rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]"
+              activeProps={{ className: "text-[#0049D7]" }}
+            >
+              Case Studies
+            </Link>
           </li>
           <li>
-            <Link to="/contact" className="rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]" activeProps={{ className: "text-[#0049D7]" }}>Contact</Link>
+            <Link
+              to="/contact"
+              className="rounded-md px-3 py-2 font-heading text-sm font-medium text-[#0B1B3D] transition hover:text-[#0049D7]"
+              activeProps={{ className: "text-[#0049D7]" }}
+            >
+              Contact
+            </Link>
           </li>
         </ul>
 
@@ -153,6 +196,7 @@ export function Navbar() {
             type="button"
             data-open="false"
             onClick={toggle}
+            aria-label="Toggle navigation menu"
             className="flex h-10 w-10 items-center justify-center rounded-lg border border-[rgba(0,73,215,0.25)] bg-white text-[#0049D7] lg:hidden"
           >
             <Menu size={20} />
@@ -160,12 +204,21 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile drawer — hidden via CSS (#mobile-nav-menu), NOT a React style prop */}
+      {/* Mobile drawer */}
+      {/* FIX: display:"none" set directly here so component is self-contained.
+          Never rely on an external CSS rule to hide this — that's what broke it. */}
       <div
         ref={menuRef}
         id="mobile-nav-menu"
+        style={{ display: "none" }}
       >
-        <div style={{ borderTop: "1px solid rgba(0,73,215,0.1)", background: "#fff", padding: "8px 20px 24px" }}>
+        <div
+          style={{
+            borderTop: "1px solid rgba(0,73,215,0.1)",
+            background: "#fff",
+            padding: "8px 20px 24px",
+          }}
+        >
           <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
             {[
               { to: "/", label: "Home" },
@@ -179,20 +232,41 @@ export function Navbar() {
                 <Link
                   to={l.to}
                   onClick={close}
-                  style={{ display: "block", padding: "12px 0", fontSize: "16px", fontWeight: 700, color: "#0B1B3D", textDecoration: "none" }}
+                  style={{
+                    display: "block",
+                    padding: "12px 0",
+                    fontSize: "16px",
+                    fontWeight: 700,
+                    color: "#0B1B3D",
+                    textDecoration: "none",
+                  }}
                 >
                   {l.label}
                 </Link>
               </li>
             ))}
           </ul>
+
           <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "12px" }}>
-            <PrimaryButton to="/contact" size="md">Book Free Demo</PrimaryButton>
+            <PrimaryButton to="/contact" size="md" onClick={close}>
+              Book Free Demo
+            </PrimaryButton>
             <a
               href={site.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", borderRadius: "9999px", background: "#25D366", padding: "12px 24px", fontWeight: 700, color: "#fff", textDecoration: "none" }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                borderRadius: "9999px",
+                background: "#25D366",
+                padding: "12px 24px",
+                fontWeight: 700,
+                color: "#fff",
+                textDecoration: "none",
+              }}
             >
               <MessageCircle size={16} /> Chat on WhatsApp
             </a>
