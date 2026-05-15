@@ -852,7 +852,7 @@ type Project = {
 };
 
 function ProjectShowcase() {
-  const projects: Project[] = [
+  const enterpriseProducts: Project[] = [
     {
       slug: "smartforce-dms",
       name: "SmartForce DMS",
@@ -913,6 +913,9 @@ function ProjectShowcase() {
         { label: "Employers", value: "2,400+" },
       ],
     },
+  ];
+
+  const consumerProducts: Project[] = [
     {
       slug: "homefood",
       name: "HomeFood",
@@ -964,13 +967,13 @@ function ProjectShowcase() {
               Transforming Industries with <span className="text-gradient-cg">AI Innovation</span>
             </h2>
             <p className="mt-5 text-lg text-[#5B6478]">
-              From government document automation to healthcare imaging and food delivery — six platforms, one engineering team, real modernization impact.
+              Government-grade document automation, healthcare imaging, cloud optimization, and compliance management — four enterprise platforms built for Malaysian operations.
             </p>
           </div>
         </ScrollReveal>
 
         <div className="mt-16 grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => {
+          {enterpriseProducts.map((project, i) => {
             const IconComponent = iconMap[project.iconName] ?? Icons.Box;
             return (
               <ScrollReveal key={project.name} delay={(i % 3) * 0.08}>
@@ -1057,6 +1060,52 @@ function ProjectShowcase() {
               </ScrollReveal>
             );
           })}
+        </div>
+
+        {/* Consumer Platforms - Smaller section at bottom */}
+        <div className="mt-20 border-t border-[rgba(0,73,215,0.08)] pt-12">
+          <ScrollReveal>
+            <div className="mx-auto max-w-2xl text-center">
+              <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-[#5B6478]">Consumer Platforms</h3>
+              <p className="mt-2 text-sm text-[#5B6478]">Innovation products connecting communities</p>
+            </div>
+          </ScrollReveal>
+
+          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {consumerProducts.map((project, i) => {
+              const IconComponent = iconMap[project.iconName] ?? Icons.Box;
+              return (
+                <ScrollReveal key={project.name} delay={i * 0.05}>
+                  <Link
+                    to="/products/$slug"
+                    params={{ slug: project.slug }}
+                    className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-[rgba(0,73,215,0.1)] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  >
+                    <div className="flex items-start gap-4">
+                      <span
+                        className="grid h-12 w-12 shrink-0 place-items-center rounded-lg"
+                        style={{ backgroundColor: `${project.color}15` }}
+                      >
+                        <IconComponent className="h-6 w-6" style={{ color: project.color }} />
+                      </span>
+                      <div className="flex-1">
+                        <h4 className="font-heading text-base font-semibold text-[#0B1B3D] group-hover:text-[#0049D7] transition">{project.name}</h4>
+                        <p className="mt-1 text-xs text-[#5B6478]">{project.tagline}</p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {project.metrics.slice(0, 2).map((m) => (
+                            <span key={m.label} className="text-xs font-semibold" style={{ color: project.color }}>
+                              {m.value}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <Icons.ArrowRight className="h-4 w-4 shrink-0 text-[#5B6478] transition group-hover:text-[#0049D7] group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
