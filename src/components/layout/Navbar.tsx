@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+
 import { Menu, X, MessageCircle, ChevronDown, ArrowRight } from "lucide-react";
 import { services, industries, site } from "@/lib/site";
 import { PrimaryButton } from "@/components/brand/Buttons";
@@ -85,22 +86,11 @@ function IndustriesMega() {
   );
 }
 
-const NAV_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
-  { to: "/industries", label: "Industries" },
-  { to: "/case-studies", label: "Case Studies" },
-  { to: "/contact", label: "Contact" },
-];
-
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const headerBg = "border-b border-[rgba(0,73,215,0.08)] bg-white/90 backdrop-blur-xl shadow-[0_4px_24px_-12px_rgba(11,27,61,0.12)]";
-
   return (
-    <header className={cn("fixed inset-x-0 top-0 z-50", headerBg)}>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[rgba(0,73,215,0.08)] bg-white shadow-[0_4px_24px_-12px_rgba(11,27,61,0.12)]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
         <Logo />
 
@@ -143,49 +133,57 @@ export function Navbar() {
             </PrimaryButton>
           </div>
 
-          {/* Hamburger — mobile only */}
+          {/* Hamburger — visible only below lg breakpoint */}
           <button
             type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            style={{ WebkitTapHighlightColor: "transparent" }}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[rgba(0,73,215,0.25)] bg-white text-[#0049D7] lg:hidden"
+            onClick={() => setOpen((prev) => !prev)}
+            className={cn(
+              "flex h-10 w-10 items-center justify-center rounded-lg border bg-white text-[#0049D7] lg:hidden",
+              open ? "border-[#0049D7]" : "border-[rgba(0,73,215,0.25)]"
+            )}
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — rendered in DOM when open=true */}
       {open && (
-        <div className="border-t border-[rgba(0,73,215,0.1)] bg-white px-5 pb-6 pt-4 lg:hidden">
-          <nav>
-            <ul className="divide-y divide-[rgba(0,73,215,0.08)]">
-              {NAV_LINKS.map((l) => (
-                <li key={l.to}>
-                  <Link
-                    to={l.to}
-                    onClick={() => setOpen(false)}
-                    className="block py-3 text-base font-semibold text-[#0B1B3D] hover:text-[#0049D7]"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-5 flex flex-col gap-3">
-              <PrimaryButton to="/contact" size="md">Book Free Demo</PrimaryButton>
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-heading font-semibold text-white"
-              >
-                <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
-              </a>
-            </div>
-          </nav>
+        <div
+          style={{ display: "block" }}
+          className="border-t border-[rgba(0,73,215,0.1)] bg-white px-5 pb-6 pt-2"
+        >
+          <ul>
+            {[
+              { to: "/", label: "Home" },
+              { to: "/about", label: "About" },
+              { to: "/services", label: "Services" },
+              { to: "/industries", label: "Industries" },
+              { to: "/case-studies", label: "Case Studies" },
+              { to: "/contact", label: "Contact" },
+            ].map((l) => (
+              <li key={l.to} style={{ borderBottom: "1px solid rgba(0,73,215,0.08)" }}>
+                <Link
+                  to={l.to}
+                  onClick={() => setOpen(false)}
+                  style={{ display: "block", padding: "12px 0", fontSize: "16px", fontWeight: 700, color: "#0B1B3D" }}
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "12px" }}>
+            <PrimaryButton to="/contact" size="md">Book Free Demo</PrimaryButton>
+            <a
+              href={site.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", borderRadius: "9999px", background: "#25D366", padding: "12px 24px", fontWeight: 700, color: "#fff" }}
+            >
+              <MessageCircle size={16} /> Chat on WhatsApp
+            </a>
+          </div>
         </div>
       )}
     </header>
