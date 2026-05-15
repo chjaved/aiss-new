@@ -144,6 +144,9 @@
     transform: translateY(-4px);
   }
 
+  /* Mobile nav menu hidden by default — toggled by JS without React owning the display prop */
+  #mobile-nav-menu { display: none; }
+
   .skip-link {
     position: absolute; left: -9999px; top: 0;
     background: #0049D7; color: #FFFFFF;

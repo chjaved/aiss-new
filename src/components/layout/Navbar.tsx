@@ -93,13 +93,14 @@ export function Navbar() {
     const menu = menuRef.current;
     const btn = btnRef.current;
     if (!menu) return;
+    // CSS hides it by default, so if display is empty string, it's hidden
     const isOpen = menu.style.display === "block";
-    menu.style.display = isOpen ? "none" : "block";
+    menu.style.display = isOpen ? "" : "block";
     if (btn) btn.setAttribute("data-open", isOpen ? "false" : "true");
   }
 
   function close() {
-    if (menuRef.current) menuRef.current.style.display = "none";
+    if (menuRef.current) menuRef.current.style.display = "";
     if (btnRef.current) btnRef.current.setAttribute("data-open", "false");
   }
 
@@ -159,10 +160,10 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile drawer — always in DOM, toggled via direct style */}
+      {/* Mobile drawer — hidden via CSS (#mobile-nav-menu), NOT a React style prop */}
       <div
         ref={menuRef}
-        style={{ display: "none" }}
+        id="mobile-nav-menu"
       >
         <div style={{ borderTop: "1px solid rgba(0,73,215,0.1)", background: "#fff", padding: "8px 20px 24px" }}>
           <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
