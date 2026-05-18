@@ -11,7 +11,7 @@ import { SectionTag } from "@/components/brand/SectionTag";
 import { ScrollReveal } from "@/components/brand/ScrollReveal";
 import { site } from "@/lib/site";
 
-const CALENDLY_BASE_URL = "https://calendly.com/YOUR_CALENDLY_USERNAME/demo";
+const CALENDLY_BASE_URL = "https://calendly.com/chjaved649/30min";
 
 const UNSPLASH = (id: string, w = 1200) =>
   `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
