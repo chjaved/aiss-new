@@ -1004,7 +1004,7 @@ function DocumentCompressionFlow() {
               })}
             </div>
 
-            {/* VFS Badge */}
+            {/* Trusted Badge */}
             <ScrollReveal delay={0.3}>
               <div className="mt-16 rounded-2xl border border-[rgba(0,73,215,0.15)] bg-gradient-to-br from-[#0B1B3D] to-[#1a2e4d] p-8 shadow-xl">
                 <div className="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left">
@@ -1012,10 +1012,9 @@ function DocumentCompressionFlow() {
                     <Icons.Building2 className="h-8 w-8 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-heading text-lg font-bold text-white">Trusted by VFS Global</h3>
+                    <h3 className="font-heading text-lg font-bold text-white">Trusted by Visa & Government Offices</h3>
                     <p className="mt-2 text-sm text-white/70">
-                      This compression pipeline processes 12M+ visa documents daily across 140+ countries with 99.9% uptime.
-                      Peak loads of 50,000 concurrent uploads handled seamlessly.
+                      Our compression pipeline is actively used by visa processing offices and general government offices for high-volume document management — handling millions of documents daily with 99.9% uptime.
                     </p>
                   </div>
                   <div className="flex shrink-0 gap-6 text-center">

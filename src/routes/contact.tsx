@@ -1,15 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { toast } from "sonner";
-import { MapPin, Phone, Mail, Clock, MessageCircle, Lock, ArrowRight, CheckCircle, Users, Zap, Shield } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle, ArrowRight, CheckCircle, Users, Zap, Shield, CalendarDays } from "lucide-react";
 import { GlassCard } from "@/components/brand/GlassCard";
 import { PrimaryButton } from "@/components/brand/Buttons";
 import { SectionTag } from "@/components/brand/SectionTag";
 import { ScrollReveal } from "@/components/brand/ScrollReveal";
 import { site } from "@/lib/site";
+
+const CALENDLY_BASE_URL = "https://calendly.com/YOUR_CALENDLY_USERNAME/demo";
 
 const UNSPLASH = (id: string, w = 1200) =>
   `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
@@ -29,31 +31,118 @@ export const Route = createFileRoute("/contact")({
 const schema = z.object({
   name: z.string().trim().min(2, "Name is required"),
   email: z.string().trim().email("Invalid email"),
-  phone: z.string().trim().min(7, "Phone is required").max(30),
-  company: z.string().trim().optional(),
-  service: z.string().optional(),
-  message: z.string().min(10, "Please tell us more about your project").max(2000),
-  pdpa: z.literal(true, { message: "You must agree to the PDPA notice" }),
+  demoType: z.enum(["SmartForce DMS", "Data Compression Tool"], {
+    errorMap: () => ({ message: "Please select what you'd like to demo" }),
+  }),
 });
 type FormData = z.infer<typeof schema>;
 
 const inputCls = "w-full rounded-xl border border-[rgba(0,73,215,0.18)] bg-white/80 px-4 py-3 text-sm text-[#0B1B3D] placeholder:text-[#5B6478] focus:border-[#0049D7] focus:outline-none focus:ring-2 focus:ring-[#0049D7]/10 transition backdrop-blur-sm";
 
-function ContactPage() {
-  const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
+function DemoBookingForm() {
+  const [calendlyUrl, setCalendlyUrl] = useState<string | null>(null);
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: { pdpa: false as unknown as true },
   });
 
-  const onSubmit = async (_data: FormData) => {
+  const onSubmit = (data: FormData) => {
     try {
-      await new Promise((r) => setTimeout(r, 700));
-      navigate({ to: "/thank-you" });
+      const url = new URL(CALENDLY_BASE_URL);
+      url.searchParams.set("name", data.name);
+      url.searchParams.set("email", data.email);
+      url.searchParams.set("a1", data.demoType);
+      setCalendlyUrl(url.toString());
     } catch {
       toast.error("Something went wrong. Please try again.");
     }
   };
+
+  if (calendlyUrl) {
+    return (
+      <div className="rounded-3xl bg-white p-6 shadow-xl shadow-[#0B1B3D]/5 border border-[rgba(0,73,215,0.1)]">
+        <div className="mb-5 flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center rounded-full bg-[#0049D7]/10">
+            <CalendarDays className="h-5 w-5 text-[#0049D7]" />
+          </div>
+          <div>
+            <h2 className="font-display text-xl font-bold text-[#0B1B3D]">Pick a Time</h2>
+            <p className="text-sm text-[#5B6478]">Choose a slot that works for you</p>
+          </div>
+        </div>
+        <iframe
+          src={calendlyUrl}
+          width="100%"
+          height="630"
+          frameBorder="0"
+          title="Book a Demo"
+          className="rounded-xl"
+        />
+        <button
+          onClick={() => setCalendlyUrl(null)}
+          className="mt-4 text-sm text-[#5B6478] hover:text-[#0049D7] transition"
+        >
+          ← Back to form
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-3xl bg-white p-8 shadow-xl shadow-[#0B1B3D]/5 border border-[rgba(0,73,215,0.1)]">
+      <h2 className="font-display text-2xl font-bold text-[#0B1B3D]">Book a Free Demo</h2>
+      <p className="mt-2 text-[#5B6478]">Tell us a bit about yourself and which product you'd like to see — then pick a time that suits you.</p>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-5">
+        <div>
+          <label className="mb-2 block text-sm font-medium text-[#0B1B3D]">Full Name *</label>
+          <input className={inputCls} placeholder="Ahmad Faizal" {...register("name")} />
+          {errors.name && <p className="mt-1.5 text-xs text-red-500">{errors.name.message}</p>}
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-[#0B1B3D]">Email *</label>
+          <input type="email" className={inputCls} placeholder="you@company.com" {...register("email")} />
+          {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>}
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-[#0B1B3D]">Which product would you like to demo? *</label>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {(["SmartForce DMS", "Data Compression Tool"] as const).map((opt) => (
+              <label
+                key={opt}
+                className="group flex cursor-pointer items-start gap-3 rounded-xl border border-[rgba(0,73,215,0.18)] p-4 transition hover:border-[#0049D7] hover:bg-[#0049D7]/5 has-[:checked]:border-[#0049D7] has-[:checked]:bg-[#0049D7]/5"
+              >
+                <input
+                  type="radio"
+                  value={opt}
+                  {...register("demoType")}
+                  className="mt-0.5 accent-[#0049D7]"
+                />
+                <div>
+                  <p className="font-heading text-sm font-semibold text-[#0B1B3D]">{opt}</p>
+                  <p className="mt-0.5 text-xs text-[#5B6478]">
+                    {opt === "SmartForce DMS"
+                      ? "Document management & workflow automation"
+                      : "High-volume PDF & image compression pipeline"}
+                  </p>
+                </div>
+              </label>
+            ))}
+          </div>
+          {errors.demoType && <p className="mt-1.5 text-xs text-red-500">{errors.demoType.message}</p>}
+        </div>
+
+        <PrimaryButton type="submit" size="lg" className="w-full justify-center text-base">
+          Choose a Time <CalendarDays className="ml-2 h-5 w-5" />
+        </PrimaryButton>
+        <p className="text-center text-xs text-[#5B6478]">Free 30-min session · No credit card required</p>
+      </form>
+    </div>
+  );
+}
+
+function ContactPage() {
 
   return (
     <>
@@ -135,70 +224,13 @@ function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* Demo Booking Section */}
       <section className="px-6 py-20 bg-gradient-to-b from-white to-[#F8FAFC]">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Form */}
             <ScrollReveal className="lg:col-span-3">
-              <div className="rounded-3xl bg-white p-8 shadow-xl shadow-[#0B1B3D]/5 border border-[rgba(0,73,215,0.1)]">
-                <h2 className="font-display text-2xl font-bold text-[#0B1B3D]">Get in Touch</h2>
-                <p className="mt-2 text-[#5B6478]">Fill out the form below and we'll get back to you within 2 business hours.</p>
-                
-                <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-5">
-                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-[#0B1B3D]">Full Name *</label>
-                      <input className={inputCls} placeholder="Ahmad Faizal" {...register("name")} />
-                      {errors.name && <p className="mt-1.5 text-xs text-red-500">{errors.name.message}</p>}
-                    </div>
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-[#0B1B3D]">Email *</label>
-                      <input type="email" className={inputCls} placeholder="you@company.com" {...register("email")} />
-                      {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>}
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-[#0B1B3D]">Phone/WhatsApp *</label>
-                      <input type="tel" className={inputCls} placeholder="+60 12-345 6789" {...register("phone")} />
-                      {errors.phone && <p className="mt-1.5 text-xs text-red-500">{errors.phone.message}</p>}
-                    </div>
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-[#0B1B3D]">Company</label>
-                      <input className={inputCls} placeholder="Your organisation" {...register("company")} />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-sm font-medium text-[#0B1B3D]">Service Interest</label>
-                    <select className={inputCls} {...register("service")}>
-                      <option value="">Select a service (optional)</option>
-                      {["AI & Automation","Custom Software Development","SmartForce DMS","Mobile App Development","API Integration","Smart Dashboards","IoT Integration","Cybersecurity","Government Solutions","Healthcare Software","Not Sure - Need Consultation"].map(i => <option key={i}>{i}</option>)}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-sm font-medium text-[#0B1B3D]">Tell us about your project *</label>
-                    <textarea rows={5} className={inputCls} placeholder="What challenge are you trying to solve? Any specific requirements or timeline?" {...register("message")} />
-                    {errors.message && <p className="mt-1.5 text-xs text-red-500">{errors.message.message}</p>}
-                  </div>
-
-                  <div className="rounded-xl bg-[#F4F7FB] p-4">
-                    <label className="flex items-start gap-3 text-sm text-[#5B6478]">
-                      <input type="checkbox" {...register("pdpa")} className="mt-0.5 h-5 w-5 accent-[#0049D7]" />
-                      <span>I agree to AI Software Solution processing my data per the <Link to="/privacy-policy" className="text-[#0049D7] underline font-medium">Privacy Policy</Link>. *</span>
-                    </label>
-                    {errors.pdpa && <p className="mt-2 text-xs text-red-500">{errors.pdpa.message}</p>}
-                  </div>
-
-                  <PrimaryButton type="submit" size="lg" className="w-full justify-center text-base">
-                    {isSubmitting ? "Sending..." : "Book My Free Demo"} <ArrowRight className="ml-2 h-5 w-5" />
-                  </PrimaryButton>
-                  <p className="text-center text-sm text-[#5B6478]"><Lock className="mr-1 inline h-4 w-4" /> Protected under Malaysia's PDPA 2010</p>
-                </form>
-              </div>
+              <DemoBookingForm />
             </ScrollReveal>
 
             {/* Contact Info */}
