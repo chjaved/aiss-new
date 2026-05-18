@@ -113,12 +113,12 @@ function DemoBookingForm() {
           title="Book a Demo"
           className="rounded-xl"
         />
-        <button
-          onClick={() => setCalendlyUrl(null)}
-          className="mt-4 text-sm text-[#5B6478] hover:text-[#0049D7] transition"
+        <a
+          href="/contact"
+          className="mt-5 inline-flex items-center gap-2 rounded-full border-2 border-[#0049D7] bg-white px-5 py-2.5 text-sm font-semibold text-[#0049D7] transition hover:bg-[#0049D7] hover:text-white hover:shadow-lg"
         >
           ← Back to form
-        </button>
+        </a>
       </div>
     );
   }
