@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { MapPin, Phone, Mail, Clock, MessageCircle, ArrowRight, CheckCircle, Users, Zap, Shield, CalendarDays } from "lucide-react";
 import { GlassCard } from "@/components/brand/GlassCard";
@@ -39,19 +39,36 @@ type FormData = z.infer<typeof schema>;
 
 const inputCls = "w-full rounded-xl border border-[rgba(0,73,215,0.18)] bg-white/80 px-4 py-3 text-sm text-[#0B1B3D] placeholder:text-[#5B6478] focus:border-[#0049D7] focus:outline-none focus:ring-2 focus:ring-[#0049D7]/10 transition backdrop-blur-sm";
 
+function buildCalendlyUrl(name: string, email: string, demoType: string) {
+  const url = new URL(CALENDLY_BASE_URL);
+  url.searchParams.set("name", name);
+  url.searchParams.set("email", email);
+  url.searchParams.set("a1", demoType);
+  return url.toString();
+}
+
 function DemoBookingForm() {
   const [calendlyUrl, setCalendlyUrl] = useState<string | null>(null);
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
+  // Fallback: if the form submitted natively (React not hydrated), the data
+  // ends up in the URL query string. Detect it on mount and show Calendly.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name");
+    const email = params.get("email");
+    const demoType = params.get("demoType");
+    if (name && email && demoType) {
+      setCalendlyUrl(buildCalendlyUrl(name, email, demoType));
+    }
+  }, []);
+
   const onSubmit = (data: FormData) => {
     try {
-      const url = new URL(CALENDLY_BASE_URL);
-      url.searchParams.set("name", data.name);
-      url.searchParams.set("email", data.email);
-      url.searchParams.set("a1", data.demoType);
-      setCalendlyUrl(url.toString());
+      setCalendlyUrl(buildCalendlyUrl(data.name, data.email, data.demoType));
     } catch {
       toast.error("Something went wrong. Please try again.");
     }
