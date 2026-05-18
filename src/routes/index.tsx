@@ -1019,7 +1019,7 @@ function DocumentCompressionFlow() {
                   </div>
                   <div className="flex shrink-0 gap-6 text-center">
                     <div>
-                      <p className="font-display text-3xl font-extrabold text-[#FFB400]">12M+</p>
+                      <p className="font-display text-3xl font-extrabold text-[#FFB400]">1M+</p>
                       <p className="text-[10px] text-white/60">Daily Docs</p>
                     </div>
                     <div>
