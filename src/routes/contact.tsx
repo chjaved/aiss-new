@@ -48,9 +48,14 @@ const inputCls = "w-full rounded-xl border border-[rgba(0,73,215,0.18)] bg-white
 
 function buildCalendlyUrl(name: string, email: string, demoType: string) {
   const url = new URL(CALENDLY_BASE_URL);
-  url.searchParams.set("name", name);
+  // Append demo type to name so it always shows up in Calendly emails,
+  // even without a custom question configured on the event.
+  url.searchParams.set("name", `${name} — ${demoType}`);
   url.searchParams.set("email", email);
+  // Also send as a1 in case a custom question is configured later.
   url.searchParams.set("a1", demoType);
+  // utm_content surfaces in some Calendly notifications.
+  url.searchParams.set("utm_content", demoType);
   return url.toString();
 }
 
