@@ -16,7 +16,14 @@ const CALENDLY_BASE_URL = "https://calendly.com/chjaved649/30min";
 const UNSPLASH = (id: string, w = 1200) =>
   `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
 
+const searchSchema = z.object({
+  name: z.string().optional(),
+  email: z.string().optional(),
+  demoType: z.string().optional(),
+});
+
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search) => searchSchema.parse(search),
   head: () => ({
     meta: [
       { title: "Contact Us | Book a Free Demo | AI Software Solution Malaysia" },
@@ -48,15 +55,22 @@ function buildCalendlyUrl(name: string, email: string, demoType: string) {
 }
 
 function DemoBookingForm() {
-  const [calendlyUrl, setCalendlyUrl] = useState<string | null>(null);
+  // Read search params from the route — works during SSR so iframe renders
+  // even if client JS fails to load.
+  const search = Route.useSearch();
+  const initialCalendly =
+    search.name && search.email && search.demoType
+      ? buildCalendlyUrl(search.name, search.email, search.demoType)
+      : null;
+
+  const [calendlyUrl, setCalendlyUrl] = useState<string | null>(initialCalendly);
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
-  // Fallback: if the form submitted natively (React not hydrated), the data
-  // ends up in the URL query string. Detect it on mount and show Calendly.
+  // Safety net for any other case where the URL has params (e.g. native submit)
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || calendlyUrl) return;
     const params = new URLSearchParams(window.location.search);
     const name = params.get("name");
     const email = params.get("email");
@@ -64,7 +78,7 @@ function DemoBookingForm() {
     if (name && email && demoType) {
       setCalendlyUrl(buildCalendlyUrl(name, email, demoType));
     }
-  }, []);
+  }, [calendlyUrl]);
 
   const onSubmit = (data: FormData) => {
     try {
