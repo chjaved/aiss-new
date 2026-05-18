@@ -32,7 +32,7 @@ const schema = z.object({
   name: z.string().trim().min(2, "Name is required"),
   email: z.string().trim().email("Invalid email"),
   demoType: z.enum(["SmartForce DMS", "Data Compression Tool"], {
-    errorMap: () => ({ message: "Please select what you'd like to demo" }),
+    error: "Please select what you'd like to demo",
   }),
 });
 type FormData = z.infer<typeof schema>;
