@@ -1111,6 +1111,21 @@ function ProjectShowcase() {
         { label: "Employers", value: "2,400+" },
       ],
     },
+    {
+      slug: "ap-online-jobs",
+      name: "AP Online Jobs",
+      tagline: "Global Online Recruitment Platform",
+      description: "Global online employment platform connecting employers with talented candidates. 18+ years of HR industry experience streamlining the entire hiring process.",
+      iconName: "Briefcase",
+      color: "#0049D7",
+      industry: "Recruitment & HR",
+      image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=85&auto=format&fit=crop",
+      features: ["Online CV Database", "FWWMC Platform", "Contract Managed Services", "Global Partners"],
+      metrics: [
+        { label: "Years experience", value: "18+" },
+        { label: "Worker database", value: "Local & Foreign" },
+      ],
+    },
   ];
 
   const consumerProducts: Project[] = [
@@ -1150,6 +1165,7 @@ function ProjectShowcase() {
     FileStack: Icons.FileStack,
     Activity: Icons.Activity,
     Users: Icons.Users,
+    Briefcase: Icons.Briefcase,
     Utensils: Icons.Utensils,
     Coffee: Icons.Coffee,
   };

@@ -175,6 +175,34 @@ const productsData = {
     technologies: ["React Native", "Node.js", "PostgreSQL", "Google Maps API", "Firebase", "Stripe"],
     related: ["homefood", "mwmsys"],
   },
+  "ap-online-jobs": {
+    name: "AP Online Jobs",
+    tagline: "Global Online Recruitment Platform",
+    description: "Global online employment platform connecting employers with talented candidates. 18+ years of HR industry experience, streamlining the entire hiring process to save time and improve ROI.",
+    longDescription: "AP Online Jobs is a global online employment platform serving job seekers and employers for over 18 years. Built by AISS, it aspires to be the world's leading online recruitment platform with built-in welfare protection. The platform provides online CVs of local and foreign workers to meet local and global demand, offering streamlined recruitment services, contract managed services, and the proprietary FWWMC Digital Platform.",
+    iconName: "Briefcase",
+    color: "#0049D7",
+    industry: "Recruitment & HR",
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400&q=85&auto=format&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1400&q=80&auto=format&fit=crop",
+    metrics: [
+      { label: "Years Experience", value: "18+", desc: "In HR industry" },
+      { label: "Global Reach", value: "Multi", desc: "Country partners" },
+      { label: "Services", value: "6+", desc: "Recruitment streams" },
+      { label: "Worker Database", value: "Local & Foreign", desc: "Online CV pool" },
+    ],
+    features: [
+      { icon: "Search", title: "Job Search Engine", desc: "Search by job title, keyword, or location. Candidates browse and apply to live jobs across multiple industries and skill levels." },
+      { icon: "Users", title: "Candidate & Employer Portals", desc: "Separate streamlined dashboards for candidates, employers, and partners. Each role gets tailored tools and workflows." },
+      { icon: "FileText", title: "Online CV Database", desc: "Access local and foreign worker CVs to cater for domestic and global hiring demand. Pre-screened for quality." },
+      { icon: "Briefcase", title: "FWWMC Digital Platform", desc: "Foreign Worker Welfare Management Centre — proprietary digital platform for welfare protection and compliance." },
+      { icon: "Shield", title: "Contract Managed Services", desc: "End-to-end contract management, payroll, and compliance handling on behalf of employers." },
+      { icon: "Globe", title: "Global Partner Network", desc: "Established overseas partners and clients providing global recruitment reach across multiple regions." },
+    ],
+    deployments: ["Petaling Jaya HQ", "Global Partner Network", "Local & Foreign Workers"],
+    technologies: ["React", "Node.js", "PostgreSQL", "AWS", "WebRTC", "REST APIs"],
+    related: ["mwmsys", "smartforce-dms"],
+  },
 };
 
 type ProductSlug = keyof typeof productsData;
