@@ -20,6 +20,7 @@ import aissLogo from "@/assets/aiss-logo.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
+      { name: "google-site-verification", content: "4ak_2D_pzY7VQrS9U5goUrcrSq4bPJKAQpN_aC3rqsk" },
       { title: "AI Software Solutions Petaling Jaya | Data Compression & AI Software Malaysia" },
       { name: "description", content: "AI Software Solutions (AISS) is Petaling Jaya's leading AI software company. We build data compression tools, SmartForce DMS, custom AI software, and automation systems for Malaysian government, healthcare & enterprise." },
       { name: "keywords", content: "AI Software Solutions, AI Software Solutions Petaling Jaya, data compression tools, data compression services, AI software Malaysia, SmartForce DMS, document compression Malaysia, AI company Petaling Jaya, government AI software Malaysia, healthcare AI Malaysia" },
