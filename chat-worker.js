@@ -4,6 +4,7 @@ export default {
   async fetch(request, env) {
     const allowedOrigins = [
       "https://aisoftwaresolutions.com",
+      "https://aisoftwaresolutions.com.my",
       "http://localhost:5173",
     ];
     const origin = request.headers.get("Origin") || "";
