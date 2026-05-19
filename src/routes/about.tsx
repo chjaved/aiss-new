@@ -8,10 +8,12 @@ import { ScrollReveal } from "@/components/brand/ScrollReveal";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About AI Software Solutions | Malaysian AI Software Company in Petaling Jaya" },
-      { name: "description", content: "AI Software Solutions is a Petaling Jaya-based AI software company building intelligent systems for Malaysian government, enterprise & healthcare since 2019." },
-      { property: "og:title", content: "About AI Software Solution" },
-      { property: "og:description", content: "We build AI that serves Malaysia. Local team. Real expertise." },
+      { title: "About AI Software Solutions Petaling Jaya | Leading AI Software Company Malaysia" },
+      { name: "description", content: "AI Software Solutions (AISS) — Petaling Jaya's leading AI software company since 2019. We build data compression tools, AI automation, and custom software for Malaysian government, enterprise & healthcare." },
+      { name: "keywords", content: "AI Software Solutions, AI Software Solutions Petaling Jaya, AI software company Malaysia, data compression Malaysia, AISS Petaling Jaya" },
+      { property: "og:title", content: "About AI Software Solutions Petaling Jaya | AI Software Company Malaysia" },
+      { property: "og:description", content: "Petaling Jaya's leading AI Software Solutions company. Data compression, AI automation, and enterprise software for Malaysia." },
+      { name: "robots", content: "index, follow" },
     ],
   }),
   component: About,

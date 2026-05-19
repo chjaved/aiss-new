@@ -9,10 +9,12 @@ import { ScrollReveal } from "@/components/brand/ScrollReveal";
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "All Services | AI Software Solution Malaysia" },
-      { name: "description", content: "Explore AI Software Solutions' end-to-end AI and software services - from automation and SmartForce DMS to government and healthcare systems." },
-      { property: "og:title", content: "Our Services | AI Software Solutions Malaysia" },
-      { property: "og:description", content: "10 specialised AI & software services for Malaysian government, enterprise, and healthcare." },
+      { title: "AI Software Services Petaling Jaya | Data Compression, Automation & Custom Software" },
+      { name: "description", content: "AI Software Solutions Petaling Jaya offers data compression tools, AI automation, SmartForce DMS, custom software & cloud services for Malaysian government, enterprise & healthcare." },
+      { name: "keywords", content: "data compression tools, data compression services, AI software services Malaysia, AI automation Petaling Jaya, SmartForce DMS, custom software Malaysia" },
+      { property: "og:title", content: "AI Software Services Petaling Jaya | AI Software Solutions Malaysia" },
+      { property: "og:description", content: "Data compression, AI automation, SmartForce DMS and custom AI software services from Petaling Jaya." },
+      { name: "robots", content: "index, follow" },
     ],
   }),
   component: ServicesIndex,

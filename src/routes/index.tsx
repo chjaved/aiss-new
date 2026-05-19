@@ -20,10 +20,18 @@ import aissLogo from "@/assets/aiss-logo.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AI Software Solution | AI & Software Development Malaysia" },
-      { name: "description", content: "Premier Malaysian AI software company building intelligent automation, custom software, and SmartForce DMS for government, enterprise, and healthcare." },
-      { property: "og:title", content: "AI Software Solution | Intelligent Software. Real Results." },
-      { property: "og:description", content: "AI-powered software for Malaysian government, enterprise & healthcare. Petaling Jaya based." },
+      { title: "AI Software Solutions Petaling Jaya | Data Compression & AI Software Malaysia" },
+      { name: "description", content: "AI Software Solutions (AISS) is Petaling Jaya's leading AI software company. We build data compression tools, SmartForce DMS, custom AI software, and automation systems for Malaysian government, healthcare & enterprise." },
+      { name: "keywords", content: "AI Software Solutions, AI Software Solutions Petaling Jaya, data compression tools, data compression services, AI software Malaysia, SmartForce DMS, document compression Malaysia, AI company Petaling Jaya, government AI software Malaysia, healthcare AI Malaysia" },
+      { property: "og:title", content: "AI Software Solutions Petaling Jaya | Data Compression & AI Software Malaysia" },
+      { property: "og:description", content: "Petaling Jaya's leading AI Software Solutions company — AI-powered data compression tools, SmartForce DMS, and custom software for Malaysian government, healthcare & enterprise." },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_MY" },
+      { property: "og:url", content: "https://aisoftwaresolutions.com.my/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "index, follow" },
+      { name: "geo.region", content: "MY-10" },
+      { name: "geo.placename", content: "Petaling Jaya" },
     ],
     links: [
       { rel: "icon", href: aissLogo },
